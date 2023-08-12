@@ -13,14 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('role');
-            $table->rememberToken();
+        Schema::create('akuns', function (Blueprint $table) {
+            $table->uuid('id')->primary();
+            $table->foreignId('id_user')->references('id')->on('users');
+            $table->string('kode_buku');
+            $table->string('name_akun');
+            $table->string('klasifikasi_akun');
             $table->timestamps();
         });
     }
@@ -32,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('akuns');
     }
 };
