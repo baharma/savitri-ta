@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +20,20 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/',[dashboardController::class,'index'])->name('dashboard');
+
+
+
+
+
+
+
+    //penjualan
+    Route::controller(PenjualanController::class)->group(function(){
+        Route::get('/penjualan','index')->name('penjualan.index');
+    });
+
+
+
 });
 
 Route::middleware('auth')->group(function () {
@@ -28,3 +43,5 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
+
