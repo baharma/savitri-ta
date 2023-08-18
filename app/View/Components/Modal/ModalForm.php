@@ -11,9 +11,10 @@ class ModalForm extends Component
      *
      * @return void
      */
-    public $action ;
-    public function __construct($action)
+    public $action,$label ;
+    public function __construct($action,$label)
     {
+        $this->label = $label;
         $this->action = $action;
     }
 

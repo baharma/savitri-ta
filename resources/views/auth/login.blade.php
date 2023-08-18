@@ -5,7 +5,7 @@
         <!-- Nested Row within Card Body -->
         <div class="row">
             <div class="col-lg-6" style="
-            background: url('https://media.discordapp.net/attachments/623470635124916224/1139728549490733108/366815363_815202796677075_9016584642044048572_n.png?width=639&height=676');
+            background: url('https://cdn.discordapp.com/attachments/805750119655407616/1141965212312940564/WhatsApp_Image_2023-08-06_at_16.27.31.jpg');
             background-position: center;
             background-size: cover; ">
 
