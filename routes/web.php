@@ -23,10 +23,6 @@ Route::middleware(['auth'])->group(function () {
 
 
 
-
-
-
-
     //penjualan
     Route::controller(PenjualanController::class)->group(function(){
         Route::get('/penjualan','index')->name('penjualan.index');

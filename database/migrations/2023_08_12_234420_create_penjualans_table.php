@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('user_id')->references('id')->on('users');
             $table->foreignUuid('piutang_id')->references('id')->on('piutangs');
             $table->date('tanggal_penjualan');
+            $table->string('faktur_penjualan');
+            $table->double('harga_barang');
             $table->string('nama_barang');
             $table->string('jenis_barang');
             $table->integer('jumlah_barang');

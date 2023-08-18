@@ -6,7 +6,7 @@
             <div class="sidebar-brand-icon rotate-n-15">
                 <i class="fas fa-laugh-wink"></i>
             </div>
-            <div class="sidebar-brand-text mx-3">SB Admin <sup>2</sup></div>
+            <div class="sidebar-brand-text mx-3"></div>
         </a>
 
         <!-- Divider -->
@@ -36,7 +36,7 @@
                 data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data :</h6>
-                    <a class="collapse-item" href="utilities-color.html">Penjualan</a>
+                    <a class="collapse-item" href="{{route('penjualan.index')}}">Penjualan</a>
                     <a class="collapse-item" href="utilities-border.html">Pengeluaran</a>
                     <a class="collapse-item" href="utilities-animation.html">Hutang</a>
                     <a class="collapse-item" href="utilities-other.html">Piutang</a>
