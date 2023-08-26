@@ -15,17 +15,17 @@ return new class extends Migration
     {
         Schema::create('penjualans', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->foreignUuid('piutang_id')->references('id')->on('piutangs');
-            $table->date('tanggal_penjualan');
-            $table->string('faktur_penjualan');
-            $table->double('harga_barang');
-            $table->string('nama_barang');
-            $table->string('jenis_barang');
-            $table->integer('jumlah_barang');
-            $table->string('jenis_pembayarang');
-            $table->double('total_penjualan');
-            $table->longText('description');
+            $table->foreignId('user_id')->references('id')->on('users')->nullable();
+            $table->foreignUuid('piutang_id')->references('id')->on('piutangs')->nullable();
+            $table->date('tanggal_penjualan')->nullable();
+            $table->string('faktur_penjualan')->nullable();
+            $table->double('harga_barang')->nullable();
+            $table->string('nama_barang')->nullable();
+            $table->string('jenis_barang')->nullable();
+            $table->integer('jumlah_barang')->nullable();
+            $table->string('jenis_pembayarang')->nullable();
+            $table->double('total_penjualan')->nullable();
+            $table->longText('description')->nullable();
             $table->timestamps();
         });
     }

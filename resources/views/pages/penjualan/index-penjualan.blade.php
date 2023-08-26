@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <x-layout.add-modal-button >
             @slot('inputs')
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticModalPenjualan">
                 Tambah
               </button>
             @endslot
@@ -30,9 +30,9 @@
               </tr>
             </thead>
             <tbody>
-                @forelse ( $data as $item)
+                @forelse ( $data as $index=>$item)
                 <tr>
-                    <th>{{$loop}}</th>
+                    <th>{{$loop->iteration }}</th>
                     <td>{{$item->faktur_penjualan}}</td>
                     <td>{{$item->tanggal_penjualan}}</td>
                     <td>{{$item->nama_barang}}</td>
@@ -56,36 +56,5 @@
     </div>
 @endsection
 
-<!-- Modal -->
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-    aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
-        <form action="" method="POST">
-            @csrf
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="staticBackdropLabel"></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col"> <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                          </div></div>
-                          <div class="col"> <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-                          </div></div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Understood</button>
-                </div>
-            </div>
-        </form>
-    </div>
-</div>
+@include('pages.component-boostrap.modal-penjualan')
+
