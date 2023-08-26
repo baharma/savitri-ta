@@ -26,6 +26,10 @@ Route::middleware(['auth'])->group(function () {
     //penjualan
     Route::controller(PenjualanController::class)->group(function(){
         Route::get('/penjualan','index')->name('penjualan.index');
+        Route::post('/penjualan/create','createPenjualan')->name('penjualan.create');
+
+        //piutang
+        Route::get('/piutang','indexPiutang')->name('piutang.index');
     });
 
 

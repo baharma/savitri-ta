@@ -16,16 +16,16 @@ return new class extends Migration
         Schema::create('piutangs', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->string('no_transaksi')->unique();
-            $table->string('nama_Pelanggan');
-            $table->string('alamat');
-            $table->date('tgl_transaksi_piutang');
-            $table->date('tgl_jatuh_tempo_piutang');
-            $table->double('total_tagihan');
-            $table->double('total_pembayaran');
-            $table->string('status_pembayaran');
-            $table->longText('description');
-            $table->string('sisa_tagihan');
+            $table->string('no_transaksi')->unique()->nullable();
+            $table->string('nama_Pelanggan')->nullable();
+            $table->string('alamat')->nullable();
+            $table->date('tgl_transaksi_piutang')->nullable();
+            $table->date('tgl_jatuh_tempo_piutang')->nullable();
+            $table->double('total_tagihan')->nullable();
+            $table->double('total_pembayaran')->nullable();
+            $table->string('status_pembayaran')->nullable();
+            $table->longText('description')->nullable();
+            $table->string('sisa_tagihan')->nullable();
             $table->timestamps();
         });
     }

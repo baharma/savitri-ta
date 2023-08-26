@@ -17,34 +17,35 @@
             <thead>
               <tr>
                 <th scope="col">No</th>
-                <th scope="col">Faktur Penjualan</th>
-                <th scope="col">Tanggal</th>
-                <th scope="col">Nama Barang</th>
-                <th scope="col">Jenis Barang</th>
-                <th scope="col">Harga Barang</th>
-                <th scope="col">Qty</th>
-                <th scope="col">Total</th>
-                <th scope="col">Jenis Pembayaran</th>
+                <th scope="col">No Transaksi</th>
+                <th scope="col">Nama Pelanggan</th>
+                <th scope="col">Alamat</th>
+                <th scope="col">Tanggal Transaksi Piutang</th>
+                <th scope="col">Tanggal Jatuh Tempo Piutang</th>
+                <th scope="col">Total Tagihan</th>
+                <th scope="col">Total Pembayaran</th>
+                <th scope="col">Status Pembayaran</th>
                 <th scope="col">Keterangan</th>
-                <th scope="col">Aksi</th>
+                <th scope="col">Sisa Tagihan</th>
+                <th scope="col">Sisa Tagihan</th>
+                <th scope="col">aksi</th>
               </tr>
             </thead>
             <tbody>
                 @forelse ( $data as $index=>$item)
                 <tr>
                     <th>{{$loop->iteration }}</th>
-                    <td>{{$item->faktur_penjualan}}</td>
-                    <td>{{$item->tanggal_penjualan}}</td>
-                    <td>{{$item->nama_barang}}</td>
-                    <td>{{$item->jenis_barang}}</td>
-                    <td>{{$item->harga_barang}}</td>
-                    <td>{{$item->jumlah_barang}}</td>
-                    <td>{{$item->total_penjualan}}</td>
-                    <td>{{$item->jenis_pembayarang}}</td>
+                    <td>{{$item->no_transaksi}}</td>
+                    <td>{{$item->nama_Pelanggan}}</td>
+                    <td>{{$item->alamat}}</td>
+                    <td>{{$item->tgl_transaksi_piutang}}</td>
+                    <td>{{$item->tgl_jatuh_tempo_piutang}}</td>
+                    <td>{{$item->total_tagihan}}</td>
+                    <td>{{$item->total_pembayaran}}</td>
+                    <td>{{$item->status_pembayaran}}</td>
                     <td>{{$item->description}}</td>
-                    <td>
-
-                    </td>
+                    <td>{{$item->sisa_tagihan}}</td>
+                    <td></td>
                 </tr>
                 @empty
                     <tr>

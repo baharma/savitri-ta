@@ -1,9 +1,8 @@
-<form action="" method="POST">
+<form action="{{route('penjualan.create')}}" method="POST" enctype='multipart/form-data' >
     @csrf
 <div class="modal fade" id="staticModalPenjualan" data-bs-backdrop="static" style="z-index: 1050;" data-bs-keyboard="false" tabindex="-12"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-scrollable modal-dialog-centered modal-lg">
-
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="staticBackdropLabel"></h5>
@@ -38,7 +37,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <x-layout.input-large-groub label="Description" name="description" />
+                            <x-layout.input-large-groub label="Description" name="description_penjualan" />
                         </div>
                     </div>
                     <div class="row">
@@ -49,6 +48,7 @@
                     <div class="row">
                         <div class="col">
                             <x-layout.input-groub-button getId="penjualan" canvas="#offcanvasPiutang" />
+                            <small>isi ini bagian trakhir</small>
                         </div>
                     </div>
                 </div>
