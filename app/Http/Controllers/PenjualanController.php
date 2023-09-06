@@ -6,6 +6,7 @@ use App\Models\Penjualan;
 use App\Models\Piutang;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PenjualanController extends Controller
 {
@@ -63,8 +64,23 @@ class PenjualanController extends Controller
             $this->piutang->create($datapiutang);
         }
 
-        return redirect()->back();
+        return redirect()->back()->with('message', 'Data Penjualan Berhasil Di Buat!');
 
+    }
+
+    public function deletePenjualan(Penjualan $penjualan){
+        $penjualan->delete();
+        return response()->json([
+            'message' => 'Data success deleted !'
+        ]);
+    }
+
+    public function editPenjualan(Penjualan $penjualan){
+        try {
+            return response()->json($penjualan);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Data not found'], 404);
+        }
     }
 
 }

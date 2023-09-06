@@ -45,7 +45,9 @@
                     <td>{{$item->status_pembayaran}}</td>
                     <td>{{$item->description}}</td>
                     <td>{{$item->sisa_tagihan}}</td>
-                    <td></td>
+                    <td>
+
+                    </td>
                 </tr>
                 @empty
                     <tr>

@@ -2,20 +2,20 @@
 
 @section('content')
 
-    <div class="container-fluid">
-        <x-layout.add-modal-button >
-            @slot('inputs')
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticModalPenjualan">
-                Tambah
-              </button>
-            @endslot
-            @slot('input')
-              <x-layout.input-groub />
-            @endslot
-        </x-layout.add-modal-button>
-        <table class="table table-striped">
-            <thead>
-              <tr>
+<div class="container-fluid">
+    <x-layout.add-modal-button>
+        @slot('inputs')
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticModalPenjualan">
+            Tambah
+        </button>
+        @endslot
+        @slot('input')
+        <x-layout.input-groub />
+        @endslot
+    </x-layout.add-modal-button>
+    <table class="table table-striped">
+        <thead>
+            <tr>
                 <th scope="col">No</th>
                 <th scope="col">Faktur Penjualan</th>
                 <th scope="col">Tanggal</th>
@@ -27,35 +27,50 @@
                 <th scope="col">Jenis Pembayaran</th>
                 <th scope="col">Keterangan</th>
                 <th scope="col">Aksi</th>
-              </tr>
-            </thead>
-            <tbody>
-                @forelse ( $data as $index=>$item)
-                <tr>
-                    <th>{{$loop->iteration }}</th>
-                    <td>{{$item->faktur_penjualan}}</td>
-                    <td>{{$item->tanggal_penjualan}}</td>
-                    <td>{{$item->nama_barang}}</td>
-                    <td>{{$item->jenis_barang}}</td>
-                    <td>{{$item->harga_barang}}</td>
-                    <td>{{$item->jumlah_barang}}</td>
-                    <td>{{$item->total_penjualan}}</td>
-                    <td>{{$item->jenis_pembayarang}}</td>
-                    <td>{{$item->description}}</td>
-                    <td>
+            </tr>
+        </thead>
+        <tbody>
+            @forelse ( $data as $index=>$item)
+            <tr>
+                <th>{{$loop->iteration }}</th>
+                <td>{{$item->faktur_penjualan}}</td>
+                <td>{{$item->tanggal_penjualan}}</td>
+                <td>{{$item->nama_barang}}</td>
+                <td>{{$item->jenis_barang}}</td>
+                <td>{{$item->harga_barang}}</td>
+                <td>{{$item->jumlah_barang}}</td>
+                <td>{{$item->total_penjualan}}</td>
+                <td>{{$item->jenis_pembayarang}}</td>
+                <td>{{$item->description}}</td>
+                <td>
 
-                    </td>
-                </tr>
-                @empty
-                    <tr>
-                        <td colspan="11" class="text-center">No Data Penjualan</td>
-                    </tr>
-                @endforelse
-            </tbody>
-            {{ $data->links() }}
-          </table>
-    </div>
+                    <a data-url="{{route('penjualan.delete',$item->id)}}" data-id="{{$item->id}}"
+                        class="btn btn-danger delete-item">
+                        <i class="bi bi-trash"></i>
+                    </a>
+                    <a class="btn btn-info edit-this-modal"
+                    onclick="recordPenjualan('{{$item->faktur_penjualan}}','{{$item->tanggal_penjualan}}','{{$item->nama_barang}}',
+                    '{{$item->jenis_barang}}','{{$item->harga_barang}}','{{$item->jumlah_barang}}','{{$item->total_penjualan}}',
+                    '{{$item->jenis_pembayarang}}','{{$item->description}}')"
+                    data-bs-toggle="modal" data-url="{{route('penjualan.edit',$item->id)}}" data-id="{{$item->id}}" data-bs-target="#staticModalPenjualanEdit" >
+                        <i class="bi bi-pencil-square"></i>
+                    </a>
+                </td>
+            </tr>
+            @empty
+            <tr>
+                <td colspan="11" class="text-center">No Data Penjualan</td>
+            </tr>
+            @endforelse
+        </tbody>
+        {{ $data->links() }}
+    </table>
+</div>
 @endsection
 
 @include('pages.component-boostrap.modal-penjualan')
 
+@push('script')
+<script src="{{asset('js/main/transaksi/penjualan-interaktif.js')}}"></script>
+<script src="{{asset('js/main/transaksi/penjualan-edit.js')}}"></script>
+@endpush
