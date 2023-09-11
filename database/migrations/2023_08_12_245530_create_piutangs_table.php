@@ -17,6 +17,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->string('no_transaksi')->unique()->nullable();
+            $table->foreignUuid('penjualan_id')->references('id')->on('penjualans')->nullable();
             $table->string('nama_Pelanggan')->nullable();
             $table->string('alamat')->nullable();
             $table->date('tgl_transaksi_piutang')->nullable();

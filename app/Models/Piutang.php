@@ -14,6 +14,7 @@ class Piutang extends Model
         'no_transaksi',
         'nama_Pelanggan',
         'alamat',
+        'penjualan_id',
         'tgl_transaksi_piutang',
         'tgl_jatuh_tempo_piutang',
         'total_tagihan',

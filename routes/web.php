@@ -29,6 +29,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/penjualan/create','createPenjualan')->name('penjualan.create');
         Route::delete('/penjualan/{penjualan}/delete','deletePenjualan')->name('penjualan.delete');
         Route::get('/penjualan/{penjualan}/edit','editPenjualan')->name('penjualan.edit');
+        Route::put('/penjualan/{penjualan}/update','updatePenjualan')->name('penjualan.update');
 
         //piutang
         Route::get('/piutang','indexPiutang')->name('piutang.index');

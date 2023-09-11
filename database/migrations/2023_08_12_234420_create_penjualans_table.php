@@ -16,7 +16,6 @@ return new class extends Migration
         Schema::create('penjualans', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignId('user_id')->references('id')->on('users')->nullable();
-            $table->foreignUuid('piutang_id')->references('id')->on('piutangs')->nullable();
             $table->date('tanggal_penjualan')->nullable();
             $table->string('faktur_penjualan')->nullable();
             $table->double('harga_barang')->nullable();

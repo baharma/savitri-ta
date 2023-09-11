@@ -11,38 +11,38 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
-                            <x-layout.input  :label="'Nama Barang'" :type="'text'" :placeholder="'nama_barang'" :name="'nama_barang'"  />
+                            <x-layout.input  :label="'Nama Barang'" :idname="'name-barang-id'" :type="'text'" :placeholder="'nama_barang'" :name="'nama_barang'"  />
                         </div>
                     </div>
                     <div class="row" >
                         <div class="col">
-                            <x-layout.input  :label="'tanggal_penjualan'" :type="'date'" :placeholder="'Input Type Barang'" :name="'tanggal_penjualan'" />
+                            <x-layout.input  :label="'tanggal_penjualan'" :idname="'tanggal-penjualan-id'" :type="'date'" :placeholder="'Input Type Barang'" :name="'tanggal_penjualan'" />
                         </div>
                         <div class="col">
-                            <x-layout.input  :label="'Jenis Barang'" :type="'text'" :placeholder="'Input Date'" :name="'jenis_barang'" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <x-layout.input  :label="'Jumlah Barang'" :type="'text'" :placeholder="'Input Qty Barang'" :name="'jumlah_barang'" />
-                        </div>
-                        <div class="col">
-                            <x-layout.input  :label="'Jenis Pembayaran'" :type="'text'" :placeholder="'Input type Pembayaran'" :name="'jenis_pembayarang'" />
+                            <x-layout.input  :label="'Jenis Barang'" :type="'text'" :idname="'jenis-barang-id'" :placeholder="'Input Date'" :name="'jenis_barang'" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <x-layout.input  :label="'Harga Pembayaran'" :type="'text'" :placeholder="'Harga Barang'" :name="'harga_barang'" />
+                            <x-layout.input  :label="'Jumlah Barang'" :type="'text'" :idname="'jumlah-barang-id'" :placeholder="'Input Qty Barang'" :name="'jumlah_barang'" />
+                        </div>
+                        <div class="col">
+                            <x-layout.input  :label="'Jenis Pembayaran'" :type="'text'" :idname="'jenis-pembayarang-id'" :placeholder="'Input type Pembayaran'" :name="'jenis_pembayarang'" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <x-layout.input-large-groub label="Description" name="description_penjualan" />
+                            <x-layout.input  :label="'Harga Pembayaran'" :type="'text'" :placeholder="'Harga Barang'" :idname="'harga-barang-id'" :name="'harga_barang'" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <x-layout.input  :label="'Total Pembayaran'" :type="'text'" :placeholder="'Total bayaran'" :name="'total_penjualan'" />
+                            <x-layout.input-large-groub label="Description" name="description_penjualan" :idname="'description-penjualan-id'" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <x-layout.input  :label="'Total Pembayaran'" :type="'text'" :idname="'total-penjualan-id'" :placeholder="'Total bayaran'" :name="'total_penjualan'" />
 
                         </div>
                     </div>
@@ -66,13 +66,9 @@
 
 
 
-
-
-
-
-
-<form action="{{route('penjualan.create')}}" method="POST" enctype='multipart/form-data' >
+<form action="" id="edit-update-penjualan" method="POST" enctype='multipart/form-data' >
     @csrf
+    @method('PUT')
 <div class="modal fade" id="staticModalPenjualanEdit" data-bs-backdrop="static" style="z-index: 1050;" data-bs-keyboard="false" tabindex="-12"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-scrollable modal-dialog-centered modal-lg">
@@ -84,44 +80,44 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
-                            <x-layout.input  :label="'Nama Barang'" :type="'text'" :placeholder="'nama_barang'" :name="'nama_barang'" />
+                            <x-layout.input  :label="'Nama Barang'" :idname="'nama-barang-edit'" :type="'text'" :placeholder="'nama_barang'" :name="'nama_barang'" />
                         </div>
                     </div>
                     <div class="row" >
                         <div class="col">
-                            <x-layout.input  :label="'Tanggal Penjualan'" :type="'date'" :placeholder="'Input Type Barang'" :name="'tanggal_penjualan'" />
+                            <x-layout.input  :label="'Tanggal Penjualan'" :idname="'tanggal-penjualan-edit'" :type="'date'" :placeholder="'Input Type Barang'" :name="'tanggal_penjualan'" />
                         </div>
                         <div class="col">
-                            <x-layout.input  :label="'Jenis Barang'" :type="'text'" :placeholder="'Input Date'" :name="'jenis_barang'" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <x-layout.input  :label="'Jumlah Barang'" :type="'text'" :placeholder="'Input Qty Barang'" :name="'jumlah_barang'" />
-                        </div>
-                        <div class="col">
-                            <x-layout.input  :label="'Jenis Pembayaran'" :type="'text'" :placeholder="'Input type Pembayaran'" :name="'jenis_pembayarang'" />
+                            <x-layout.input  :label="'Jenis Barang'" :type="'text'" :idname="'jenis-barang-edit'" :placeholder="'Input Date'" :name="'jenis_barang'" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <x-layout.input  :label="'Harga Pembayaran'" :type="'text'" :placeholder="'Harga Barang'" :name="'harga_barang'" />
+                            <x-layout.input  :label="'Jumlah Barang'" :type="'text'" :placeholder="'Input Qty Barang'" :name="'jumlah_barang'" :idname="'jumlah-barang-edit'" />
+                        </div>
+                        <div class="col">
+                            <x-layout.input  :label="'Jenis Pembayaran'" :type="'text'" :placeholder="'Input type Pembayaran'" :name="'jenis_pembayarang'" :idname="'jenis-pembayarang-edit'" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <x-layout.input-large-groub label="Description" name="description_penjualan" />
+                            <x-layout.input  :label="'Harga Pembayaran'" :type="'text'" :placeholder="'Harga Barang'" :name="'harga_barang'" :idname="'harga-barang-edit'" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <x-layout.input  :label="'Total Pembayaran'" :type="'text'" :placeholder="'Total bayaran'" :name="'total_penjualan'" />
+                            <x-layout.input-large-groub label="Description" name="description_penjualan" :idname="'description-penjualan-edit'" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <x-layout.input  :label="'Total Pembayaran'" :type="'text'" :placeholder="'Total bayaran'" :name="'total_penjualan'" :idname="'total-penjualan-edit'" />
 
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <x-layout.input-groub-button getId="penjualan" canvas="#offcanvasPiutangEdit" />
+                            <x-layout.input-groub-button getId="penjualan-canvas" canvas="#offcanvasPiutangEdit" />
                             <small>isi ini bagian trakhir</small>
                         </div>
                     </div>

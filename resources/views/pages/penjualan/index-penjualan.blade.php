@@ -48,11 +48,7 @@
                         class="btn btn-danger delete-item">
                         <i class="bi bi-trash"></i>
                     </a>
-                    <a class="btn btn-info edit-this-modal"
-                    onclick="recordPenjualan('{{$item->faktur_penjualan}}','{{$item->tanggal_penjualan}}','{{$item->nama_barang}}',
-                    '{{$item->jenis_barang}}','{{$item->harga_barang}}','{{$item->jumlah_barang}}','{{$item->total_penjualan}}',
-                    '{{$item->jenis_pembayarang}}','{{$item->description}}')"
-                    data-bs-toggle="modal" data-url="{{route('penjualan.edit',$item->id)}}" data-id="{{$item->id}}" data-bs-target="#staticModalPenjualanEdit" >
+                    <a class="btn btn-info edit-this-modal" data-bs-toggle="modal" data-edit="{{route('penjualan.update',$item->id)}}" data-url="{{route('penjualan.edit',$item->id)}}" data-id="{{$item->id}}" data-bs-target="#staticModalPenjualanEdit" >
                         <i class="bi bi-pencil-square"></i>
                     </a>
                 </td>

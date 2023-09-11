@@ -12,7 +12,6 @@ class Penjualan extends Model
 
     protected $fillable = [
         'user_id',
-        'piutang_id',
         'tanggal_penjualan',
         'nama_barang',
         'jenis_barang',
@@ -27,7 +26,8 @@ class Penjualan extends Model
     public function users(){
         return $this->hasMany(User::class,'user_id','id');
     }
+
     public function piutangs(){
-        return $this->hasMany(Piutang::class,'piutang_id','id');
+        return $this->hasMany(Piutang::class,'penjualan_id');
     }
 }

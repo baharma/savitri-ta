@@ -1,7 +1,8 @@
+
 document.addEventListener('DOMContentLoaded', function () {
-    const qtyPenjualan = document.getElementById('jumlah_barang');
-    const hargaBarang = document.getElementById('harga_barang');
-    const totalPembayaran = document.getElementById('total_penjualan');
+    const qtyPenjualan = document.getElementById('jumlah-barang-id');
+    const hargaBarang = document.getElementById('harga-barang-id');
+    const totalPembayaran = document.getElementById('total-penjualan-id');
 
     qtyPenjualan.addEventListener('input', updateTotal);
     hargaBarang.addEventListener('input', updateTotal);
@@ -18,35 +19,37 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
 
+    const editPenjualan = document.querySelectorAll('a.edit-this-modal');
+
+    editPenjualan.forEach(function(element) {
+        element.addEventListener("click", function(event) {
+            const url = element.getAttribute('data-url');
+            const urlUpdate = element.getAttribute('data-edit');
+            recordPenjualan(url)
+            .then(function(response) {
+                console.log(response.data);
+                const form = document.getElementById('edit-update-penjualan');
+                form.action = urlUpdate;
+
+                document.getElementById('nama-barang-edit').value = response.data.nama_barang;
+                document.getElementById('tanggal-penjualan-edit').value = response.data.tanggal_penjualan;
+                document.getElementById('jenis-barang-edit').value = response.data.jenis_barang;
+                document.getElementById('jumlah-barang-edit').value = response.data.jumlah_barang;
+                document.getElementById('jenis-pembayarang-edit').value = response.data.jenis_pembayarang;
+                document.getElementById('harga-barang-edit').value = response.data.harga_barang;
+                document.getElementById('description-penjualan-edit').value = response.data.description;
+                document.getElementById('total-penjualan-edit').value = response.data.total_penjualan;
+            })
+            .catch(function(error) {
+                console.error(error);
+            });
+        });
+    })
 
 
 
+    function recordPenjualan(url) {
+        return axios.get(url);
+    }
 
 });
-
-function recordPenjualan(
-    faktur_penjualan,
-    tanggal_penjualan,
-    nama_barang,
-    jenis_barang,
-    harga_barang,
-    jumlah_barang,
-    total_penjualan,
-    jenis_pembayaran,
-    description
-) {
-    // Di sini Anda dapat melakukan operasi atau tindakan yang sesuai
-    // dengan data yang Anda terima sebagai parameter
-    console.log(`Faktur Penjualan: ${faktur_penjualan}`);
-    console.log(`Tanggal Penjualan: ${tanggal_penjualan}`);
-    console.log(`Nama Barang: ${nama_barang}`);
-    console.log(`Jenis Barang: ${jenis_barang}`);
-    console.log(`Harga Barang: ${harga_barang}`);
-    console.log(`Jumlah Barang: ${jumlah_barang}`);
-    console.log(`Total Penjualan: ${total_penjualan}`);
-    console.log(`Jenis Pembayaran: ${jenis_pembayaran}`);
-    console.log(`Deskripsi: ${description}`);
-
-    document.getElementById('nama_barang').value = nama_barang;
-
-}
