@@ -19,8 +19,7 @@ class PenjualanController extends Controller
     }
 
     public function index(){
-
-        $data = $this->penjualan->paginate(15)->fragment('users');
+        $data = $this->penjualan->orderBy('created_at', 'asc')->paginate(15);
         return view('pages.penjualan.index-penjualan',compact('data'));
     }
     public function indexPiutang(){
@@ -105,7 +104,7 @@ class PenjualanController extends Controller
                     'sisa_tagihan' => $piutangs->sisa_tagihan,
                 ];
             }
-            dd($dataJson);
+
             return response()->json($dataJson);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Data not found'], 404);

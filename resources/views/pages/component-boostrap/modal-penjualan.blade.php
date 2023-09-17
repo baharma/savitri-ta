@@ -66,7 +66,7 @@
 
 
 
-<form action="" id="edit-update-penjualan" method="POST" enctype='multipart/form-data' >
+<form action="" id="edit-update-penjualan" method="POST" enctype='multipart/form-data' data-url="" >
     @csrf
     @method('PUT')
 <div class="modal fade" id="staticModalPenjualanEdit" data-bs-backdrop="static" style="z-index: 1050;" data-bs-keyboard="false" tabindex="-12"
@@ -115,12 +115,7 @@
 
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col">
-                            <x-layout.input-groub-button getId="penjualan-canvas" canvas="#offcanvasPiutangEdit" />
-                            <small>isi ini bagian trakhir</small>
-                        </div>
-                    </div>
+
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

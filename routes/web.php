@@ -33,6 +33,7 @@ Route::middleware(['auth'])->group(function () {
 
         //piutang
         Route::get('/piutang','indexPiutang')->name('piutang.index');
+
     });
 
 

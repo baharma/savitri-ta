@@ -30,7 +30,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.log(response.data);
                 const form = document.getElementById('edit-update-penjualan');
                 form.action = urlUpdate;
-
                 document.getElementById('nama-barang-edit').value = response.data.nama_barang;
                 document.getElementById('tanggal-penjualan-edit').value = response.data.tanggal_penjualan;
                 document.getElementById('jenis-barang-edit').value = response.data.jenis_barang;
