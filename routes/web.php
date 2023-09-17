@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\PenjualanController;
+use App\Http\Controllers\PiutangController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -31,12 +32,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/penjualan/{penjualan}/edit','editPenjualan')->name('penjualan.edit');
         Route::put('/penjualan/{penjualan}/update','updatePenjualan')->name('penjualan.update');
 
-        //piutang
-        Route::get('/piutang','indexPiutang')->name('piutang.index');
 
     });
 
-
+    Route::controller(PiutangController::class)->group(function(){
+        Route::get('/piutang','index')->name('piutang.index');
+    });
 
 });
 

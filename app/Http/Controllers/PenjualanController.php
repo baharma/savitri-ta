@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Penjualan;
 use App\Models\Piutang;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class PenjualanController extends Controller
@@ -22,48 +24,56 @@ class PenjualanController extends Controller
         $data = $this->penjualan->orderBy('created_at', 'asc')->paginate(15);
         return view('pages.penjualan.index-penjualan',compact('data'));
     }
-    public function indexPiutang(){
-        $data = $this->piutang->paginate(15)->fragment('users');
-        return view('pages.piutang.index-piutang',compact('data'));
-    }
+
 
     public function createPenjualan(Request $request){
-        $data = $request->all();
-        $randomNumber = rand();
-        $fakturPenjualan = "FP" . $randomNumber;
-        $dataPenjualan = [
-            'user_id'=>Auth::user()->id,
-            'tanggal_penjualan'=>$data['tanggal_penjualan'],
-            'nama_barang'=>$data['nama_barang'],
-            'jenis_barang'=>$data['jenis_barang'],
-            'jumlah_barang'=>$data['jumlah_barang'],
-            'jenis_pembayarang'=>$data['jenis_pembayarang'],
-            'total_penjualan'=>$data['total_penjualan'],
-            'description'=>$data['description_penjualan'],
-            'faktur_penjualan'=>$fakturPenjualan,
-            'harga_barang'=>$data['harga_barang']
-        ];
 
-        $dataCreatepenjualan = $this->penjualan->create($dataPenjualan);
-        if($request->nama_Pelanggan !== ''){
-            $dataNoTransation = "NT" . $randomNumber ;
-            $datapiutang = [
+        try{
+
+            $data = $request->all();
+            $randomNumber = rand();
+            $fakturPenjualan = "FP" . $randomNumber;
+
+            $dataPenjualan = [
                 'user_id'=>Auth::user()->id,
-                'no_transaksi'=>$dataNoTransation,
-                'penjualan_id'=>$dataCreatepenjualan->id,
-                'nama_Pelanggan'=>$data['nama_Pelanggan'],
-                'alamat'=>$data['alamat_piutang'],
-                'tgl_jatuh_tempo_piutang'=>$data['tgl_jatuh_tempo_piutang'],
-                'total_tagihan'=>$data['total_tagihan'],
-                'total_pembayaran'=>$data['total_pembayaran'],
-                'status_pembayaran'=>$data['status_pembayaran'],
-                'description'=>$data['description_piutang'],
-                'sisa_tagihan'=>$data['sisa_tagihan']
+                'tanggal_penjualan'=>$data['tanggal_penjualan'],
+                'nama_barang'=>$data['nama_barang'],
+                'jenis_barang'=>$data['jenis_barang'],
+                'jumlah_barang'=>$data['jumlah_barang'],
+                'jenis_pembayarang'=>$data['jenis_pembayarang'],
+                'total_penjualan'=>$data['total_penjualan'],
+                'description'=>$data['description_penjualan'],
+                'faktur_penjualan'=>$fakturPenjualan,
+                'harga_barang'=>$data['harga_barang']
             ];
-            $this->piutang->create($datapiutang);
+
+            $dataCreatepenjualan = $this->penjualan->create($dataPenjualan);
+
+            if($request->nama_Pelanggan){
+                $dataNoTransation = "NT" . $randomNumber ;
+                $datapiutang = [
+                    'user_id'=>Auth::user()->id,
+                    'no_transaksi'=>$dataNoTransation,
+                    'penjualan_id'=>$dataCreatepenjualan->id,
+                    'nama_Pelanggan'=>$data['nama_Pelanggan'],
+                    'alamat'=>$data['alamat_piutang'],
+                    'tgl_jatuh_tempo_piutang'=>$data['tgl_jatuh_tempo_piutang'],
+                    'total_tagihan'=>$data['total_tagihan'],
+                    'total_pembayaran'=>$data['total_pembayaran'],
+                    'status_pembayaran'=>$data['status_pembayaran'],
+                    'description'=>$data['description_piutang'],
+                    'sisa_tagihan'=>$data['sisa_tagihan']
+                ];
+
+
+               $this->piutang->create($datapiutang);
+            }
+            return redirect()->back()->with('message', 'Data Penjualan Berhasil Di Buat!');
+        }catch(Exception $e){
+            Log::error('Error creating records: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'An error occurred while creating data.');
         }
 
-        return redirect()->back()->with('message', 'Data Penjualan Berhasil Di Buat!');
 
     }
 
