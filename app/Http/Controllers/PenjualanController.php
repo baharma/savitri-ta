@@ -21,7 +21,7 @@ class PenjualanController extends Controller
     }
 
     public function index(){
-        $data = $this->penjualan->orderBy('created_at', 'asc')->paginate(15);
+        $data =  $this->penjualan->orderBy('created_at', 'asc')->paginate(5)->onEachSide(1);
         return view('pages.penjualan.index-penjualan',compact('data'));
     }
 
@@ -154,5 +154,10 @@ class PenjualanController extends Controller
              dd($e);
         }
         return redirect()->back()->with('message', 'Data Update');
+    }
+
+    public function getAllPenjualan(){
+        $data = $this->penjualan->paginate(5);
+        return response()->json($data);
     }
 }

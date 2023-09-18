@@ -18,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     }
 
-
     const editPenjualan = document.querySelectorAll('a.edit-this-modal');
 
     editPenjualan.forEach(function(element) {

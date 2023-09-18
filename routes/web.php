@@ -31,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/penjualan/{penjualan}/delete','deletePenjualan')->name('penjualan.delete');
         Route::get('/penjualan/{penjualan}/edit','editPenjualan')->name('penjualan.edit');
         Route::put('/penjualan/{penjualan}/update','updatePenjualan')->name('penjualan.update');
-
+        Route::get('/get/allpenjualan','getAllPenjualan')->name('api-penjualan');
 
     });
 

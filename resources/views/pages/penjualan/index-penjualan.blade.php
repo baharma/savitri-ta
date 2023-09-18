@@ -10,7 +10,6 @@
         </button>
         @endslot
         @slot('input')
-        <x-layout.input-groub />
         @endslot
     </x-layout.add-modal-button>
     <table class="table table-striped">
@@ -59,8 +58,30 @@
             </tr>
             @endforelse
         </tbody>
-        {{ $data->links() }}
+
+
     </table>
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            @if ($data->onFirstPage())
+                <li class="page-item disabled"><span class="page-link">Previous</span></li>
+            @else
+                <li class="page-item"><a class="page-link" href="{{ $data->previousPageUrl() }}">Previous</a></li>
+            @endif
+
+            @for ($page = 1; $page <= $data->lastPage(); $page++)
+            <li class="page-item {{ ($page == $data->currentPage()) ? 'active' : '' }}">
+                <a class="page-link" href="{{ $data->url($page) }}">{{ $page }}</a>
+            </li>
+            @endfor
+
+            @if ($data->hasMorePages())
+                <li class="page-item"><a class="page-link" href="{{ $data->nextPageUrl() }}">Next</a></li>
+            @else
+                <li class="page-item disabled"><span class="page-link">Next</span></li>
+            @endif
+        </ul>
+    </nav>
 </div>
 @endsection
 
@@ -69,4 +90,5 @@
 @push('script')
 <script src="{{asset('js/main/transaksi/penjualan-interaktif.js')}}"></script>
 <script src="{{asset('js/main/transaksi/penjualan-edit.js')}}"></script>
+<script src="{{asset('js/main/transaksi/penjualan-view-all.js')}}"></script>
 @endpush
