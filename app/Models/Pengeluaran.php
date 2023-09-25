@@ -18,15 +18,13 @@ class Pengeluaran extends Model
         'total_pengeluaran',
         'jenis_bayar',
         'descriptions',
-
     ];
-
     public function User(){
         return $this->hasMany(User::class,'user_id','id');
     }
 
     public function Hutangs(){
-        return $this->hasMany(Hutang::class,'')
+        return $this->hasMany(Hutang::class,'id','pengeluaran_id');
     }
 
 }

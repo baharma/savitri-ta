@@ -34,6 +34,10 @@ class PengeluaranController extends Controller
             'total_pengeluaran'=>$data['total_pengeluaran'],
             'descriptions'=>$data['description_penjualan']
         ];
+
+
+
+
         $this->modal->create($item);
         return redirect()->back()->with('message', 'Data Pengeluaran Berhasil Di Buat!');
     }

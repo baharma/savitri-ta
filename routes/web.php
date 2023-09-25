@@ -33,15 +33,14 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/penjualan/{penjualan}/edit','editPenjualan')->name('penjualan.edit');
         Route::put('/penjualan/{penjualan}/update','updatePenjualan')->name('penjualan.update');
         Route::get('/get/allpenjualan','getAllPenjualan')->name('api-penjualan');
-
     });
-
     Route::controller(PiutangController::class)->group(function(){
         Route::get('/piutang','index')->name('piutang.index');
     });
 
     Route::controller(PengeluaranController::class)->group(function(){
         Route::get('/pengeluaran','index')->name('pengeluaran.index');
+
         Route::post('/pengeluaran/create','createPengeluaran')->name('pengeluaran.create');
     });
 
