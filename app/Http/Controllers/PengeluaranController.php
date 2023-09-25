@@ -36,8 +36,6 @@ class PengeluaranController extends Controller
         ];
 
 
-
-
         $this->modal->create($item);
         return redirect()->back()->with('message', 'Data Pengeluaran Berhasil Di Buat!');
     }
