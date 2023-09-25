@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded',function(){
     function penjualanPaginations(pagination){
         axiosGet(pagination.first_page_url).then(function(response){
             console.log(response.data)
-            const
+
 
         })
     }

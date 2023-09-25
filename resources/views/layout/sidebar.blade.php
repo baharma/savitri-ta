@@ -38,7 +38,7 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data :</h6>
                     <a class="collapse-item" href="{{route('penjualan.index')}}">Penjualan</a>
-                    <a class="collapse-item" href="utilities-border.html">Pengeluaran</a>
+                    <a class="collapse-item" href="{{route('pengeluaran.index')}}">Pengeluaran</a>
                     <a class="collapse-item" href="utilities-animation.html">Hutang</a>
                     <a class="collapse-item" href="{{route('piutang.index')}}">Piutang</a>
                 </div>

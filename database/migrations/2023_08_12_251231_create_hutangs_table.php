@@ -22,6 +22,7 @@ return new class extends Migration
             $table->date('tgl_jatuh_tempo');
             $table->double('total_transaksi_hutang');
             $table->longText('description');
+            $table->foreignUuid('pengeluaran_id')->references('id')->on('pengeluarans');
             $table->timestamps();
         });
     }

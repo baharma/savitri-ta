@@ -21,7 +21,6 @@ return new class extends Migration
             $table->double('total_pengeluaran');
             $table->string('jenis_bayar');
             $table->longText('descriptions');
-            $table->foreignUuid('id_hutang')->references('id')->on('hutangs');
             $table->timestamps();
         });
     }

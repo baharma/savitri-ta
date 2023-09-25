@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\PiutangController;
 use App\Http\Controllers\ProfileController;
@@ -38,6 +39,12 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(PiutangController::class)->group(function(){
         Route::get('/piutang','index')->name('piutang.index');
     });
+
+    Route::controller(PengeluaranController::class)->group(function(){
+        Route::get('/pengeluaran','index')->name('pengeluaran.index');
+        Route::post('/pengeluaran/create','createPengeluaran')->name('pengeluaran.create');
+    });
+
 
 });
 

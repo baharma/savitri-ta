@@ -21,7 +21,7 @@ class PenjualanController extends Controller
     }
 
     public function index(){
-        $data =  $this->penjualan->orderBy('created_at', 'asc')->paginate(5)->onEachSide(1);
+        $data =  $this->penjualan->orderBy('created_at', 'asc')->paginate(10)->onEachSide(1);
         return view('pages.penjualan.index-penjualan',compact('data'));
     }
 
