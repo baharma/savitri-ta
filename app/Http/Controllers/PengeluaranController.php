@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 class PengeluaranController extends Controller
 {
 
-    public $modal ;
+    public $modal;
 
     public function __construct(Pengeluaran $modal)
     {
@@ -42,6 +42,14 @@ class PengeluaranController extends Controller
 
     public function updatePengeluaran(Pengeluaran $pengeluaran,Request $request){
         dd($pengeluaran);
+    }
+
+
+    public function deletePengeluaran(Pengeluaran $pengeluaran){
+        $pengeluaran->delete();
+        return response()->json([
+            'message' => 'Data success deleted !'
+        ]);
     }
 
 }

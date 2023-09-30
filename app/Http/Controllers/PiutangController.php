@@ -15,7 +15,13 @@ class PiutangController extends Controller
 
 
     public function index(){
-        $data = $this->piutang->orderBy('created_at', 'asc')->paginate(15);
+        $data = $this->piutang->orderBy('created_at', 'asc')->paginate(10);
         return view('pages.piutang.index-piutang',compact('data'));
+    }
+
+
+    public function deletePiutang(Piutang $piutang){
+        $piutang->delete();
+        return response()->json(['delete succes']);
     }
 }

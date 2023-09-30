@@ -4,12 +4,13 @@ $(function () {
         swal.fire({
             title: 'Success',
             text: messageSuccess,
-            icon: "success", // Use the string "success" for the success icon
+            icon: "success",
         });
     });
 
     $(document).on("click", ".delete-item", function () {
         const url = $(this).data("url");
+        console.log(url)
         swal.fire({
             title: "Warning",
             text: "Are you sure for delete this ?",

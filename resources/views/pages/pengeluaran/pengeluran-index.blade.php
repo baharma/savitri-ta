@@ -5,9 +5,7 @@
 <div class="container-fluid">
     <x-layout.add-modal-button>
         @slot('inputs')
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticModalPengeluaran">
-            Tambah
-        </button>
+
         @endslot
         @slot('input')
         @endslot
@@ -35,11 +33,11 @@
                 <td>{{$item->descriptions}}</td>
                 <td>
 
-                    <a data-url="" data-id="{{$item->id}}"
+                    <a data-url="{{route('pengeluaran.delete',$item->id)}}" data-id="{{$item->id}}"
                         class="btn btn-danger delete-item">
                         <i class="bi bi-trash"></i>
                     </a>
-                    <a class="btn btn-info edit-this-modal" data-bs-toggle="modal" data-edit="" data-url="" data-id="{{$item->id}}" data-bs-target="#staticModalPenjualanEdit" >
+                    <a class="btn btn-info edit-this-modal" data-bs-toggle="modal" data-edit="" data-url="{{route('pengeluaran.delete',$item->id)}}" data-id="{{$item->id}}" data-bs-target="#staticModalPenjualanEdit" >
                         <i class="bi bi-pencil-square"></i>
                     </a>
                 </td>
@@ -50,8 +48,6 @@
             </tr>
             @endforelse
         </tbody>
-
-
     </table>
     <nav aria-label="Page navigation example">
         <ul class="pagination">

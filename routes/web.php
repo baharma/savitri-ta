@@ -36,11 +36,12 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::controller(PiutangController::class)->group(function(){
         Route::get('/piutang','index')->name('piutang.index');
+        Route::delete('/delete/piutang/{piutang}','deletePiutang')->name('delete.piutang');
     });
 
     Route::controller(PengeluaranController::class)->group(function(){
         Route::get('/pengeluaran','index')->name('pengeluaran.index');
-
+        Route::delete('/delete-pengeluaran/{pengeluaran}','deletePengeluaran')->name('pengeluaran.delete');
         Route::post('/pengeluaran/create','createPengeluaran')->name('pengeluaran.create');
     });
 

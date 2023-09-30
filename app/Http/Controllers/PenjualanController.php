@@ -73,8 +73,6 @@ class PenjualanController extends Controller
             Log::error('Error creating records: ' . $e->getMessage());
             return redirect()->back()->with('error', 'An error occurred while creating data.');
         }
-
-
     }
 
     public function deletePenjualan(Penjualan $penjualan){

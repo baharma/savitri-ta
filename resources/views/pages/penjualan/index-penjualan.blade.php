@@ -42,7 +42,6 @@
                 <td>{{$item->jenis_pembayarang}}</td>
                 <td>{{$item->description}}</td>
                 <td>
-
                     <a data-url="{{route('penjualan.delete',$item->id)}}" data-id="{{$item->id}}"
                         class="btn btn-danger delete-item">
                         <i class="bi bi-trash"></i>
