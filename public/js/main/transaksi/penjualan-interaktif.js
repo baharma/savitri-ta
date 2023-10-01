@@ -23,31 +23,30 @@ document.addEventListener('DOMContentLoaded', function () {
         element.addEventListener("click", function (event) {
             const url = element.getAttribute('data-url');
             const urlUpdate = element.getAttribute('data-edit');
+            const form = document.getElementById('edit-update-penjualan');
+            const inputFields = {
+                'nama-barang-edit': 'nama_barang',
+                'tanggal-penjualan-edit': 'tanggal_penjualan',
+                'jenis-barang-edit': 'jenis_barang',
+                'jumlah-barang-edit': 'jumlah_barang',
+                'jenis-pembayarang-edit': 'jenis_pembayarang',
+                'harga-barang-edit': 'harga_barang',
+                'description-penjualan-edit': 'description',
+                'total-penjualan-edit': 'total_penjualan'
+            };
             recordPenjualan(url)
                 .then(function (response) {
-
-                    const form = document.getElementById('edit-update-penjualan');
                     form.action = urlUpdate;
 
                     // Clear previous data
-                    document.getElementById('nama-barang-edit').value = "";
-                    document.getElementById('tanggal-penjualan-edit').value = "";
-                    document.getElementById('jenis-barang-edit').value = "";
-                    document.getElementById('jumlah-barang-edit').value = "";
-                    document.getElementById('jenis-pembayarang-edit').value = "";
-                    document.getElementById('harga-barang-edit').value = "";
-                    document.getElementById('description-penjualan-edit').value = "";
-                    document.getElementById('total-penjualan-edit').value = "";
+                    for (const key in inputFields) {
+                        document.getElementById(key).value = "";
+                    }
 
                     // Set values from response.data
-                    document.getElementById('nama-barang-edit').value = response.data.nama_barang;
-                    document.getElementById('tanggal-penjualan-edit').value = response.data.tanggal_penjualan;
-                    document.getElementById('jenis-barang-edit').value = response.data.jenis_barang;
-                    document.getElementById('   -barang-edit').value = response.data.jumlah_barang;
-                    document.getElementById('jenis-pembayarang-edit').value = response.data.jenis_pembayarang;
-                    document.getElementById('harga-barang-edit').value = response.data.harga_barang;
-                    document.getElementById('description-penjualan-edit').value = response.data.description;
-                    document.getElementById('total-penjualan-edit').value = response.data.total_penjualan;
+                    for (const key in inputFields) {
+                        document.getElementById(key).value = response.data[inputFields[key]];
+                    }
                 })
                 .catch(function (error) {
                     console.error(error);
@@ -55,39 +54,49 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 
+
 // piutang get
 
-    const buttonPiutang = document.querySelectorAll('a.btn.btn-info.edit-this-modal-piutang');
+const buttonPiutang = document.querySelectorAll('a.btn.btn-info.edit-this-modal-piutang');
+const formElements = {
+    'nama-Pelanggan-id-edit': 'nama_Pelanggan',
+    'alamat-piutang-id-edit': 'alamat',
+    'tgl-transaksi-piutang-id-edit': 'tgl_transaksi_piutang',
+    'tgl-jatuh-tempo-piutang-id-edit': 'tgl_jatuh_tempo_piutang',
+    'total-pembayaran-id-edit': 'total_pembayaran',
+    'total-tagihan-id-edit': 'total_tagihan',
+    'status-pembayaran-id-edit': 'status_pembayaran',
+    'sisa-tagihan-id-edit': 'sisa_tagihan',
+    'description-piutang-id-edit': 'description'
+};
 
-    buttonPiutang.forEach(function(element){
-        element.addEventListener('click',function(event){
-            const url = element.getAttribute('data-url');
-            const editForm = element.getAttribute('data-edit');
-            const form = document.getElementById('piutang-get');
-            document.getElementById('nama-Pelanggan-id-edit').value = '';
-            document.getElementById('alamat-piutang-id-edit').value = '';
-            document.getElementById('tgl-transaksi-piutang-id-edit').value = '';
-            document.getElementById('tgl-jatuh-tempo-piutang-id-edit').value = '';
-            document.getElementById('total-pembayaran-id-edit').value = '';
-            document.getElementById('total-tagihan-id-edit').value = '';
-            document.getElementById('status-pembayaran-id-edit').value = '';
-            document.getElementById('sisa-tagihan-id-edit').value = '';
-            document.getElementById('description-piutang-id-edit').value = '';
-            recordPenjualan(editForm).then(function(response){
+buttonPiutang.forEach(function(element){
+    element.addEventListener('click', function(event){
+        const url = element.getAttribute('data-url');
+        const editForm = element.getAttribute('data-edit');
+        const form = document.getElementById('piutang-get');
+        const data = {};
+
+        // Populate data object
+        for (const key in formElements) {
+            data[key] = document.getElementById(key).value;
+        }
+
+        recordPenjualan(editForm)
+            .then(function(response){
                 form.action = url;
-                const data = response.data;
-                document.getElementById('nama-Pelanggan-id-edit').value = data.nama_Pelanggan;
-                document.getElementById('alamat-piutang-id-edit').value = data.alamat;
-                document.getElementById('tgl-transaksi-piutang-id-edit').value = data.tgl_transaksi_piutang;
-                document.getElementById('tgl-jatuh-tempo-piutang-id-edit').value = data.tgl_jatuh_tempo_piutang;
-                document.getElementById('total-pembayaran-id-edit').value = data.total_pembayaran;
-                document.getElementById('total-tagihan-id-edit').value = data.total_tagihan;
-                document.getElementById('status-pembayaran-id-edit').value = data.total_pembayaran;
-                document.getElementById('sisa-tagihan-id-edit').value = data.sisa_tagihan;
-                document.getElementById('description-piutang-id-edit').value = data.description;
+                const responseData = response.data;
+
+                for (const key in formElements) {
+                    document.getElementById(key).value = responseData[formElements[key]];
+                }
             })
-        });
+            .catch(function (error) {
+                console.error(error);
+            });
     });
+});
+
 
     function recordPenjualan(url) {
         return axios.get(url);
