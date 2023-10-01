@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\dashboardController;
+use App\Http\Controllers\HutangController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\PiutangController;
@@ -45,7 +46,15 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/pengeluaran','index')->name('pengeluaran.index');
         Route::delete('/delete-pengeluaran/{pengeluaran}','deletePengeluaran')->name('pengeluaran.delete');
         Route::post('/pengeluaran/create','createPengeluaran')->name('pengeluaran.create');
+        Route::put('/pengeluaran/{pengeluaran}/update','updatePengeluaran')->name('pengeluaran.update');
+        Route::get('/pengeluarang/{pengeluaran}','showPengeluaran')->name('pengeluaran.show');
     });
+
+    // Route::controller(HutangController::class)->group(function(){
+
+    // });
+
+
 
 
 });

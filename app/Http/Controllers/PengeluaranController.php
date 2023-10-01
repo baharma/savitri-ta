@@ -52,4 +52,7 @@ class PengeluaranController extends Controller
         ]);
     }
 
+    public function showPengeluaran(Pengeluaran $pengeluaran){
+        return response()->json($pengeluaran);
+    }
 }

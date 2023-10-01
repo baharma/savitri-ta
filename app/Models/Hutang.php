@@ -13,7 +13,6 @@ class Hutang extends Model
     protected $fillable = [
         'user_id',
         'no_transaksi_hutang',
-        'description_hutang',
         'tgl_transaksi_hutang',
         'tgl_jatuh_tempo',
         'total_transaksi_hutang',

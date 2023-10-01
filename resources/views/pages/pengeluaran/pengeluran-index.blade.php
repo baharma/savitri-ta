@@ -5,7 +5,9 @@
 <div class="container-fluid">
     <x-layout.add-modal-button>
         @slot('inputs')
-
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticModalPengeluaran">
+            Tambah
+        </button>
         @endslot
         @slot('input')
         @endslot

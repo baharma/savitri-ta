@@ -38,12 +38,11 @@ document.addEventListener('DOMContentLoaded', function () {
                 .then(function (response) {
                     form.action = urlUpdate;
 
-                    // Clear previous data
                     for (const key in inputFields) {
                         document.getElementById(key).value = "";
                     }
 
-                    // Set values from response.data
+
                     for (const key in inputFields) {
                         document.getElementById(key).value = response.data[inputFields[key]];
                     }
@@ -79,7 +78,7 @@ buttonPiutang.forEach(function(element){
 
         // Populate data object
         for (const key in formElements) {
-            data[key] = document.getElementById(key).value;
+            data[key] = document.getElementById(key).value = '';
         }
 
         recordPenjualan(editForm)
