@@ -36,7 +36,9 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::controller(PiutangController::class)->group(function(){
         Route::get('/piutang','index')->name('piutang.index');
+        Route::put('/update/{piutang}','updatePiutang')->name('piutang.update');
         Route::delete('/delete/piutang/{piutang}','deletePiutang')->name('delete.piutang');
+        Route::get('/getAll/piutang/{piutang}','getAll')->name('show.piutang');
     });
 
     Route::controller(PengeluaranController::class)->group(function(){

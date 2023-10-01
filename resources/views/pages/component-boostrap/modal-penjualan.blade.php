@@ -127,8 +127,7 @@
 </form>
 
 
-
-<form action="" method="POST">
+<form action="" method="POST" enctype='multipart/form-data' id="piutang-get">
     @csrf
     @method('PUT')
     <div class="modal fade" id="staticModalPiutangEdit" data-bs-backdrop="static" style="z-index: 1050;" data-bs-keyboard="false" tabindex="-12"
@@ -142,38 +141,41 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
-                            <x-layout.input  :label="'Nama Barang'" :idname="'nama-barang-edit'" :type="'text'" :placeholder="'nama_barang'" :name="'nama_barang'" />
-                        </div>
-                    </div>
-                    <div class="row" >
-                        <div class="col">
-                            <x-layout.input  :label="'Tanggal Penjualan'" :idname="'tanggal-penjualan-edit'" :type="'date'" :placeholder="'Input Type Barang'" :name="'tanggal_penjualan'" />
-                        </div>
-                        <div class="col">
-                            <x-layout.input  :label="'Jenis Barang'" :type="'text'" :idname="'jenis-barang-edit'" :placeholder="'Input Date'" :name="'jenis_barang'" />
+                            <x-layout.input  :label="'Nama Pelanggan'" :type="'text'" :idname="'nama-Pelanggan-id-edit'" :placeholder="'Nama Pelanggan'" :name="'nama_Pelanggan'" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <x-layout.input  :label="'Jumlah Barang'" :type="'text'" :placeholder="'Input Qty Barang'" :name="'jumlah_barang'" :idname="'jumlah-barang-edit'" />
-                        </div>
-                        <div class="col">
-                            <x-layout.input  :label="'Jenis Pembayaran'" :type="'text'" :placeholder="'Input type Pembayaran'" :name="'jenis_pembayarang'" :idname="'jenis-pembayarang-edit'" />
+                            <x-layout.input-large-groub label="Alamat" name="alamat_piutang" :idname="'alamat-piutang-id-edit'" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <x-layout.input  :label="'Harga Pembayaran'" :type="'text'" :placeholder="'Harga Barang'" :name="'harga_barang'" :idname="'harga-barang-edit'" />
+                            <x-layout.input  :label="'Tanggal Transaksi Piutang'" :type="'date'" :idname="'tgl-transaksi-piutang-id-edit'" :placeholder="'tgl_transaksi_piutang'" :name="'tgl_transaksi_piutang'" />
+                        </div>
+                        <div class="col">
+                            <x-layout.input  :label="'Tanggal Jatuh Tempo Piutang'" :type="'date'" :idname="'tgl-jatuh-tempo-piutang-id-edit'" :placeholder="'tgl_jatuh_tempo_piutang'" :name="'tgl_jatuh_tempo_piutang'" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <x-layout.input-large-groub label="Description" name="description_penjualan" :idname="'description-penjualan-edit'" />
+                            <x-layout.input  :label="'Total Pembayaran'" :type="'text'" :placeholder="'total_pembayaran'" :idname="'total-pembayaran-id-edit'" :name="'total_pembayaran'" />
+                        </div>
+                        <div class="col">
+                            <x-layout.input  :label="'Total Tagihan'" :type="'text'" :placeholder="'total_tagihan'" :name="'total_tagihan'" :idname="'total-tagihan-id-edit'" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <x-layout.input  :label="'Total Pembayaran'" :type="'text'" :placeholder="'Total bayaran'" :name="'total_penjualan'" :idname="'total-penjualan-edit'" />
+                            <x-layout.input  :label="'Status Pembayaran'" :type="'text'" :placeholder="'status_pembayaran'" :name="'status_pembayaran'" :idname="'status-pembayaran-id-edit'" />
+                        </div>
+                        <div class="col">
+                            <x-layout.input  :label="'Sisa Tagihan'" :type="'text'" :placeholder="'sisa_tagihan'" :name="'sisa_tagihan'" :idname="'sisa-tagihan-id-edit'" />
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <x-layout.input-large-groub label="Description" name="description_piutang" :idname="'description-piutang-id-edit'" />
                         </div>
                     </div>
 

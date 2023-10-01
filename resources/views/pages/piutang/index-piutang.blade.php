@@ -49,7 +49,7 @@
                             class="btn btn-danger delete-item">
                             <i class="bi bi-trash"></i>
                         </a>
-                        <a class="btn btn-info edit-this-modal" data-bs-toggle="modal" data-edit="" data-url="" data-id="{{$item->id}}" data-bs-target="#staticModalPenjualanEdit" >
+                        <a class="btn btn-info edit-this-modal-piutang" data-bs-toggle="modal" data-edit="{{route('show.piutang',$item->id)}}" data-url="{{route('piutang.update',$item->id)}}" data-id="{{$item->id}}" data-bs-target="#staticModalPiutangEdit" >
                             <i class="bi bi-pencil-square"></i>
                         </a>
                     </td>
@@ -88,4 +88,8 @@
 @endsection
 
 @include('pages.component-boostrap.modal-penjualan')
+
+@push('script')
+    <script src="{{asset('js/main/transaksi/penjualan-interaktif.js')}}"></script>
+@endpush
 
