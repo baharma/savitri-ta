@@ -39,7 +39,7 @@
                         class="btn btn-danger delete-item">
                         <i class="bi bi-trash"></i>
                     </a>
-                    <a class="btn btn-info edit-this-modal" data-bs-toggle="modal" data-edit="" data-url="{{route('pengeluaran.delete',$item->id)}}" data-id="{{$item->id}}" data-bs-target="#staticModalPenjualanEdit" >
+                    <a class="btn btn-info edit-this-modal" data-bs-toggle="modal" data-edit="{{route('pengeluaran.show',$item->id)}}" data-url="{{route('pengeluaran.update',$item->id)}}" data-id="{{$item->id}}" data-bs-target="#staticModalPengeluaranedit" >
                         <i class="bi bi-pencil-square"></i>
                     </a>
                 </td>
@@ -78,5 +78,5 @@
 @include('pages.component-boostrap.modal-pengeluaran')
 
 @push('script')
-
+    <script src="{{asset('js/main/pengeluaran/pengeluaran-interaksi.js')}}"></script>
 @endpush

@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('jurnal_umums', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->date('date');
-            $table->double('debit');
-            $table->longText('description');
-            $table->foreignId('user_id')->references('id')->on('users');
-            $table->double('kredit');
-            $table->foreignUuid('akun_id')->references('id')->on('akuns');
-            $table->string('kode_jurnal');
+            $table->date('date')->nullable();
+            $table->double('debit')->nullable();
+            $table->longText('description')->nullable();
+            $table->foreignId('user_id')->references('id')->on('users')->nullable();
+            $table->double('kredit')->nullable();
+            $table->foreignUuid('akun_id')->references('id')->on('akuns')->nullable();
+            $table->string('kode_jurnal')->nullable();
             $table->timestamps();
         });
     }

@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('pengeluarans', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->date('tanggal_pengeluran');
-            $table->string('jenis_pengeluaran');
-            $table->double('total_pengeluaran');
-            $table->string('jenis_bayar');
-            $table->longText('descriptions');
+            $table->date('tanggal_pengeluran')->nullable();
+            $table->string('jenis_pengeluaran')->nullable();
+            $table->double('total_pengeluaran')->nullable();
+            $table->string('jenis_bayar')->nullable();
+            $table->longText('descriptions')->nullable();
             $table->timestamps();
         });
     }

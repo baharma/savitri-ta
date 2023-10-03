@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('hutangs', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignId('user_id');
-            $table->string('no_transaksi_hutang');
-            $table->date('tgl_transaksi_hutang');
-            $table->date('tgl_jatuh_tempo');
-            $table->double('total_transaksi_hutang');
-            $table->longText('description');
+            $table->foreignId('user_id')->nullable();
+            $table->string('no_transaksi_hutang')->nullable();
+            $table->date('tgl_transaksi_hutang')->nullable();
+            $table->date('tgl_jatuh_tempo')->nullable();
+            $table->double('total_transaksi_hutang')->nullable();
+            $table->longText('description')->nullable();
             $table->foreignUuid('pengeluaran_id')->references('id')->on('pengeluarans');
             $table->timestamps();
         });

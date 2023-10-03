@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('akuns', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignId('id_user')->references('id')->on('users');
-            $table->string('kode_buku');
-            $table->string('name_akun');
-            $table->string('klasifikasi_akun');
+            $table->string('kode_buku')->nullable();
+            $table->string('name_akun')->nullable();
+            $table->string('klasifikasi_akun')->nullable();
             $table->timestamps();
         });
     }

@@ -19,4 +19,10 @@ class Hutang extends Model
         'description',
         'pengeluaran_id'
     ];
+    public function User(){
+        return $this->hasMany(User::class,'user_id','id');
+    }
+    public function Hutangs(){
+        return $this->hasMany(Pengeluaran::class,'pengeluaran_id','id');
+    }
 }

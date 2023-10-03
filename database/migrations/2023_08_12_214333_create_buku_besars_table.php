@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('buku_besars', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->foreignId('id_user')->references('id')->on('users');
-            $table->date('date');
-            $table->longText('description');
-            $table->double('debit');
-            $table->double('saldo');
+            $table->foreignId('id_user')->references('id')->on('users')->nullable();
+            $table->date('date')->nullable();
+            $table->longText('description')->nullable();
+            $table->double('debit')->nullable();
+            $table->double('saldo')->nullable();
             $table->timestamps();
         });
     }

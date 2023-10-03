@@ -52,8 +52,9 @@
 
 
 
-<form action="{{route('pengeluaran.create')}}" method="POST" enctype='multipart/form-data' >
+<form action="" method="POST" enctype='multipart/form-data' id="modal-pengeluaran-edit" >
     @csrf
+    @method('PUT')
 <div class="modal fade" id="staticModalPengeluaranedit" data-bs-backdrop="static" style="z-index: 1050;" data-bs-keyboard="false" tabindex="-12"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog  modal-dialog-scrollable modal-dialog-centered modal-lg">
@@ -84,13 +85,6 @@
                     <div class="row">
                         <div class="col">
                             <x-layout.input-large-groub label="Description" name="description_penjualan" :idname="'description-pengeluaran-id-edit'" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col">
-                            <p>Tambah Hutang</p>
-                            <x-layout.input-groub-button getId="pengeluaran-canvas" canvas="#offcanvashutang" />
-                            <small>isi ini bagian trakhir!!</small>
                         </div>
                     </div>
                 </div>

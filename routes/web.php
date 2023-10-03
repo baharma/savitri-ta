@@ -50,9 +50,12 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/pengeluarang/{pengeluaran}','showPengeluaran')->name('pengeluaran.show');
     });
 
-    // Route::controller(HutangController::class)->group(function(){
-
-    // });
+    Route::controller(HutangController::class)->group(function(){
+        Route::get('/hutang','index')->name('hutang.index');
+        Route::put('/hutang/update/{hutang}','updateHutang')->name('hutang.update');
+        Route::get('/getall/{hutang}','getAllShow')->name('getall.hutang');
+        Route::delete('/hutang/{hutang}','deleteHutang')->name('hutang.delete');
+    });
 
 
 

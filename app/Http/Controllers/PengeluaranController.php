@@ -20,8 +20,8 @@ class PengeluaranController extends Controller
     public function index(){
 
         $data = $this->modal->orderBy('created_at', 'asc')->paginate(10)->onEachSide(1);
-
         return view('pages.pengeluaran.pengeluran-index',compact('data'));
+
     }
 
     public function createPengeluaran(Request $request){
@@ -55,7 +55,18 @@ class PengeluaranController extends Controller
     }
 
     public function updatePengeluaran(Pengeluaran $pengeluaran,Request $request){
-        dd($pengeluaran);
+        $data = $request->all();
+
+        $item = [
+            'user_id'=>Auth::user()->id,
+            'jenis_bayar'=>$data['jenis_bayar'],
+            'tanggal_pengeluran'=>$data['tanggal_pengeluran'],
+            'jenis_pengeluaran'=>$data['jenis_pengeluaran'],
+            'total_pengeluaran'=>$data['total_pengeluaran'],
+            'descriptions'=>$data['description_penjualan']
+        ];
+        $pengeluaran->update($item);
+        return redirect()->back()->with('message', 'Data Pengeluaran Berhasil Di Buat!');
     }
 
 
