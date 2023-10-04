@@ -1,11 +1,13 @@
 <?php
 
+use App\Http\Controllers\akunController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\HutangController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\PiutangController;
 use App\Http\Controllers\ProfileController;
+use App\Models\Akun;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,8 +25,6 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/',[dashboardController::class,'index'])->name('dashboard');
-
-
 
     //penjualan
     Route::controller(PenjualanController::class)->group(function(){
@@ -57,7 +57,9 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/hutang/{hutang}','deleteHutang')->name('hutang.delete');
     });
 
-
+    Route::controller(akunController::class)->group(function(){
+        Route::get('/akun','index')->name('akun.index');
+    });
 
 
 });
