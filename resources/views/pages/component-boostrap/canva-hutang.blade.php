@@ -3,16 +3,6 @@
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <div class="offcanvas-body small p-3">
-            {{-- <div class="row">
-                <div class="col">
-                    <x-layout.input  :label="'Nama Pelanggan'" :type="'text'" :idname="'nama-Pelanggan-id'" :placeholder="'Nama Pelanggan'" :name="'nama_Pelanggan'" />
-                </div>
-            </div>
-            <div class="row">
-                <div class="col">
-                    <x-layout.input-large-groub label="Alamat" name="alamat_piutang" :idname="'alamat-piutang-id'" />
-                </div>
-            </div> --}}
             <div class="row">
                 <div class="col">
                     <x-layout.input  :label="'Tanggal Transaksi Hutang'" :type="'date'" :idname="'tgl_transaksi_hutang'" :placeholder="'tgl_transaksi_piutang'" :name="'tgl_transaksi_hutang'" />

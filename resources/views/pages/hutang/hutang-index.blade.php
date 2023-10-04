@@ -5,9 +5,7 @@
 <div class="container-fluid">
     <x-layout.add-modal-button>
         @slot('inputs')
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticModalPengeluaran">
-            Tambah
-        </button>
+
         @endslot
         @slot('input')
         @endslot
@@ -38,7 +36,7 @@
                         class="btn btn-danger delete-item">
                         <i class="bi bi-trash"></i>
                     </a>
-                    <a class="btn btn-info edit-this-modal" data-bs-toggle="modal" data-edit="{{route('getall.hutang',$item->id)}}" data-url="{{route('hutang.update',$item->id)}}" data-id="{{$item->id}}" data-bs-target="#staticModalPengeluaranedit" >
+                    <a class="btn btn-info hutang" data-bs-toggle="modal" data-edit="{{route('getall.hutang',$item->id)}}" data-url="{{route('hutang.update',$item->id)}}" data-id="{{$item->id}}" data-bs-target="#staticModalHutangedit" >
                         <i class="bi bi-pencil-square"></i>
                     </a>
                 </td>
@@ -63,7 +61,6 @@
                 <a class="page-link" href="{{ $data->url($page) }}">{{ $page }}</a>
             </li>
             @endfor
-
             @if ($data->hasMorePages())
                 <li class="page-item"><a class="page-link" href="{{ $data->nextPageUrl() }}">Next</a></li>
             @else
@@ -77,5 +74,5 @@
 @include('pages.component-boostrap.modal-pengeluaran')
 
 @push('script')
-
+    <script src="{{asset('js/main/pengeluaran/pengeluaran-interaksi.js')}}"></script>
 @endpush
