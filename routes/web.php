@@ -59,6 +59,10 @@ Route::middleware(['auth'])->group(function () {
 
     Route::controller(akunController::class)->group(function(){
         Route::get('/akun','index')->name('akun.index');
+        Route::post('/create/akun','create')->name('akun.create');
+        Route::delete('/aku/delete/{akun}','delete')->name('akun.delete');
+        Route::put('/akun/update/{akun}','update')->name('akun.update');
+        Route::get('/getall/akun/{akun}','getAllAkun')->name('akun.all');
     });
 
 
