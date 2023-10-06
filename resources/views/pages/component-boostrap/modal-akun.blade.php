@@ -37,7 +37,7 @@
 
 
 
-<form action="" method="POST" enctype='multipart/form-data' id="modal-pengeluaran-edit">
+<form action="" method="POST" enctype='multipart/form-data' id="modal-akun-edit">
     @csrf
     @method('PUT')
     <div class="modal fade" id="staticModalaAkunEdit" data-bs-backdrop="static" style="z-index: 1050;"
@@ -51,17 +51,17 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
-                            <x-layout.input :label="'Name Buku'" :idname="'name_akun'" :type="'text'"
+                            <x-layout.input :label="'Name Buku'" :idname="'name_akun-edit'" :type="'text'"
                                 :placeholder="'Name Akun'" :name="'name_akun'" />
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <x-layout.input :label="'Kode Buku'" :idname="'kode_buku'" :type="'text'"
+                            <x-layout.input :label="'Kode Buku'" :idname="'kode_buku-edit'" :type="'text'"
                                 :placeholder="'kode_buku'" :name="'kode_buku'" />
                         </div>
                         <div class="col">
-                            <x-layout.input :label="'Klasifikasi Akun'" :type="'text'" :idname="'klasifikasi_akun'"
+                            <x-layout.input :label="'Klasifikasi Akun'" :type="'text'" :idname="'klasifikasi_akun-edit'"
                                 :placeholder="'klasifikasi_akun'" :name="'klasifikasi_akun'" />
                         </div>
                     </div>

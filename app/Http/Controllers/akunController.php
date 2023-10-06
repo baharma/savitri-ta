@@ -31,7 +31,7 @@ class akunController extends Controller
 
         $this->model->create($item);
 
-        return redirect()->back()->with('message', 'Data Akun Berhasil Di Edit!');
+        return redirect()->back()->with('message', 'Data Akun Berhasil Di Create!');
     }
 
     public function delete(Akun $akun){
@@ -42,7 +42,16 @@ class akunController extends Controller
     }
 
     public function update(Akun $akun,Request $request){
+        $data = $request->all();
 
+        $item = [
+            'name_akun'=>$data['name_akun'],
+            'kode_buku'=>$data['kode_buku'],
+            'klasifikasi_akun'=>$data['klasifikasi_akun']
+        ];
+        $akun->update($item);
+
+        return redirect()->back()->with('message', 'Data Akun Berhasil Di Edit!');
     }
 
     public function getAllAkun(Akun $akun){

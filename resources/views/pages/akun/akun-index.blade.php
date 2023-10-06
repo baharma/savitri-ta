@@ -30,11 +30,11 @@
                 <td>{{$item->name_akun}}</td>
                 <td>{{$item->klasifikasi_akun}}</td>
                 <td>
-                    <a data-url="" data-id="{{$item->id}}"
+                    <a data-url="{{route('akun.delete',$item->id)}}" data-id="{{$item->id}}"
                         class="btn btn-danger delete-item">
                         <i class="bi bi-trash"></i>
                     </a>
-                    <a class="btn btn-info edit-this-modal" data-bs-toggle="modal" data-edit="{{route('pengeluaran.show',$item->id)}}" data-url="{{route('pengeluaran.update',$item->id)}}" data-id="{{$item->id}}" data-bs-target="#staticModalaAkunEdit" >
+                    <a class="btn btn-info edit-this-akun-modal" data-bs-toggle="modal" data-edit="{{route('akun.all',$item->id)}}" data-url="{{route('akun.update',$item->id)}}" data-id="{{$item->id}}" data-bs-target="#staticModalaAkunEdit" >
                         <i class="bi bi-pencil-square"></i>
                     </a>
                 </td>
@@ -72,3 +72,7 @@
 
 @include('pages.component-boostrap.modal-akun')
 @endsection
+
+@push('script')
+    <script src="{{asset('js/main/akun/akun.js')}}"></script>
+@endpush
