@@ -69,6 +69,8 @@ Route::middleware(['auth'])->group(function () {
     Route::controller(JurnalController::class)->group(function(){
         Route::get('/jurnal-umum','index')->name('jurnal.index');
         Route::post('/search-jurnal','search')->name('jurnal.search');
+        Route::post('/add/jurnal','add')->name('jurnal.add');
+
     });
 
 });
