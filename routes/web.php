@@ -3,6 +3,7 @@
 use App\Http\Controllers\akunController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\HutangController;
+use App\Http\Controllers\JurnalController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\PiutangController;
@@ -65,6 +66,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/getall/akun/{akun}','getAllAkun')->name('akun.all');
     });
 
+    Route::controller(JurnalController::class)->group(function(){
+        Route::get('/jurnal-umum','index')->name('jurnal.index');
+        Route::post('/search-jurnal','search')->name('jurnal.search');
+    });
 
 });
 
