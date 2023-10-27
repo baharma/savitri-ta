@@ -70,7 +70,8 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/jurnal-umum','index')->name('jurnal.index');
         Route::post('/search-jurnal','search')->name('jurnal.search');
         Route::post('/add/jurnal','add')->name('jurnal.add');
-
+        Route::put('/craete/jurnal','saveDelete')->name('jurnal-update.create');
+        Route::put('/delete/cancel/jurnal','deleteCancel')->name('jurnal.cancel');
     });
 
 });

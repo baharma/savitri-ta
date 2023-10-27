@@ -22,18 +22,25 @@ class JurnalController extends Controller
     public function search(Request $request){
 
     }
-    public function add(Request $request){
+    public function add(Request $request) {
         $count = $request->number;
         $jurnal = $this->jurnal;
-        $data = range(1,$count);
+        $data = range(1, $count);
         $akun = Akun::orderBy('created_at', 'asc')->get();
-        $datajurnal = collect($data)->each(function($item){
-            $this->jurnal->create(['kode_jurnal'=>'code']);
+        $datajurnal = collect($data)->map(function ($item) use ($jurnal) {
+            $createdJurnal = $jurnal->create(['kode_jurnal' => 'code']);
+            return $this->jurnal->find($createdJurnal->id);
         });
-        return view('pages.jurnal-umum.create-jurnal-umum',compact('datajurnal','akun'));
+        return view('pages.jurnal-umum.create-jurnal-umum', compact('datajurnal', 'akun'));
     }
 
     public function saveDelete(Request $request){
+        $data = $request->all();
 
+        return response()->json(['message' => 'Data saved or deleted successfully']);
+    }
+    public function deleteCancel(Request $request){
+        $data = $request->all();
+        dd($data);
     }
 }
