@@ -72,6 +72,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/add/jurnal','add')->name('jurnal.add');
         Route::put('/craete/jurnal','saveDelete')->name('jurnal-update.create');
         Route::put('/delete/cancel/jurnal','deleteCancel')->name('jurnal.cancel');
+        Route::delete('delete/jurnal/{jurnal}','deleteJurnal')->name('jurnal.delete');
     });
 
 });

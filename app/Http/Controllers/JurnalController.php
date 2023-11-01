@@ -36,11 +36,41 @@ class JurnalController extends Controller
 
     public function saveDelete(Request $request){
         $data = $request->all();
-
-        return response()->json(['message' => 'Data saved or deleted successfully']);
+        $saveMap = collect($data)->map(function ($item) {
+            $model = $this->jurnal->find($item['id']);
+            if ($item['kode_jurnal'] === null && $item['debit'] === null && $item['kredit'] === null) {
+                $model->delete();
+            } else {
+                $model->update([
+                    'date' => $item['date'],
+                    'kode_jurnal' => $item['kode_jurnal'],
+                    'id_akun' => $item['id_akun'],
+                    'debit' => $item['debit'],
+                    'kredit' => $item['kredit'],
+                    'description' => $item['description'],
+                ]);
+            }
+        });
+        return response()->json([
+            'message' => 'Data successfully deleted!'
+        ]);
     }
+
     public function deleteCancel(Request $request){
         $data = $request->all();
-        dd($data);
+        $deleteAll = collect($data)->map(function($item){
+            $model = $this->jurnal->find($item['id']);
+            $model->delete();
+        });
+        return response()->json([
+            'message' => 'Data successfully deleted!'
+        ]);
+    }
+
+    public function deleteJurnal(JurnalUmum $jurnal){
+        $jurnal->delete();
+        return response()->json([
+            'message' => 'Data successfully deleted!'
+        ]);
     }
 }

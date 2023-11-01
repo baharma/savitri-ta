@@ -55,7 +55,7 @@
             <td>{{$item->kredit ?? ''}}</td>
             <td>{{$item->description ?? ''}}</td>
             <td>
-                <a data-url="" data-id="{{$item->id}}" class="btn btn-danger delete-item">
+                <a data-url="{{route('jurnal.delete',$item->id)}}" data-id="{{$item->id}}" class="btn btn-danger delete-item">
                     <i class="bi bi-trash"></i>
                 </a>
                 <a class="btn btn-info hutang" data-bs-toggle="modal" data-edit="" data-url="" data-id="{{$item->id}}"

@@ -20,7 +20,7 @@
                 <div class="p-2 bd-highlight">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Kode Jurnal</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" name="kode_jurnal"
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="kode_jurnal"
                             aria-describedby="emailHelp">
                     </div>
                 </div>
@@ -37,21 +37,21 @@
                 <div class="p-2 bd-highlight">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Debit</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" name="debit"
+                        <input type="number" class="form-control" id="exampleInputEmail1" name="debit"
                             aria-describedby="emailHelp">
                     </div>
                 </div>
                 <div class="p-2 bd-highlight">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Kredit</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" name="kredit"
+                        <input type="number" class="form-control" id="exampleInputEmail1" name="kredit"
                             aria-describedby="emailHelp">
                     </div>
                 </div>
                 <div class="p-2 bd-highlight">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">keterangan</label>
-                        <input type="email" class="form-control" id="exampleInputEmail1" name="description"
+                        <input type="text" class="form-control" id="exampleInputEmail1" name="description"
                             aria-describedby="emailHelp">
                     </div>
                 </div>
@@ -64,21 +64,21 @@
             <div class="p-2 bd-highlight">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Total Debit</label>
-                    <input type="number" class="form-control" id="exampleInputEmail1" name="debit"
-                        aria-describedby="emailHelp" disabled>
+                    <input type="number" class="form-control"  name="debit-hasil"
+                        aria-describedby="emailHelp" id="hasil-debit"  readonly>
                 </div>
             </div>
             <div class="p-2 bd-highlight">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Total Kredit</label>
-                    <input type="number" class="form-control" id="exampleInputEmail1" name="kredit"
-                        aria-describedby="emailHelp" disabled>
+                    <input type="number" class="form-control"  name="kredit" id="hasil-kredit"
+                        aria-describedby="emailHelp" readonly>
                 </div>
             </div>
         </div>
         <div class="d-flex flex-row-reverse bd-highlight">
             <div class="p-2 bd-highlight">
-                <button type="submit" class="btn btn-primary save-get" id="save-get" data-url="{{route('jurnal-update.create')}}" >Save</button>
+                <button type="submit" class="btn btn-primary save-get" id="save-get" data-url="{{route('jurnal-update.create')}}">Save</button>
             </div>
             <div class="p-2 bd-highlight">
                 <button type="button" class="btn btn-danger" id="delete-jurnal-umum" >cancel</button>
