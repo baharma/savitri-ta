@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\akunController;
+use App\Http\Controllers\BukuBesarController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\HutangController;
 use App\Http\Controllers\JurnalController;
@@ -73,6 +74,12 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/craete/jurnal','saveDelete')->name('jurnal-update.create');
         Route::put('/delete/cancel/jurnal','deleteCancel')->name('jurnal.cancel');
         Route::delete('delete/jurnal/{jurnal}','deleteJurnal')->name('jurnal.delete');
+        Route::get("jurnal/data/{jurnal}",'getJurnalEdit')->name('jurnal.edit');
+        Route::put("jurnal/update/{jurnal}",'updateJurnal')->name('jurnal.update');
+    });
+
+    Route::controller(BukuBesarController::class)->group(function(){
+
     });
 
 });

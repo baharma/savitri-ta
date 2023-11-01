@@ -58,8 +58,8 @@
                 <a data-url="{{route('jurnal.delete',$item->id)}}" data-id="{{$item->id}}" class="btn btn-danger delete-item">
                     <i class="bi bi-trash"></i>
                 </a>
-                <a class="btn btn-info hutang" data-bs-toggle="modal" data-edit="" data-url="" data-id="{{$item->id}}"
-                    data-bs-target="">
+                <a class="btn btn-info edit-jurnal" data-bs-toggle="modal" data-edit="{{route('jurnal.update',$item->id)}}" data-url="{{route('jurnal.edit',$item->id)}}" data-id="{{$item->id}}"
+                    data-bs-target="#modal-jurnal-edit">
                     <i class="bi bi-pencil-square"></i>
                 </a>
             </td>
@@ -76,7 +76,6 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content ">
             <div class="modal-header">
-                <h5 class="modal-title" id="modalAddJurnalLabel">Modal title</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <form action="{{route('jurnal.add')}}" method="POST">
@@ -96,5 +95,12 @@
     </div>
 </div>
 
+@include('pages.component-boostrap.modal-jurnal')
+
+
+@push('script')
+    <script src="{{asset('js/main/jurnal/form-edit-jurnal.js')}}"></script>
+@endpush
 
 @endsection
+

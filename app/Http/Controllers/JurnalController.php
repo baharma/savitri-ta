@@ -16,8 +16,9 @@ class JurnalController extends Controller
     }
 
     public function index(){
+        $akun = Akun::all();
         $data = $this->jurnal->orderBy('created_at', 'asc')->paginate(10)->onEachSide(1);
-        return view('pages.jurnal-umum.index-jurnal-umum',compact('data'));
+        return view('pages.jurnal-umum.index-jurnal-umum',compact('data','akun'));
     }
     public function search(Request $request){
 
@@ -72,5 +73,14 @@ class JurnalController extends Controller
         return response()->json([
             'message' => 'Data successfully deleted!'
         ]);
+    }
+
+    public function getJurnalEdit(JurnalUmum $jurnal){
+        return response()->json($jurnal);
+    }
+
+    public function updateJurnal(JurnalUmum $jurnal,Request $request){
+        $jurnal->update($request->all());
+        return redirect()->back()->with('message', 'Data Pengeluaran Berhasil Di Update!');
     }
 }
