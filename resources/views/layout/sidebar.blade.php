@@ -61,6 +61,11 @@
                 <i class="fas fa-fw fa-table"></i>
                 <span>Jurnal Umum</span></a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('buku-besar.index')}}">
+                <i class="bi bi-book"></i>
+                <span>Buku Besar</span></a>
+        </li>
 
 
     </ul>

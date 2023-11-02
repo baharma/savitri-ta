@@ -22,7 +22,6 @@ class JurnalUmum extends Model
         'kode_jurnal'
     ];
 
-
     public function akunJurnal(){
         return $this->belongsTo(Akun::class,'akun_id','id');
     }

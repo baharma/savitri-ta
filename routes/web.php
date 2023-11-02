@@ -79,7 +79,7 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::controller(BukuBesarController::class)->group(function(){
-
+        Route::get('/bukuBesar','index')->name('buku-besar.index');
     });
 
 });

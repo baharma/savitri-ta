@@ -68,8 +68,6 @@
         </ul>
     </nav>
 </div>
-
-
 @include('pages.component-boostrap.modal-akun')
 @endsection
 
