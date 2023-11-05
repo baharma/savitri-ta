@@ -9,8 +9,7 @@
                 @method('PUT')
                 <div class="modal-body">
                     <div class="p-2 bd-highlight">
-                        <input type="hidden" class="form-control" id="exampleInputEmail1" name="id"
-                            aria-describedby="emailHelp" value="{{$item->id}}">
+
                         <div class="mb-3">
                             <label for="exampleInputEmail1" class="form-label">Date</label>
                             <input type="date" class="form-control" id="date" name="date" aria-describedby="emailHelp">

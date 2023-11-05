@@ -30,7 +30,6 @@ class akunController extends Controller
         ];
 
         $this->model->create($item);
-
         return redirect()->back()->with('message', 'Data Akun Berhasil Di Create!');
     }
 

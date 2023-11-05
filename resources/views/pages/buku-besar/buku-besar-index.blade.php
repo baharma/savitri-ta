@@ -4,7 +4,7 @@
 <div class="d-flex flex-row-reverse bd-highlight">
     <div class="p-2 bd-highlight">
         <div class="">
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAddJurnal">
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalAddBukuBesar">
                 <i class="bi bi-plus-square"></i> Create Buku Besar
             </button>
         </div>
@@ -46,4 +46,7 @@
         @endforelse
     </tbody>
 </table>
+
+@include('pages.component-boostrap.modal-buku-besar')
+
 @endsection

@@ -38,6 +38,7 @@ buttonDelete.addEventListener('click',function(){
     const url = null;
     formEvent(url);
 })
+
 function calculateTotal(inputs, totalElement) {
     let total = 0;
 
@@ -58,3 +59,6 @@ const kreditInputs = document.querySelectorAll("input[name=kredit]");
 const hasilKreditInput = document.getElementById("hasil-kredit");
 kreditInputs.forEach((input) => input.addEventListener("input", () => calculateTotal(kreditInputs, hasilKreditInput)));
 calculateTotal(kreditInputs, hasilKreditInput);
+
+
+

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Akun;
 use App\Models\JurnalUmum;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class JurnalController extends Controller
 {
@@ -29,7 +30,10 @@ class JurnalController extends Controller
         $data = range(1, $count);
         $akun = Akun::orderBy('created_at', 'asc')->get();
         $datajurnal = collect($data)->map(function ($item) use ($jurnal) {
-            $createdJurnal = $jurnal->create(['kode_jurnal' => 'code']);
+            $createdJurnal = $jurnal->create([
+                'kode_jurnal' => 'code',
+                'user_id'=>Auth::user()->id,
+            ]);
             return $this->jurnal->find($createdJurnal->id);
         });
         return view('pages.jurnal-umum.create-jurnal-umum', compact('datajurnal', 'akun'));
@@ -37,6 +41,7 @@ class JurnalController extends Controller
 
     public function saveDelete(Request $request){
         $data = $request->all();
+
         $saveMap = collect($data)->map(function ($item) {
             $model = $this->jurnal->find($item['id']);
             if ($item['kode_jurnal'] === null && $item['debit'] === null && $item['kredit'] === null) {
@@ -45,13 +50,14 @@ class JurnalController extends Controller
                 $model->update([
                     'date' => $item['date'],
                     'kode_jurnal' => $item['kode_jurnal'],
-                    'id_akun' => $item['id_akun'],
+                    'akun_id' => $item['id_akuns'],
                     'debit' => $item['debit'],
                     'kredit' => $item['kredit'],
                     'description' => $item['description'],
                 ]);
             }
         });
+
         return response()->json([
             'message' => 'Data successfully deleted!'
         ]);

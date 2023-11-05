@@ -27,7 +27,7 @@
                 <div class="p-2 bd-highlight">
                     <div class="mb-3">
                         <label for="exampleInputEmail1" class="form-label">Kode Akun</label>
-                        <select class="form-select" aria-label="Default select example" name="id_akun">
+                        <select class="form-select" aria-label="Default select example" name="id_akuns">
                             @foreach ($akun as $item)
                             <option value="{{$item->id}}">{{$item->name_akun}}</option>
                             @endforeach
