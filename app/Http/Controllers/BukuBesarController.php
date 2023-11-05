@@ -6,6 +6,7 @@ use App\Models\Akun;
 use App\Models\BukuBesar;
 use App\Models\JurnalUmum;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class BukuBesarController extends Controller
 {
@@ -30,6 +31,34 @@ class BukuBesarController extends Controller
         ->where('akun_id', $request->name_akun)
         ->orderBy('date')
         ->get();
-        return view('pages.buku-besar.create-buku-besar',compact('jurnalDate'));
+        $bukuBesar = $this->buku->create([
+            'id_user'=>Auth::user()->id,
+            'akun_id'=>$request->name_akun
+        ]);
+        return view('pages.buku-besar.create-buku-besar',compact('jurnalDate','bukuBesar'));
+    }
+
+    public function createJurnalBuku(Request $request,BukuBesar $buku){
+
+        $data = $request->all();
+        $saveJurnal = collect($data)->map(function ($item) use ($buku) {
+            $jurnal = $this->jurnal->find($item['id']);
+            $buku->jurnal()->sync($jurnal, false);
+        });
+        return response()->json([ 'message' => 'Data success Add !']);
+    }
+    public function cancelSave(Request $request,BukuBesar $buku){
+        $data = $request->all();
+        $saveJurnal = collect($data)->map(function ($item) use ($buku) {
+            $jurnal = $this->jurnal->find($item['id']);
+            $buku->jurnal()->detach($jurnal);
+        });
+        return response()->json([ 'message' => 'Data success Add !']);
+    }
+
+    public function storeBukuBesar(Request $request,BukuBesar $buku){
+        $data = $request->all();
+        $buku->update($data);
+        return to_route('buku-besar.index')->with('message', 'Data Buku Berhasil Di Create!');
     }
 }

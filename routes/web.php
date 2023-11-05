@@ -82,6 +82,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/bukuBesar','index')->name('buku-besar.index');
         Route::post('/bukuBesar/allData','create')->name('buku-besar.create');
         Route::put('/bukutBesar/create','store')->name('buku-besar.store');
+        Route::put('/bukuBesar/{buku}/update','createJurnalBuku')->name('buku-besar.update');
+        Route::put('/bukuBesar/{buku}/store','storeBukuBesar')->name('buku-besar.store-all');
+        Route::put('/delete/buku-besar/{buku}','cancelSave')->name('buku-besar.delete-all');
     });
 
 });
