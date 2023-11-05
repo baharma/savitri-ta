@@ -30,11 +30,11 @@
             <td>{{$item->akun->name_akun ?? ''}}</td>
             <td>{{$item->description ?? ''}}</td>
             <td>
-                <a data-url="{{route('jurnal.delete',$item->id)}}" data-id="{{$item->id}}" class="btn btn-danger delete-item">
+                <a data-url="{{route('delete-buku.buku-besar',$item->id)}}" data-id="{{$item->id}}" class="btn btn-danger delete-item">
                     <i class="bi bi-trash"></i>
                 </a>
-                <a class="btn btn-info edit-jurnal" data-bs-toggle="modal" data-edit="{{route('jurnal.update',$item->id)}}" data-url="{{route('jurnal.edit',$item->id)}}" data-id="{{$item->id}}"
-                    data-bs-target="#modal-jurnal-edit">
+                <a class="btn btn-info edit-buku" data-bs-toggle="modal" data-edit="{{route('get-buku',$item->id)}}" data-url="{{route('buku-update',$item->id)}}" data-id="{{$item->id}}"
+                    data-bs-target="#modal-buku">
                     <i class="bi bi-pencil-square"></i>
                 </a>
             </td>
@@ -69,3 +69,7 @@
 @include('pages.component-boostrap.modal-buku-besar')
 
 @endsection
+
+@push('script')
+    <script src="{{asset('js/main/buku-besar.js/buku-edit.js')}}"></script>
+@endpush

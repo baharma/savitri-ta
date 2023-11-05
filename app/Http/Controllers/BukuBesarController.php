@@ -61,4 +61,18 @@ class BukuBesarController extends Controller
         $buku->update($data);
         return to_route('buku-besar.index')->with('message', 'Data Buku Berhasil Di Create!');
     }
+
+    public function getEdit(BukuBesar $buku){
+        return response()->json($buku);
+    }
+    public function UpdateBuku(Request $request, BukuBesar $buku){
+        $data = $request->all();
+        $buku->update($data);
+        return redirect()->back()->with('message', 'Data Buku Berhasil Di Update!');
+    }
+    public function deleteBuku(BukuBesar $buku) {
+        $buku->jurnal()->detach();
+        $buku->delete();
+        return response()->json(['message' => 'Data successfully deleted!']);
+    }
 }
