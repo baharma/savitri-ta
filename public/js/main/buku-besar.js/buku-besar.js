@@ -1,12 +1,7 @@
-const saldoLast = document.querySelectorAll('.saldo-get');
+
 const lastSaldo = document.getElementById('saldo-akhir');
 const saldoModal = document.getElementById('saldo-modal');
-saldoLast.forEach((input) => {
-    input.addEventListener("input", (event) => {
-        lastSaldo.value = event.target.value;
-        saldoModal.value = event.target.value;
-    });
-});
+
 
 const saldoSave = document.getElementById('save-buku');
 const saldoDelete = document.querySelectorAll('.delete-all-syns-saldo');
@@ -43,3 +38,5 @@ function formUpdate(url){
         console.log(response.data);
     })
 }
+
+

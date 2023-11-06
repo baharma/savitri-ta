@@ -2,48 +2,63 @@
 @section('content')
 
 <div class="card p-4">
-    @foreach ($jurnalDate as $item )
+
+    <h3 class="p-4">Akun {{$akunShowName }}</h3>
+    @foreach ($dataBox as $item )
     <form action="{{route('buku-besar.store')}}" class="save-all-jurnal" method="POST" id="update-form-buku-besar">
         @method("put")
         @csrf
-        <h3>Akun : {{$item->akunJurnal->name_akun }}</h3>
-        <div class="d-flex flex-row bd-highlight mb-3 p-2">
-            <div class="p-2 bd-highlight">
+
+        <div class="row">
+            <div class="p-1 col">
                 <input type="hidden" class="form-control" id="exampleInputEmail1" name="id" aria-describedby="emailHelp"
                     value="{{$item->id}}">
-                <div class="mb-3">
+                <div class="">
+                    @if ($loop->first)
                     <label for="exampleInputEmail1" class="form-label">Date</label>
-                    <input type="date" class="form-control" id="exampleInputEmail1" name="date"
-                        aria-describedby="emailHelp" value="{{$item->date}}">
-                </div>
-            </div>
+                    @endif
 
-            <div class="p-2 bd-highlight">
-                <div class="mb-3">
+                    <input type="date" class="form-control" id="exampleInputEmail1" name="date"
+                        aria-describedby="emailHelp" value="{{$item->date}}" readonly>
+                </div>
+            </div>
+            <div class="p-1 col">
+                <div class="">
+                    @if ($loop->first)
                     <label for="exampleInputEmail1" class="form-label">Debit</label>
+                    @endif
+
                     <input type="number" class="form-control" id="exampleInputEmail1" name="debit"
-                        aria-describedby="emailHelp" value="{{$item->debit}}">
+                        aria-describedby="emailHelp" value="{{$item->debit}}" readonly>
                 </div>
             </div>
-            <div class="p-2 bd-highlight">
-                <div class="mb-3">
+            <div class="p-1 col">
+                <div class="">
+                    @if ($loop->first)
                     <label for="exampleInputEmail1" class="form-label">Kredit</label>
+                    @endif
+
                     <input type="number" class="form-control" id="exampleInputEmail1" name="kredit"
-                        aria-describedby="emailHelp" value="{{$item->kredit}}">
+                        aria-describedby="emailHelp" value="{{$item->kredit}}" readonly>
                 </div>
             </div>
-            <div class="p-2 bd-highlight">
-                <div class="mb-3">
+            <div class="p-1 col ">
+                <div class="">
+                    @if ($loop->first)
                     <label for="exampleInputEmail1" class="form-label">keterangan</label>
+                    @endif
+
                     <input type="text" class="form-control" id="exampleInputEmail1" name="description"
-                        aria-describedby="emailHelp" value="{{$item->description}}">
+                        aria-describedby="emailHelp" value="{{$item->description}}" readonly>
                 </div>
             </div>
-            <div class="p-2 bd-highlight">
-                <div class="mb-3">
+            <div class="p-1 col">
+                <div class="">
+                    @if ($loop->first)
                     <label for="exampleInputEmail1" class="form-label">Saldo</label>
+                    @endif
                     <input type="number" class="form-control saldo-get" id="exampleInputEmail1" name="kredit"
-                        aria-describedby="emailHelp" >
+                        aria-describedby="emailHelp" value="{{$item->saldo}}" >
                 </div>
             </div>
         </div>
@@ -53,7 +68,7 @@
         <div class="p-2 bd-highlight">
             <div class="mb-3">
                 <label for="exampleInputEmail1" class="form-label">Saldo Akhir</label>
-                <input type="number" class="form-control" id="saldo-akhir" name="kredit" aria-describedby="emailHelp">
+                <input type="number" class="form-control" id="saldo-akhir" name="kredit" value="{{$saldoAkhir}}" aria-describedby="emailHelp">
             </div>
         </div>
     </div>
@@ -94,7 +109,7 @@
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Saldo</label>
-                        <input type="text" class="form-control"  aria-describedby="emailHelp" name="saldo"  value="{{$bukuBesar->saldo}}" id="saldo-modal">
+                        <input type="text" class="form-control"  aria-describedby="emailHelp" name="saldo"  value="{{$saldoAkhir}}" id="saldo-modal">
                     </div>
                 </div>
                 <div class="modal-footer">
