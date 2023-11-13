@@ -7,7 +7,7 @@
         @method("put")
         @csrf
         <h3>Akun : {{$item->akunJurnal->name_akun }}</h3>
-        <div class="d-flex flex-row bd-highlight mb-3 p-2">
+        <div class="d-flex flex-row bd-highlight mb-3 p-2" id="form-{{$item->id}}">
             <div class="p-2 bd-highlight">
                 <input type="hidden" class="form-control" id="exampleInputEmail1" name="id" aria-describedby="emailHelp"
                     value="{{$item->id}}">
@@ -17,26 +17,25 @@
                         aria-describedby="emailHelp" value="{{$item->date}}">
                 </div>
             </div>
-
+            <div class="p-2 bd-highlight">
+                <div class="mb-3">
+                    <label for="exampleInputEmail1" class="form-label">keterangan</label>
+                    <input type="text" class="form-control" id="exampleInputEmail1" name="description"
+                        aria-describedby="emailHelp" value="{{$item->description}}">
+                </div>
+            </div>
             <div class="p-2 bd-highlight">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Debit</label>
-                    <input type="number" class="form-control" id="exampleInputEmail1" name="debit"
+                    <input type="number" class="form-control" id="debit-{{$item->id}}" name="debit"
                         aria-describedby="emailHelp" value="{{$item->debit}}">
                 </div>
             </div>
             <div class="p-2 bd-highlight">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Kredit</label>
-                    <input type="number" class="form-control" id="exampleInputEmail1" name="kredit"
+                    <input type="number" class="form-control" id="kredit-{{$item->id}}" name="kredit"
                         aria-describedby="emailHelp" value="{{$item->kredit}}">
-                </div>
-            </div>
-            <div class="p-2 bd-highlight">
-                <div class="mb-3">
-                    <label for="exampleInputEmail1" class="form-label">keterangan</label>
-                    <input type="text" class="form-control" id="exampleInputEmail1" name="description"
-                        aria-describedby="emailHelp" value="{{$item->description}}">
                 </div>
             </div>
             <div class="p-2 bd-highlight">

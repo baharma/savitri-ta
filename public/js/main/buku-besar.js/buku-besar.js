@@ -43,3 +43,8 @@ function formUpdate(url){
         console.log(response.data);
     })
 }
+
+
+document.addEventListener('DOMContentLoaded',function(){
+    Array.f
+})
