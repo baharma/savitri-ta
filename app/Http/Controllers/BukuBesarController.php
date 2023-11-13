@@ -25,17 +25,33 @@ class BukuBesarController extends Controller
     }
 
     public function create(Request $request){
-
         $jurnalDate = $this->jurnal
         ->whereBetween('date', [$request->stard_date, $request->end_date])
         ->where('akun_id', $request->name_akun)
         ->orderBy('date')
         ->get();
+        $dataBox = collect($jurnalDate)->map(function($item, $index) use ($jurnalDate) {
+            $saldo = 0;
+            if ($index === 0) {
+                $saldo = 0;
+            } else {
+                $saldo = $jurnalDate->get($index - 1)['saldo'];
+            }
+            if ($item['kredit']) {
+                $saldo -= $item['kredit'];
+            } else {
+                $saldo += $item['debit'];
+            }
+            $item['saldo'] = $saldo;
+            return $item;
+        });
+        $akunShowName = $dataBox->first()->akunJurnal->name_akun;
+        $saldoAkhir = $dataBox->last()->saldo;
         $bukuBesar = $this->buku->create([
             'id_user'=>Auth::user()->id,
             'akun_id'=>$request->name_akun
         ]);
-        return view('pages.buku-besar.create-buku-besar',compact('jurnalDate','bukuBesar'));
+        return view('pages.buku-besar.create-buku-besar',compact('dataBox','bukuBesar','akunShowName','saldoAkhir'));
     }
 
     public function createJurnalBuku(Request $request,BukuBesar $buku){
