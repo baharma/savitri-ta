@@ -66,7 +66,11 @@
                 <i class="bi bi-book"></i>
                 <span>Buku Besar</span></a>
         </li>
-
+        <li class="nav-item">
+            <a class="nav-link" href="{{route('laporan')}}">
+                <i class="bi bi-filetype-pdf"></i>
+                <span>Laporan</span></a>
+        </li>
 
     </ul>
     <!-- End of Sidebar -->

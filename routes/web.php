@@ -5,6 +5,7 @@ use App\Http\Controllers\BukuBesarController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\HutangController;
 use App\Http\Controllers\JurnalController;
+use App\Http\Controllers\PdfViewController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\PiutangController;
@@ -89,6 +90,14 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/get/bukuBesar/{buku}','getEdit')->name('get-buku');
         Route::put('/update/bukuBesar/{buku}','UpdateBuku')->name('buku-update');
         Route::delete('/buku/delete/{buku}','deleteBuku')->name('delete-buku.buku-besar');
+    });
+
+    Route::controller(PdfViewController::class)->group(function(){
+        Route::get('/laporan','index')->name('laporan');
+        Route::post('/view/penjualan','viewListPenjualan')->name('penjualan-between');
+        Route::post('/view/pdf','pdf')->name('pdf-penjualan');
+        Route::post('/view/pengeluaran','pdfpengeluaran')->name('pdf-view.pengeluaran');
+        Route::post('/view/pengeluaran/pdf','pdfStreamPengeluaran')->name('pdf-stream.pengeluaran');
     });
 
 });

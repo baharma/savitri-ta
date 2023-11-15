@@ -34,12 +34,6 @@ class dashboardController extends Controller
 
                 $resultArray[] = ['tanggal' => $tanggal, 'total_penjualan' => $totalPenjualan];
             }
-
-
-
-
-
-
         return response()->json($resultArray);
     }
 }

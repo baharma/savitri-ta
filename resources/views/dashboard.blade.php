@@ -25,7 +25,7 @@
         </div>
     </div>
 
-    <!-- Earnings (Monthly) Card Example -->
+
     <div class=" col mb-4">
         <div class="card border-left-success shadow h-100 py-2">
             <div class="card-body">
@@ -71,27 +71,24 @@
         </div>
     </div>
 </div>
-
 <div class="row">
     <div class="card">
+        <h2 class="p-3">Jumlah Penjualan 7 Hari Terakhir</h2>
         <canvas id="myBarChart" width="400" height="100"></canvas>
     </div>
 </div>
-
-
 @push('script')
 <script>
-    // Get the canvas element
-// Get the canvas element
+
 let ctxs = document.getElementById('myBarChart').getContext('2d');
 
 async function getChart() {
     try {
-        // Menggunakan axios untuk mendapatkan data dari server
+
         const response = await axios.get('/chart-data');
         const responseData = response.data;
 
-        // Mempersiapkan data untuk Chart.js
+
         const data = {
             labels: responseData.map(entry => entry.tanggal),
             datasets: [{
@@ -103,7 +100,7 @@ async function getChart() {
             }]
         };
 
-        // Configure the options for the chart
+
         const options = {
             scales: {
                 y: {
@@ -112,7 +109,7 @@ async function getChart() {
             }
         };
 
-        // Create a bar chart
+
         const myBarChart = new Chart(ctxs, {
             type: 'bar',
             data: data,

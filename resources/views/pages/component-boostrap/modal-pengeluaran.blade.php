@@ -1,4 +1,4 @@
-<form action="{{route('akun.create')}}" method="POST" enctype='multipart/form-data' >
+<form action="{{route('pengeluaran.create')}}" method="POST" enctype='multipart/form-data' >
     @csrf
 <div class="modal fade" id="staticModalPengeluaran" data-bs-backdrop="static" style="z-index: 1050;" data-bs-keyboard="false" tabindex="-12"
     aria-labelledby="staticBackdropLabel" aria-hidden="true">
