@@ -1,4 +1,7 @@
 @extends('layouts.apps')
+@section('header-dasboard')
+  Buku Besar
+@endsection
 @section('content')
 
 <div class="d-flex flex-row-reverse bd-highlight">
