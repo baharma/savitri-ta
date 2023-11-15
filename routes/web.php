@@ -98,6 +98,11 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/view/pdf','pdf')->name('pdf-penjualan');
         Route::post('/view/pengeluaran','pdfpengeluaran')->name('pdf-view.pengeluaran');
         Route::post('/view/pengeluaran/pdf','pdfStreamPengeluaran')->name('pdf-stream.pengeluaran');
+
+
+
+        Route::post('/view/pdf/naraca','naracaView')->name('naraca.view-pdf');
+        Route::post('/view/naraca/print','naracaPdf')->name('print-pdf');
     });
 
 });

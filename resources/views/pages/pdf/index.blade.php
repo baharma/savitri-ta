@@ -25,7 +25,7 @@
         <div class="col d-flex flex-column bd-highlight mb-3">
             <div class="p-4 bd-highlight" style="font-size: 20px; text-align: center">
                 <i class="bi bi-file-earmark-pdf-fill" style="font-size: 150px;"></i>
-                <a href="" class="btn btn-secondary">
+                <a href="" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modalnaraca">
                     <h3>Laporan Neraca</h3>
                 </a>
             </div>

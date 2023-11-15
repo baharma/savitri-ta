@@ -69,14 +69,14 @@
     </div>
 </div>
 
-{{--
-<div class="modal fade" id="modalPenjualan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div class="modal fade" id="modalnaraca" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{route('penjualan-between')}}" method="POST">
+            <form action="{{route('naraca.view-pdf')}}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="row">
@@ -105,7 +105,7 @@
     </div>
 </div>
 
-
+{{--
 <div class="modal fade" id="modalPenjualan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
