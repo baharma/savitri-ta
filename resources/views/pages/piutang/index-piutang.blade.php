@@ -16,18 +16,18 @@
         <table class="table table-striped">
             <thead>
               <tr>
-                <th scope="col">No</th>
-                <th scope="col">No Transaksi</th>
-                <th scope="col">Nama Pelanggan</th>
-                <th scope="col">Alamat</th>
-                <th scope="col">Tanggal Transaksi Piutang</th>
-                <th scope="col">Tanggal Jatuh Tempo Piutang</th>
-                <th scope="col">Total Tagihan</th>
-                <th scope="col">Total Pembayaran</th>
-                <th scope="col">Status Pembayaran</th>
-                <th scope="col">Keterangan</th>
-                <th scope="col">Sisa Tagihan</th>
-                <th scope="col">aksi</th>
+                <th scope="col" style="font-size: 12px">No</th>
+                <th scope="col" style="font-size: 12px">No Transaksi</th>
+                <th scope="col" style="font-size: 12px">Nama Pelanggan</th>
+                <th scope="col" style="font-size: 12px">Alamat</th>
+                <th scope="col" style="font-size: 10px">Tanggal Transaksi Piutang</th>
+                <th scope="col" style="font-size: 10px">Tanggal Jatuh Tempo Piutang</th>
+                <th scope="col" style="font-size: 12px">Total Tagihan</th>
+                <th scope="col" style="font-size: 12px">Total Pembayaran</th>
+                <th scope="col" style="font-size: 12px">Status Pembayaran</th>
+                <th scope="col" style="font-size: 12px">Keterangan</th>
+                <th scope="col" style="font-size: 12px">Sisa Tagihan</th>
+                <th scope="col" style="font-size: 12px">aksi</th>
               </tr>
             </thead>
             <tbody>
