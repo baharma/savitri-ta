@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/',[dashboardController::class,'index'])->name('dashboard');
-
+    Route::get('/chart-data',[dashboardController::class,'getChartData']);
     //penjualan
     Route::controller(PenjualanController::class)->group(function(){
         Route::get('/penjualan','index')->name('penjualan.index');
@@ -36,6 +36,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/penjualan/{penjualan}/edit','editPenjualan')->name('penjualan.edit');
         Route::put('/penjualan/{penjualan}/update','updatePenjualan')->name('penjualan.update');
         Route::get('/get/allpenjualan','getAllPenjualan')->name('api-penjualan');
+
     });
     Route::controller(PiutangController::class)->group(function(){
         Route::get('/piutang','index')->name('piutang.index');
