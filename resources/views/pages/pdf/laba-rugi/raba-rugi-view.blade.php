@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="card p-4">
-    <h4 class="mb-4">Laporan Naraca</h4>
+    <h4 class="mb-4">Laporan Laba Rugi</h4>
     <div class="row">
         <div class="col">
             <div class="mb-3">
@@ -32,7 +32,7 @@
 
         <tbody>
             <tr>
-                <th colspan="4">Activa</th>
+                <th colspan="4">Pendapatan</th>
             </tr>
             <form action="{{route('laba-RugiPdf')}}" id="activa-id" method="post">
                 @csrf
@@ -45,7 +45,7 @@
                     <td>{{$item->saldo}}</td>
                     <td>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="flexCheckChecked" name="activa[]"
+                            <input class="form-check-input" type="checkbox" id="flexCheckChecked" name="pendapatan[]"
                                 value="{{$item->id}}">
                         </div>
                     </td>
@@ -63,7 +63,7 @@
                     <td>{{$item->saldo}}</td>
                     <td>
                         <div class="form-check">
-                            <input class="form-check-input" type="checkbox"  id="flexCheckChecked" name="passiva[]"
+                            <input class="form-check-input" type="checkbox"  id="flexCheckChecked" name="biaya[]"
                                 value="{{$item->id}}">
                         </div>
                     </td>

@@ -103,6 +103,10 @@ Route::middleware(['auth'])->group(function () {
 
         Route::post('/view/pdf/naraca','naracaView')->name('naraca.view-pdf');
         Route::post('/view/naraca/print','naracaPdf')->name('print-pdf');
+
+
+        Route::post('/laba-rugi/view','labaRugi')->name('view-laba.rugi');
+        Route::post('/laba-rugi/print','labaRugiPdf')->name('laba-RugiPdf');
     });
 
 });

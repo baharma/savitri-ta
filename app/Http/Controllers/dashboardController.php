@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\LabaRugi;
 use App\Models\Pengeluaran;
 use App\Models\Penjualan;
 use Carbon\Carbon;
@@ -14,8 +15,9 @@ class dashboardController extends Controller
 
         $pengeluaran = Pengeluaran::latest('created_at')->first();
 
+        $laba = LabaRugi::latest('created_at')->first();
 
-        return view('dashboard',compact('penjualan','pengeluaran'));
+        return view('dashboard',compact('penjualan','pengeluaran','laba'));
     }
 
 

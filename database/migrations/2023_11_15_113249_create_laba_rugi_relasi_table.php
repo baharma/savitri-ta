@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('laba_rugi_relasi', function (Blueprint $table) {
             $table->id();
+            $table->foreignUuid('laba_id')->references('id')->on('laba_rugis')->nullable();
+            $table->foreignUuid('buku_id')->references('id')->on('buku_besars')->nullable();
             $table->timestamps();
         });
     }

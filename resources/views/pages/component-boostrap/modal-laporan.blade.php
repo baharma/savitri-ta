@@ -105,14 +105,14 @@
     </div>
 </div>
 
-{{--
-<div class="modal fade" id="modalPenjualan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<div class="modal fade" id="modallabarugi" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <form action="{{route('penjualan-between')}}" method="POST">
+            <form action="{{route('view-laba.rugi')}}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="row">
@@ -120,7 +120,6 @@
                             <div class="mb-3">
                                 <label for="exampleInputEmail1" class="form-label">Periode Start</label>
                                 <input type="date" class="form-control" name="penjualan_start" id="exampleInputEmail1">
-
                             </div>
                         </div>
                         <div class="col">
@@ -139,4 +138,4 @@
             </form>
         </div>
     </div>
-</div> --}}
+</div>
