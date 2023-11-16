@@ -5,6 +5,7 @@ use App\Http\Controllers\BukuBesarController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\HutangController;
 use App\Http\Controllers\JurnalController;
+use App\Http\Controllers\PdfViewController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\PiutangController;
@@ -27,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/',[dashboardController::class,'index'])->name('dashboard');
-
+    Route::get('/chart-data',[dashboardController::class,'getChartData']);
     //penjualan
     Route::controller(PenjualanController::class)->group(function(){
         Route::get('/penjualan','index')->name('penjualan.index');
@@ -36,6 +37,7 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/penjualan/{penjualan}/edit','editPenjualan')->name('penjualan.edit');
         Route::put('/penjualan/{penjualan}/update','updatePenjualan')->name('penjualan.update');
         Route::get('/get/allpenjualan','getAllPenjualan')->name('api-penjualan');
+
     });
     Route::controller(PiutangController::class)->group(function(){
         Route::get('/piutang','index')->name('piutang.index');
@@ -88,6 +90,23 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/get/bukuBesar/{buku}','getEdit')->name('get-buku');
         Route::put('/update/bukuBesar/{buku}','UpdateBuku')->name('buku-update');
         Route::delete('/buku/delete/{buku}','deleteBuku')->name('delete-buku.buku-besar');
+    });
+
+    Route::controller(PdfViewController::class)->group(function(){
+        Route::get('/laporan','index')->name('laporan');
+        Route::post('/view/penjualan','viewListPenjualan')->name('penjualan-between');
+        Route::post('/view/pdf','pdf')->name('pdf-penjualan');
+        Route::post('/view/pengeluaran','pdfpengeluaran')->name('pdf-view.pengeluaran');
+        Route::post('/view/pengeluaran/pdf','pdfStreamPengeluaran')->name('pdf-stream.pengeluaran');
+
+
+
+        Route::post('/view/pdf/naraca','naracaView')->name('naraca.view-pdf');
+        Route::post('/view/naraca/print','naracaPdf')->name('print-pdf');
+
+
+        Route::post('/laba-rugi/view','labaRugi')->name('view-laba.rugi');
+        Route::post('/laba-rugi/print','labaRugiPdf')->name('laba-RugiPdf');
     });
 
 });

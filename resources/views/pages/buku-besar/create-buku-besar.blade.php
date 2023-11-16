@@ -1,4 +1,7 @@
 @extends('layouts.apps')
+@section('header-dasboard')
+  Akun
+@endsection
 @section('content')
 
 <div class="card p-4">

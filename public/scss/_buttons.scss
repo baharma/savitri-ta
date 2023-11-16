@@ -18,11 +18,13 @@
   }
 }
 
+
 .btn-icon-split {
   padding: 0;
   overflow: hidden;
   display: inline-flex;
   align-items: stretch;
+
   justify-content: center;
   .icon {
     background: fade-out($black, .85);

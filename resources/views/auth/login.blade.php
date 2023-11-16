@@ -1,14 +1,13 @@
 @extends('layouts.app-login')
 @section('content')
-<div class="card o-hidden border-0 shadow-lg my-5">
-    <div class="card-body p-0">
+<div class=" my-5" >
+    <div class="p-4" style="margin-top: 200px">
         <!-- Nested Row within Card Body -->
         <div class="row">
             <div class="col-lg-6" style="
             background: url('https://cdn.discordapp.com/attachments/805750119655407616/1141965212312940564/WhatsApp_Image_2023-08-06_at_16.27.31.jpg');
             background-position: center;
             background-size: cover; ">
-
             </div>
             <div class="col-lg-6">
                 <div class="p-5">

@@ -30,6 +30,9 @@ class BukuBesarController extends Controller
         ->where('akun_id', $request->name_akun)
         ->orderBy('date')
         ->get();
+        if ($jurnalDate->isEmpty()) {
+            return redirect()->back()->with('message','tolong input dulu jurnal pada akun ini');
+        }
         $dataBox = collect($jurnalDate)->map(function($item, $index) use ($jurnalDate) {
             $saldo = 0;
             if ($index === 0) {

@@ -16,7 +16,7 @@
                     </div>
                     <div class="row" >
                         <div class="col">
-                            <x-layout.input  :label="'tanggal_penjualan'" :idname="'tanggal-penjualan-id'" :type="'date'" :placeholder="'Input Type Barang'" :name="'tanggal_penjualan'" />
+                            <x-layout.input  :label="'Tanggal Penjualan'" :idname="'tanggal-penjualan-id'" :type="'date'" :placeholder="'Input Type Barang'" :name="'tanggal_penjualan'" />
                         </div>
                         <div class="col">
                             <x-layout.input  :label="'Jenis Barang'" :type="'text'" :idname="'jenis-barang-id'" :placeholder="'Input Date'" :name="'jenis_barang'" />

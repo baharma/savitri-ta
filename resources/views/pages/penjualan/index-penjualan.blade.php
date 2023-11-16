@@ -15,16 +15,16 @@
     <table class="table table-striped">
         <thead>
             <tr>
-                <th scope="col">No</th>
-                <th scope="col">Faktur Penjualan</th>
-                <th scope="col">Tanggal</th>
-                <th scope="col">Nama Barang</th>
-                <th scope="col">Jenis Barang</th>
-                <th scope="col">Harga Barang</th>
-                <th scope="col">Qty</th>
-                <th scope="col">Total</th>
-                <th scope="col">Jenis Pembayaran</th>
-                <th scope="col">Keterangan</th>
+                <th scope="col" style="font-size: 12px">No</th>
+                <th scope="col" style="font-size: 12px">Faktur Penjualan</th>
+                <th scope="col" style="font-size: 12px">Tanggal</th>
+                <th scope="col" style="font-size: 12px">Nama Barang</th>
+                <th scope="col" style="font-size: 12px">Jenis Barang</th>
+                <th scope="col" style="font-size: 12px">Harga Barang</th>
+                <th scope="col" style="font-size: 12px">Qty</th>
+                <th scope="col" style="font-size: 12px">Total</th>
+                <th scope="col" style="font-size: 12px">Jenis Pembayaran</th>
+                <th scope="col" style="font-size: 12px">Keterangan</th>
                 <th scope="col">Aksi</th>
             </tr>
         </thead>

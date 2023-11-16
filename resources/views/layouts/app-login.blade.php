@@ -8,7 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
+    <style>
 
+    </style>
 
     <title>Login</title>
 
@@ -23,14 +25,18 @@
     @include('sweetalert::alert')
 </head>
 
-<body class="bg-gradient-primary">
+<body class="" style="
+background-image: url('https://cdn.discordapp.com/attachments/1166088467214770347/1174280543806959636/Pngtreegold_vintage_balinese_ornament_frame_8628093.png?ex=656704fa&is=65548ffa&hm=aa3f4f31f93dabc066e1e1bb0b7d7388e33a15f403485e565e1430b05c89a017&');
+background-size: cover;
+background-position: center;
+">
 
     <div class="container">
 
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
-            <div class="col-xl-10 col-lg-12 col-md-9">
+            <div class="col-xl-10 col-lg-12 ">
 
             @yield('content')
 
