@@ -1,7 +1,9 @@
 @extends('layouts.apps')
-
+@section('header-dasboard')
+  Jurnal
+@endsection
 @section('content')
-<h1>Tambah Transaksi Jurna Umum</h1>
+<h1>Data Jurnal Umum</h1>
 <div class="d-flex justify-content-between">
     <form action="{{route('jurnal.search')}}" method="post">
         @csrf

@@ -1,5 +1,7 @@
 @extends('layouts.apps')
-
+@section('header-dasboard')
+  Penjualan
+@endsection
 @section('content')
 
 <div class="container-fluid">
