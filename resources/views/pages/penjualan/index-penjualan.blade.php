@@ -38,9 +38,9 @@
                 <td>{{$item->tanggal_penjualan}}</td>
                 <td>{{$item->nama_barang}}</td>
                 <td>{{$item->jenis_barang}}</td>
-                <td>{{$item->harga_barang}}</td>
+                <td>Rp.{{number_format($item->harga_barang)}}</td>
                 <td>{{$item->jumlah_barang}}</td>
-                <td>{{$item->total_penjualan}}</td>
+                <td>Rp.{{number_format($item->total_penjualan)}}</td>
                 <td>{{$item->jenis_pembayarang}}</td>
                 <td>{{$item->description}}</td>
                 <td>

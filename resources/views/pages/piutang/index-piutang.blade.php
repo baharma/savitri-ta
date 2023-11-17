@@ -32,11 +32,11 @@
                     <td>{{$item->alamat}}</td>
                     <td>{{$item->tgl_transaksi_piutang}}</td>
                     <td>{{$item->tgl_jatuh_tempo_piutang}}</td>
-                    <td>{{$item->total_tagihan}}</td>
-                    <td>{{$item->total_pembayaran}}</td>
+                    <td>Rp.{{number_format($item->total_tagihan)}}</td>
+                    <td>Rp.{{number_format($item->total_pembayaran)}}</td>
                     <td>{{$item->status_pembayaran}}</td>
                     <td>{{$item->description}}</td>
-                    <td>{{$item->sisa_tagihan}}</td>
+                    <td>Rp.{{number_format($item->sisa_tagihan)}}</td>
                     <td>
                         <a data-url="{{route('delete.piutang',$item->id)}}" data-id="{{$item->id}}"
                             class="btn btn-danger delete-item">
