@@ -18,7 +18,7 @@
         <thead>
             <tr>
                 <th scope="col">No</th>
-                <th scope="col">Kode Buku</th>
+                <th scope="col">Kode Akun</th>
                 <th scope="col">Nama Akun</th>
                 <th scope="col">Klasifikasi Akun</th>
                 <th scope="col">Aksi</th>
