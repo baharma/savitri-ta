@@ -11,7 +11,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
-                            <x-layout.input  :label="'Jenis Pengeluaran'" :idname="'jenis-bayar-id'" :type="'text'" :placeholder="'jenis_bayar'" :name="'jenis_bayar'"  />
+                            <x-layout.input  :label="'Jenis Pengeluaran'" :idname="'jenis-bayar-id'" :type="'text'" :placeholder="'jenis_bayar'" :name="'jenis_pengeluaran'"  />
                         </div>
                     </div>
                     <div class="row" >
@@ -19,7 +19,11 @@
                             <x-layout.input  :label="'Tanggal Pengeluaran'" :idname="'tanggal-pengeluran-id'" :type="'date'" :placeholder="'tanggal_pengeluaran'" :name="'tanggal_pengeluran'" />
                         </div>
                         <div class="col">
-                            <x-layout.input  :label="'Jenis Pengeluaran'" :type="'text'" :idname="'jenis-pengeluaran-id'" :placeholder="'jenis_pengeluaran'" :name="'jenis_pengeluaran'" />
+                            <label for="">Jenis Pengeluaran</label>
+                            <select class="form-select form-select-sm" aria-label=".form-select-lg example" name="jenis_bayar">
+                                <option value="Transfer">Transfer</option>
+                                <option value="Cast">Cast</option>
+                              </select>
                         </div>
                     </div>
                     <div class="row">
@@ -66,7 +70,8 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
-                            <x-layout.input  :label="'Jenis Pengeluaran'" :idname="'jenis-bayar-id-edit'" :type="'text'" :placeholder="'jenis_bayar'" :name="'jenis_bayar'"  />
+                            <x-layout.input  :label="'Jenis Pengeluaran'" :type="'text'" :idname="'jenis-pengeluaran-id-edit'" :placeholder="'jenis_pengeluaran'" :name="'jenis_pengeluaran'" />
+
                         </div>
                     </div>
                     <div class="row" >
@@ -74,7 +79,11 @@
                             <x-layout.input  :label="'Tanggal Pengeluaran'" :idname="'tanggal-pengeluran-id-edit'" :type="'date'" :placeholder="'tanggal_pengeluaran'" :name="'tanggal_pengeluran'" />
                         </div>
                         <div class="col">
-                            <x-layout.input  :label="'Jenis Pengeluaran'" :type="'text'" :idname="'jenis-pengeluaran-id-edit'" :placeholder="'jenis_pengeluaran'" :name="'jenis_pengeluaran'" />
+                            <label for="">Jenis Pengeluaran</label>
+                            <select class="form-select form-select-sm" aria-label=".form-select-lg example" name="jenis_bayar">
+                                <option value="Transfer">Transfer</option>
+                                <option value="Cast">Cast</option>
+                              </select>
                         </div>
                     </div>
                     <div class="row">
