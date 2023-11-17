@@ -3,16 +3,7 @@
 @section('content')
 
     <div class="container-fluid">
-        <x-layout.add-modal-button >
-            @slot('inputs')
-            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticModalPenjualan">
-                Tambah
-              </button>
-            @endslot
-            @slot('input')
-              <x-layout.input-groub />
-            @endslot
-        </x-layout.add-modal-button>
+
         <table class="table table-striped">
             <thead>
               <tr>

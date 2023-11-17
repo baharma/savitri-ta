@@ -11,14 +11,15 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
-                            <x-layout.input :label="'Name Buku'" :idname="'name_akun'" :type="'text'"
-                                :placeholder="'Name Akun'" :name="'name_akun'" />
+                            <x-layout.input :label="'Kode Akun'" :idname="'kode_buku'" :type="'text'"
+                                :placeholder="'kode_buku'" :name="'kode_buku'" />
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <x-layout.input :label="'Kode Buku'" :idname="'kode_buku'" :type="'text'"
-                                :placeholder="'kode_buku'" :name="'kode_buku'" />
+                            <x-layout.input :label="'Name aku'" :idname="'name_akun'" :type="'text'"
+                                :placeholder="'Name Akun'" :name="'name_akun'" />
                         </div>
                         <div class="col">
                             <x-layout.input :label="'Klasifikasi Akun'" :type="'text'" :idname="'klasifikasi_akun'"
@@ -51,14 +52,15 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
-                            <x-layout.input :label="'Name Buku'" :idname="'name_akun-edit'" :type="'text'"
-                                :placeholder="'Name Akun'" :name="'name_akun'" />
+                            <x-layout.input :label="'Kode Akun'" :idname="'kode_buku-edit'" :type="'text'"
+                            :placeholder="'kode_buku'" :name="'kode_buku'" />
+
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <x-layout.input :label="'Kode Buku'" :idname="'kode_buku-edit'" :type="'text'"
-                                :placeholder="'kode_buku'" :name="'kode_buku'" />
+                            <x-layout.input :label="'Name Akun'" :idname="'name_akun-edit'" :type="'text'"
+                            :placeholder="'Name Akun'" :name="'name_akun'" />
                         </div>
                         <div class="col">
                             <x-layout.input :label="'Klasifikasi Akun'" :type="'text'" :idname="'klasifikasi_akun-edit'"

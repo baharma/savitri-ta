@@ -11,7 +11,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
-                            <x-layout.input  :label="'Jenis Barang'" :idname="'jenis-bayar-id'" :type="'text'" :placeholder="'jenis_bayar'" :name="'jenis_bayar'"  />
+                            <x-layout.input  :label="'Jenis Pengeluaran'" :idname="'jenis-bayar-id'" :type="'text'" :placeholder="'jenis_bayar'" :name="'jenis_bayar'"  />
                         </div>
                     </div>
                     <div class="row" >
@@ -66,7 +66,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
-                            <x-layout.input  :label="'Jenis Barang'" :idname="'jenis-bayar-id-edit'" :type="'text'" :placeholder="'jenis_bayar'" :name="'jenis_bayar'"  />
+                            <x-layout.input  :label="'Jenis Pengeluaran'" :idname="'jenis-bayar-id-edit'" :type="'text'" :placeholder="'jenis_bayar'" :name="'jenis_bayar'"  />
                         </div>
                     </div>
                     <div class="row" >

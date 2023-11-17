@@ -36,12 +36,13 @@
         <div style="float: right;">
             <h2>Toko Suci Lestari</h2>
             <h3>Jl. Raya Batur, Kintamani Bangli, Bali</h3>
+            <h2>Laporan Naraca</h2>
         </div>
 
         <div style="clear: both;"></div>
     </div>
     <hr style=" border: 1px solid black;">
-    <h2 style="text-align: center">Laporan Naraca</h2>
+
     <h3>
         Periode : {{$star}} - {{$end}}
     </h3>

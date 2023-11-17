@@ -18,9 +18,10 @@
         <tr>
             <th scope="col">No</th>
             <th scope="col">Date </th>
-            <th scope="col">Saldo</th>
+
             <th scope="col">Nama Akun</th>
             <th scope="col">Keterangan</th>
+            <th scope="col">Saldo</th>
             <th scope="col">Aksi</th>
         </tr>
     </thead>
@@ -29,9 +30,9 @@
         <tr>
             <td>{{$loop->iteration }}</td>
             <td>{{$item->date ?? ''}}</td>
-            <td>{{$item->saldo ?? ''}}</td>
             <td>{{$item->akun->name_akun ?? ''}}</td>
             <td>{{$item->description ?? ''}}</td>
+            <td>{{$item->saldo ?? ''}}</td>
             <td>
                 <a data-url="{{route('delete-buku.buku-besar',$item->id)}}" data-id="{{$item->id}}" class="btn btn-danger delete-item">
                     <i class="bi bi-trash"></i>
