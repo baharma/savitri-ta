@@ -15,18 +15,19 @@
             </div>
             <div class="row">
                 <div class="col">
-                    <x-layout.input  :label="'Tanggal Transaksi Piutang'" :type="'date'" :idname="'tgl-transaksi-piutang-id'" :placeholder="'tgl_transaksi_piutang'" :name="'tgl_transaksi_piutang'" />
+                    <x-layout.input  :label="'Tanggal Transaksi Piutang'" :classinput="'tanggalInput'" :type="'date'" :idname="'tgl-transaksi-piutang-id'" :placeholder="'tgl_transaksi_piutang'" :name="'tgl_transaksi_piutang'" />
                 </div>
                 <div class="col">
-                    <x-layout.input  :label="'Tanggal Jatuh Tempo Piutang'" :type="'date'" :idname="'tgl-jatuh-tempo-piutang-id'" :placeholder="'tgl_jatuh_tempo_piutang'" :name="'tgl_jatuh_tempo_piutang'" />
+                    <x-layout.input  :label="'Tanggal Jatuh Tempo Piutang'"  :type="'date'" :idname="'tgl-jatuh-tempo-piutang-id'" :placeholder="'tgl_jatuh_tempo_piutang'" :name="'tgl_jatuh_tempo_piutang'" />
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <x-layout.input  :label="'Total Pembayaran'" :type="'text'" :placeholder="'total_pembayaran'" :idname="'total-pembayaran-id'" :name="'total_pembayaran'" />
+                    <x-layout.input  :label="'Total Tagihan'" :type="'text'" :placeholder="'total_tagihan'" :name="'total_tagihan'" :idname="'total-tagihan-id'" />
+
                 </div>
                 <div class="col">
-                    <x-layout.input  :label="'Total Tagihan'" :type="'text'" :placeholder="'total_tagihan'" :name="'total_tagihan'" :idname="'total-tagihan-id'" />
+                    <x-layout.input  :label="'Total Bayar'" :type="'text'" :placeholder="'total_pembayaran'" :idname="'total-pembayaran-id'" :name="'total_pembayaran'" />
                 </div>
             </div>
             <div class="row">

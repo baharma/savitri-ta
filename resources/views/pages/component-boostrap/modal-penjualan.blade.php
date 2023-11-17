@@ -16,18 +16,22 @@
                     </div>
                     <div class="row" >
                         <div class="col">
-                            <x-layout.input  :label="'Tanggal Penjualan'" :idname="'tanggal-penjualan-id'" :type="'date'" :placeholder="'Input Type Barang'" :name="'tanggal_penjualan'" />
+                            <x-layout.input  :label="'Tanggal Penjualan'"  :classinput="'tanggalInput'" :idname="'tanggal-penjualan-id'" :type="'date'" :placeholder="'Input Type Barang'" :name="'tanggal_penjualan'" />
                         </div>
-                        <div class="col">
-                            <x-layout.input  :label="'Jenis Barang'" :type="'text'" :idname="'jenis-barang-id'" :placeholder="'Input Date'" :name="'jenis_barang'" />
-                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col">
-                            <x-layout.input  :label="'Jumlah Barang'" :type="'number'" :idname="'jumlah-barang-id'" :placeholder="'Input Qty Barang'" :name="'jumlah_barang'" />
+                            <x-layout.input  :label="'Jumlah Barang'"  :type="'number'" :idname="'jumlah-barang-id'" :placeholder="'Input Qty Barang'" :name="'jumlah_barang'" />
                         </div>
                         <div class="col">
-                            <x-layout.input  :label="'Jenis Pembayaran'" :type="'text'" :idname="'jenis-pembayarang-id'" :placeholder="'Input type Pembayaran'" :name="'jenis_pembayarang'" />
+                            <label for="">Jenis Pembayaran</label>
+                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="jenis-pembayarang-id" name="jenis_pembayarang">
+
+                                <option value="Tunai">Tunai</option>
+                                <option value="Transfer">Transfer</option>
+                              </select>
+
                         </div>
                     </div>
                     <div class="row">
@@ -88,16 +92,19 @@
                         <div class="col">
                             <x-layout.input  :label="'Tanggal Penjualan'" :idname="'tanggal-penjualan-edit'" :type="'date'" :placeholder="'Input Type Barang'" :name="'tanggal_penjualan'" />
                         </div>
-                        <div class="col">
-                            <x-layout.input  :label="'Jenis Barang'" :type="'text'" :idname="'jenis-barang-edit'" :placeholder="'Input Date'" :name="'jenis_barang'" />
-                        </div>
+
                     </div>
                     <div class="row">
                         <div class="col">
                             <x-layout.input  :label="'Jumlah Barang'" :type="'text'" :placeholder="'Input Qty Barang'" :name="'jumlah_barang'" :idname="'jumlah-barang-edit'" />
                         </div>
                         <div class="col">
-                            <x-layout.input  :label="'Jenis Pembayaran'" :type="'text'" :placeholder="'Input type Pembayaran'" :name="'jenis_pembayarang'" :idname="'jenis-pembayarang-edit'" />
+                            <label for="">Jenis Pembayaran</label>
+                            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="jenis-pembayarang-id" name="jenis_pembayarang">
+                                <option selected>Open this select menu</option>
+                                <option value="Tunai">Tunai</option>
+                                <option value="Transfer">Transfer</option>
+                              </select>
                         </div>
                     </div>
                     <div class="row">

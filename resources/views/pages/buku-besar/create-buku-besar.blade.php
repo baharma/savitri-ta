@@ -1,6 +1,6 @@
 @extends('layouts.apps')
 @section('header-dasboard')
-  Akun
+  Buku Besar
 @endsection
 @section('content')
 
@@ -100,7 +100,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Date</label>
-                        <input type="date" class="form-control" name="date" aria-describedby="emailHelp" >
+                        <input type="date" class="form-control tanggalInput" name="date" aria-describedby="emailHelp" >
                     </div>
                     <div class="form-group">
                         <label for="exampleInputEmail1">Akun Name</label>

@@ -38,7 +38,7 @@ class PenjualanController extends Controller
                 'user_id'=>Auth::user()->id,
                 'tanggal_penjualan'=>$data['tanggal_penjualan'],
                 'nama_barang'=>$data['nama_barang'],
-                'jenis_barang'=>$data['jenis_barang'],
+
                 'jumlah_barang'=>$data['jumlah_barang'],
                 'jenis_pembayarang'=>$data['jenis_pembayarang'],
                 'total_penjualan'=>$data['total_penjualan'],
@@ -90,7 +90,7 @@ class PenjualanController extends Controller
                 'description' => $penjualan->description,
                 'faktur_penjualan' => $penjualan->faktur_penjualan,
                 'harga_barang' => $penjualan->harga_barang,
-                'jenis_barang' => $penjualan->jenis_barang,
+
                 'jenis_pembayarang' => $penjualan->jenis_pembayarang,
                 'jumlah_barang' => $penjualan->jumlah_barang,
                 'nama_barang' => $penjualan->nama_barang,
@@ -127,7 +127,7 @@ class PenjualanController extends Controller
                 'user_id'=>Auth::user()->id,
                 'tanggal_penjualan'=>$data['tanggal_penjualan'],
                 'nama_barang'=>$data['nama_barang'],
-                'jenis_barang'=>$data['jenis_barang'],
+
                 'jumlah_barang'=>$data['jumlah_barang'],
                 'jenis_pembayarang'=>$data['jenis_pembayarang'],
                 'total_penjualan'=>$data['total_penjualan'],

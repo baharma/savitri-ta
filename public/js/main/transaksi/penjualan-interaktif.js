@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const inputFields = {
                 'nama-barang-edit': 'nama_barang',
                 'tanggal-penjualan-edit': 'tanggal_penjualan',
-                'jenis-barang-edit': 'jenis_barang',
+
                 'jumlah-barang-edit': 'jumlah_barang',
                 'jenis-pembayarang-edit': 'jenis_pembayarang',
                 'harga-barang-edit': 'harga_barang',
@@ -101,4 +101,16 @@ buttonPiutang.forEach(function(element){
         return axios.get(url);
     }
 
+
+    const tagihan = document.getElementById('total-tagihan-id');
+    const bayar = document.getElementById('total-pembayaran-id');
+    const sisa = document.getElementById('sisa-tagihan-id');
+    tagihan.addEventListener('input',function(){
+        const value = this.value;
+        sisa.value = value - bayar.value
+    })
+    bayar.addEventListener('input',function(){
+        const value = this.value;
+        sisa.value = tagihan.value - value
+    })
 });

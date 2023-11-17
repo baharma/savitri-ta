@@ -11,18 +11,19 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col">
-                            <x-layout.input  :label="'Jenis Pengeluaran'" :idname="'jenis-bayar-id'" :type="'text'" :placeholder="'jenis_bayar'" :name="'jenis_pengeluaran'"  />
+                            <x-layout.input  :label="'Tanggal Pengeluaran'" :classinput="'tanggalInput'" :idname="'tanggal-pengeluran-id'" :type="'date'" :placeholder="'tanggal_pengeluaran'" :name="'tanggal_pengeluran'" />
+
                         </div>
                     </div>
                     <div class="row" >
                         <div class="col">
-                            <x-layout.input  :label="'Tanggal Pengeluaran'" :idname="'tanggal-pengeluran-id'" :type="'date'" :placeholder="'tanggal_pengeluaran'" :name="'tanggal_pengeluran'" />
+                            <x-layout.input  :label="'Jenis Pengeluaran'" :idname="'jenis-bayar-id'" :type="'text'" :placeholder="'jenis_bayar'" :name="'jenis_pengeluaran'"  />
                         </div>
                         <div class="col">
-                            <label for="">Jenis Pengeluaran</label>
+                            <label for="">Jenis Bayar</label>
                             <select class="form-select form-select-sm" aria-label=".form-select-lg example" name="jenis_bayar">
                                 <option value="Transfer">Transfer</option>
-                                <option value="Cast">Cast</option>
+                                <option value="Tunai">Tunai</option>
                               </select>
                         </div>
                     </div>
@@ -77,15 +78,16 @@
                     </div>
                     <div class="row" >
                         <div class="col">
+                            <x-layout.input  :label="'Jenis Pengeluaran'" :type="'text'" :idname="'jenis-pengeluaran-id-edit'" :placeholder="''"  :name="'jenis_pengeluaran'" />
 
-                            <label for="">Jenis Pengeluaran</label>
-                            <select class="form-select form-select-sm" aria-label=".form-select-lg example" name="jenis_pengeluaran" id="jenis-pengeluaran-id-edit">
-                                <option value="Transfer">Transfer</option>
-                                <option value="Cast">Cast</option>
-                              </select>
                         </div>
                         <div class="col">
-                            <x-layout.input  :label="'Jenis Bayar'" :type="'text'" :idname="'jenis-bayar-id-edit'" :placeholder="''"  :name="'jenis_bayar'" />
+                            <label for="">Jenis Bayar</label>
+                            <select class="form-select form-select-sm" aria-label=".form-select-lg example" name="jenis_bayar" id="jenis-bayar-id-edit">
+                                <option value="Transfer">Transfer</option>
+                                <option value="Tunai">Tunai</option>
+                              </select>
+
                         </div>
                     </div>
                     <div class="row">

@@ -18,7 +18,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <x-layout.input :label="'Name akun'" :idname="'name_akun'" :type="'text'"
+                            <x-layout.input :label="'Nama akun'" :idname="'name_akun'" :type="'text'"
                                 :placeholder="'Name Akun'" :name="'name_akun'" />
                         </div>
                         <div class="col">

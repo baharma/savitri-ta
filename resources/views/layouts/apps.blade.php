@@ -8,7 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="">
-
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, sans-serif !important;
+        }
+    </style>
     <title></title>
     @include('sweetalert::alert')
     <link href="
@@ -21,7 +25,7 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
 
 </head>
@@ -39,7 +43,7 @@
             <!-- Main Content -->
             <div id="content">
 
-            @include('layout.navbar')
+                @include('layout.navbar')
 
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
@@ -57,7 +61,7 @@
             </div>
             <!-- End of Main Content -->
 
-          @include('layout.footer')
+            @include('layout.footer')
 
         </div>
         <!-- End of Content Wrapper -->
@@ -118,11 +122,24 @@
     <script src="{{asset('js/demo/chart-pie-demo.js')}}"></script>
     <script src="
 https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
-"></script><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<script src="{{asset('js/main/sweetalert/sweetalert-main.js')}}"></script>
+    <script src="{{asset('js/main/sweetalert/sweetalert-main.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
     @stack('script')
+    <script>
+        setDateNow()
+        function setDateNow() {
+            const tanggalSekarang = new Date().toISOString().slice(0,
+            10); // Mendapatkan tanggal saat ini (format: YYYY-MM-DD)
+            const tanggalInputs = document.querySelectorAll(
+            '.tanggalInput'); // Mengambil semua elemen dengan class 'tanggalInput'
+            tanggalInputs.forEach(function (input) {
+                input.value = tanggalSekarang; // Mengatur nilai input dengan tanggal saat ini
+            });
+        }
+    </script>
 </body>
 
 </html>

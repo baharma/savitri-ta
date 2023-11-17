@@ -52,7 +52,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="exampleInputEmail1">Date</label>
-                        <input type="date" class="form-control" name="date" aria-describedby="emailHelp" id="date" >
+                        <input type="date" class="form-control " name="date" aria-describedby="emailHelp" id="date" >
                     </div>
                     <div class="input-group mb-3">
                         <select class="custom-select" id="inputGroupSelect02" name="akun_id">

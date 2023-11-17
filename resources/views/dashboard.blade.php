@@ -68,7 +68,7 @@
 </div>
 <div class="row">
     <div class="card">
-        <h2 class="p-3">Jumlah Penjualan 7 Hari Terakhir</h2>
+        <h4 class="p-3">Jumlah Penjualan 7 Hari Terakhir</h4>
         <canvas id="myBarChart" width="400" height="100"></canvas>
     </div>
 </div>

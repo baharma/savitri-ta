@@ -74,7 +74,7 @@
         <li class="nav-item">
             <a class="nav-link" href="{{route('laporan')}}">
                 <i class="bi bi-people"></i>
-                <span>User</span></a>
+                <span>Pengguna</span></a>
         </li>
 
     </ul>

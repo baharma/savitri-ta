@@ -21,7 +21,6 @@
                 <th scope="col" style="font-size: 12px">Faktur Penjualan</th>
                 <th scope="col" style="font-size: 12px">Tanggal</th>
                 <th scope="col" style="font-size: 12px">Nama Barang</th>
-                <th scope="col" style="font-size: 12px">Jenis Barang</th>
                 <th scope="col" style="font-size: 12px">Harga Barang</th>
                 <th scope="col" style="font-size: 12px">Qty</th>
                 <th scope="col" style="font-size: 12px">Total</th>
@@ -37,7 +36,6 @@
                 <td>{{$item->faktur_penjualan}}</td>
                 <td>{{$item->tanggal_penjualan}}</td>
                 <td>{{$item->nama_barang}}</td>
-                <td>{{$item->jenis_barang}}</td>
                 <td>Rp.{{number_format($item->harga_barang)}}</td>
                 <td>{{$item->jumlah_barang}}</td>
                 <td>Rp.{{number_format($item->total_penjualan)}}</td>

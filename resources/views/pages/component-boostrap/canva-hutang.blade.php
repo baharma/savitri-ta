@@ -5,7 +5,7 @@
     <div class="offcanvas-body small p-3">
             <div class="row">
                 <div class="col">
-                    <x-layout.input  :label="'Tanggal Transaksi Hutang'" :type="'date'" :idname="'tgl_transaksi_hutang'" :placeholder="'tgl_transaksi_piutang'" :name="'tgl_transaksi_hutang'" />
+                    <x-layout.input :classinput="'tanggalInput'" :label="'Tanggal Transaksi Hutang'" :type="'date'" :idname="'tgl_transaksi_hutang'" :placeholder="'tgl_transaksi_piutang'" :name="'tgl_transaksi_hutang'" />
                 </div>
                 <div class="col">
                     <x-layout.input  :label="'Tanggal Jatuh Tempo'" :type="'date'" :idname="'tgl_jatuh_tempo'" :placeholder="'tgl_jatuh_tempo'" :name="'tgl_jatuh_tempo'" />

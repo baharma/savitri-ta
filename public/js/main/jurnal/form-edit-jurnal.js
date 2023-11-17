@@ -30,3 +30,6 @@ jurnalButton.forEach(function(event){
 function getShow(get) {
     return axios.get(get);
 }
+
+
+
