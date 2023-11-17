@@ -31,7 +31,7 @@
                 <td>{{$item->no_transaksi_hutang}}</td>
                 <td>{{$item->tgl_transaksi_hutang}}</td>
                 <td>{{$item->tgl_jatuh_tempo}}</td>
-                <td>{{$item->total_transaksi_hutang}}</td>
+                <td>Rp.{{number_format($item->total_transaksi_hutang)}}</td>
                 <td>{{$item->description}}</td>
                 <td>
                     <a data-url="{{route('hutang.delete',$item->id)}}" data-id="{{$item->id}}"

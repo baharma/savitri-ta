@@ -108,6 +108,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/laba-rugi/view','labaRugi')->name('view-laba.rugi');
         Route::post('/laba-rugi/print','labaRugiPdf')->name('laba-RugiPdf');
     });
+    Route::controller();
 
 });
 

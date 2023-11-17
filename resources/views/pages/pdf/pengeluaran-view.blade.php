@@ -36,7 +36,7 @@
                 <th>{{$loop->iteration }}</th>
                 <td>{{$item->tanggal_pengeluran}}</td>
                 <td>{{$item->jenis_pengeluaran}}</td>
-                <td>{{$item->total_pengeluaran}}</td>
+                <td>{{number_format($item->total_pengeluaran)}}</td>
                 <td>{{$item->jenis_bayar}}</td>
                 <td>{{$item->descriptions}}</td>
             </tr>

@@ -32,7 +32,7 @@
             <td>{{$item->date ?? ''}}</td>
             <td>{{$item->akun->name_akun ?? ''}}</td>
             <td>{{$item->description ?? ''}}</td>
-            <td>{{$item->saldo ?? ''}}</td>
+            <td>Rp.{{number_format($item->saldo) ?? ''}}</td>
             <td>
                 <a data-url="{{route('delete-buku.buku-besar',$item->id)}}" data-id="{{$item->id}}" class="btn btn-danger delete-item">
                     <i class="bi bi-trash"></i>

@@ -53,8 +53,8 @@
             <td>{{$item->date ?? ''}}</td>
             <td>{{$item->akunJurnal->kode_buku ?? ''}}</td>
             <td>{{$item->akunJurnal->name_akun ?? ''}}</td>
-            <td>{{$item->debit ?? ''}}</td>
-            <td>{{$item->kredit ?? ''}}</td>
+            <td>Rp.{{number_format($item->debit) ?? ''}}</td>
+            <td>Rp.{{number_format($item->kredit) ?? ''}}</td>
             <td>{{$item->description ?? ''}}</td>
             <td>
                 <a data-url="{{route('jurnal.delete',$item->id)}}" data-id="{{$item->id}}" class="btn btn-danger delete-item">

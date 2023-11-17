@@ -42,7 +42,7 @@
                 <tr>
                     <th scope="row">{{$loop->iteration }}</th>
                     <td>{{$item->akun->name_akun}}</td>
-                    <td>{{$item->saldo}}</td>
+                    <td>Rp.{{number_format($item->saldo)}}</td>
                     <td>
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" id="flexCheckChecked" name="pendapatan[]"

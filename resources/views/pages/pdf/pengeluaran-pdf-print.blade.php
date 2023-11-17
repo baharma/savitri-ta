@@ -52,9 +52,9 @@
                 <th scope="col" style="border: 1px solid black; ">No</th>
                 <th scope="col" style="border: 1px solid black; ">Tanggal Pengeluaran</th>
                 <th scope="col" style="border: 1px solid black; ">Jenis Pengeluaran</th>
-                <th scope="col" style="border: 1px solid black; ">Total Pengeluaran</th>
                 <th scope="col" style="border: 1px solid black; ">Jenis Bayar</th>
                 <th scope="col" style="border: 1px solid black; ">Keterangan</th>
+                <th scope="col" style="border: 1px solid black; ">Total Pengeluaran</th>
             </tr>
         </thead>
         <tbody>
@@ -63,9 +63,9 @@
                 <td style="border: 1px solid black; ">{{$loop->iteration }}</td>
                 <td style="border: 1px solid black; ">{{$item->tanggal_pengeluran}}</td>
                 <td style="border: 1px solid black; ">{{$item->jenis_pengeluaran}}</td>
-                <td style="border: 1px solid black; ">{{$item->total_pengeluaran}}</td>
                 <td style="border: 1px solid black; ">{{$item->jenis_bayar}}</td>
                 <td style="border: 1px solid black; ">{{$item->descriptions}}</td>
+                <td style="border: 1px solid black; ">Rp.{{number_format($item->total_pengeluaran) }}</td>
             </tr>
             @empty
             <tr>

@@ -69,9 +69,9 @@
                 <td style="border: 1px solid black; ">{{$item->tanggal_penjualan}}</td>
                 <td style="border: 1px solid black; ">{{$item->nama_barang}}</td>
                 <td style="border: 1px solid black; ">{{$item->jenis_barang}}</td>
-                <td style="border: 1px solid black; ">{{$item->harga_barang}}</td>
+                <td style="border: 1px solid black; ">Rp.{{number_format($item->harga_barang)}}</td>
                 <td style="border: 1px solid black; ">{{$item->jumlah_barang}}</td>
-                <td style="border: 1px solid black; "> {{$item->total_penjualan}}</td>
+                <td style="border: 1px solid black; ">Rp.{{number_format($item->total_penjualan)}}</td>
                 <td style="border: 1px solid black; ">{{$item->jenis_pembayarang}}</td>
                 <td style="border: 1px solid black; ">{{$item->description}}</td>
             </tr>
