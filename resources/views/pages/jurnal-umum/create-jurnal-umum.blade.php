@@ -1,7 +1,7 @@
 @extends('layouts.apps')
 @section('content')
 <div class="card p-2">
-    <h1>Tambahkan Transaksi Jurnal Umum</h1>
+    <h2>Tambahkan Transaksi Jurnal Umum</h2>
     <div class="d-flex flex-column-reverse bd-highlight ">
         @foreach ($datajurnal as $item)
         <form  method="POST" enctype="multipart/form-data" class="form-jurnal">
