@@ -48,7 +48,7 @@
                     </div>
                     <div class="row">
                         <div class="col">
-                            <label for="">Piutang</label>
+                            <label for="">Tambah Piutang</label>
                             <x-layout.input-groub-button getId="penjualan" canvas="#offcanvasPiutang" />
                             <small>isi ini bagian trakhir</small>
                         </div>
