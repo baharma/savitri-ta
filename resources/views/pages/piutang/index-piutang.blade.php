@@ -5,7 +5,16 @@
 @section('content')
 
     <div class="container-fluid">
-
+        <form action="{{route('piutang.index')}}" class="col">
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Jenis Piutang"
+                    aria-label="Recipient's username" aria-describedby="button-addon2" name="search">
+                <button class="btn btn-outline-secondary" type="submit" id="button-addon2">
+                    <i class="bi bi-search"></i>
+                    Search
+                </button>
+            </div>
+        </form>
         <table class="table table-striped">
             <thead>
               <tr>

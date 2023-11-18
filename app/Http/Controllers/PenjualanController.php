@@ -20,9 +20,19 @@ class PenjualanController extends Controller
         $this->piutang = $piutang;
     }
 
-    public function index(){
-        $data =  $this->penjualan->orderBy('created_at', 'asc')->paginate(10)->onEachSide(1);
-        return view('pages.penjualan.index-penjualan',compact('data'));
+    public function index(Request $request){
+        if($request->filled('search')) {
+            $searchTerm = $request->input('search');
+            $data = $this->penjualan
+                        ->where('nama_barang', 'like', '%' . $searchTerm . '%')
+                        ->orderBy('created_at', 'asc')
+                        ->paginate(10)
+                        ->onEachSide(1);
+        } else {
+            $data = $this->penjualan->orderBy('created_at', 'asc')->paginate(10)->onEachSide(1);
+        }
+
+        return view('pages.penjualan.index-penjualan', compact('data'));
     }
 
 

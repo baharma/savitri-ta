@@ -42,6 +42,14 @@ $(function () {
             }
         });
     });
-
+    $(".error").show(function () {
+        let messageSuccess = $(this).data("message");
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Something went wrong!",
+            footer: messageSuccess
+          });
+    });
 
 });

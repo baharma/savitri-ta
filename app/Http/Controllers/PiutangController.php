@@ -14,8 +14,18 @@ class PiutangController extends Controller
     }
 
 
-    public function index(){
-        $data = $this->piutang->orderBy('created_at', 'asc')->paginate(10);
+    public function index(Request $request){
+        if($request->filled('search')) {
+            $searchTerm = $request->input('search');
+            $data = $this->piutang
+                        ->where('nama_Pelanggan', 'like', '%' . $searchTerm . '%') // Assuming 'name' is the column for jenis pengeluaran
+                        ->orderBy('created_at', 'asc')
+                        ->paginate(10)
+                        ->onEachSide(1);
+        } else {
+            $data = $this->piutang->orderBy('created_at', 'asc')->paginate(10)->onEachSide(1);
+        }
+
         return view('pages.piutang.index-piutang',compact('data'));
     }
 

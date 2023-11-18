@@ -8,6 +8,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
 use RealRashid\SweetAlert\Facades\Alert;
 
@@ -26,11 +27,18 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
 
-        $request->session()->regenerate();
+        try {
+            $request->authenticate();
+            $request->session()->regenerate();
+            return redirect()->intended(RouteServiceProvider::HOME);
+        } catch (ValidationException $e) {
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+            return redirect()->back()->with('error', $e->getMessage());
+        } catch (\Exception $e) {
+
+            return redirect()->back()->with('error', 'Terjadi kesalahan saat melakukan login.');
+        }
     }
 
     /**
@@ -47,4 +55,8 @@ class AuthenticatedSessionController extends Controller
 
         return redirect('/');
     }
+    private function errorAndRedirect($message): RedirectResponse
+{
+    return redirect()->back()->withInput()->with('error', $message)->withAlert(Alert::error('Error!', $message));
+}
 }

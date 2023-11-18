@@ -5,13 +5,23 @@
 @section('content')
 
 <div class="container-fluid">
-    <x-layout.add-modal-button>
-        @slot('inputs')
-
-        @endslot
-        @slot('input')
-        @endslot
-    </x-layout.add-modal-button>
+    <form action="{{route('hutang.index')}}">
+        <div class="d-flex flex-row bd-highlight mb-3">
+            <div class="p-2 bd-highlight">
+                <label for="exampleInputEmail1" class="form-label">Tanggal Awal</label>
+                <input type="date" class="form-control" name="start_date" />
+            </div>
+            <div class="p-2 bd-highlight">
+                <label for="exampleInputEmail1" class="form-label">Tanggal Akhir</label>
+                <input type="date" class="form-control" name="end_date" />
+            </div>
+            <div class="p-2 bd-highlight pt-3">
+                <button type="submit" class="btn btn-secondary mt-4">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>
     <table class="table table-striped">
         <thead>
             <tr>

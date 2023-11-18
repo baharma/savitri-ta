@@ -31,18 +31,18 @@
 <body>
 
     <div>
-        <img src="https://cdn.discordapp.com/attachments/805750119655407616/1141965212312940564/WhatsApp_Image_2023-08-06_at_16.27.31.jpg" alt="" style="float: left;" width="150px">
+        <img src="https://cdn.discordapp.com/attachments/805750119655407616/1141965212312940564/WhatsApp_Image_2023-08-06_at_16.27.31.jpg" alt="" style="float: left;margin-top: 10px" width="150px">
 
-        <div style="float: right;">
+        <div style="float: right; margin-top: 80px">
             <h2>Toko Suci Lestari</h2>
             <h3>Jl. Raya Batur, Kintamani Bangli, Bali</h3>
-            <h2 >Laporan Penjualan</h2>
+
         </div>
 
         <div style="clear: both;"></div>
     </div>
     <hr style=" border: 1px solid black;">
-
+    <h2 style="text-align: center">Laporan Penjualan</h2>
     <h3>
         Periode : {{$star}} - {{$end}}
     </h3>

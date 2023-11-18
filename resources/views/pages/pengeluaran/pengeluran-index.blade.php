@@ -5,15 +5,35 @@
 @section('content')
 
 <div class="container-fluid">
-    <x-layout.add-modal-button>
-        @slot('inputs')
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticModalPengeluaran">
-            Tambah
-        </button>
-        @endslot
-        @slot('input')
-        @endslot
-    </x-layout.add-modal-button>
+    <div class="row">
+        <div class="col">
+            <form action="{{route('pengeluaran.index')}}" class="col">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Jenis Pengeluaran"
+                        aria-label="Recipient's username" aria-describedby="button-addon2" name="search">
+                    <button class="btn btn-outline-secondary" type="submit" id="button-addon2">
+                        <i class="bi bi-search"></i>
+                        Search
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col">
+            <div class="d-flex justify-content-end">
+                <x-layout.add-modal-button>
+                    @slot('inputs')
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticModalPengeluaran">
+                        Tambah
+                    </button>
+                    @endslot
+                    @slot('input')
+                    @endslot
+                </x-layout.add-modal-button>
+            </div>
+        </div>
+    </div>
+
+
     <table class="table table-striped">
         <thead>
             <tr>

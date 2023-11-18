@@ -13,20 +13,19 @@ User
         </ul>
     </div>
 @endif
-<div class="d-flex justify-content-between">
-    <div class="text-center">
-        <h1>{{Auth::user()->name}}</h1>
-        <h3>{{Auth::user()->fullname}}</h3>
+<div class="d-flex justify-content-between mt-3" style="margin-top: 40px">
+    <div class="text-center " style="padding-top: 30px">
+        <h4>{{Auth::user()->name}}</h4>
         <div class="btn btn-primary">Hak Akses : {{Auth::user()->role}}</div>
     </div>
-    <div class="m-5">
+    <div class="m-5 " >
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            <i class="bi bi-plus-square"></i>
             Add User
         </button>
     </div>
 </div>
-
-<div class="p-3 card">
+<div class="p-2 card">
     <table class="table">
         <thead>
             <tr>

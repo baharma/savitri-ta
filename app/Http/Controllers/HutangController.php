@@ -14,9 +14,20 @@ class HutangController extends Controller
         $this->modal = $modal;
     }
 
-    public function index(){
-        $data = $this->modal->orderBy('created_at', 'asc')->paginate(10)->onEachSide(1);
-        return view('pages.hutang.hutang-index',compact('data'));
+    public function index(Request $request){
+        $query = $this->modal->orderBy('created_at', 'asc');
+
+        if ($request->filled('start_date') && $request->filled('end_date')) {
+            $start_date = $request->input('start_date');
+            $end_date = $request->input('end_date');
+
+            // Assuming the column storing the date is named 'date_column'
+            $query->whereBetween('tgl_transaksi_hutang', [$start_date, $end_date]);
+        }
+
+        $data = $query->paginate(10)->onEachSide(1);
+
+        return view('pages.hutang.hutang-index', compact('data'));
     }
 
     public function getAllShow(Hutang $hutang){

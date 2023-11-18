@@ -31,9 +31,8 @@ background-size: cover;
 background-position: center;
 backdrop-filter: blur(5px);
 ">
-
     <div class="container">
-
+        @include('vendor.sweetalert.sweetalert2')
         <!-- Outer Row -->
         <div class="row justify-content-center">
 
@@ -57,6 +56,7 @@ backdrop-filter: blur(5px);
 
     <!-- Custom scripts for all pages-->
     <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
+    <script src="{{asset('js/main/sweetalert/sweetalert-main.js')}}"></script>
 
 </body>
 

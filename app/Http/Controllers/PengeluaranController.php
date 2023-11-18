@@ -17,11 +17,19 @@ class PengeluaranController extends Controller
         $this->modal = $modal;
     }
 
-    public function index(){
+    public function index(Request $request){
+        if($request->filled('search')) {
+            $searchTerm = $request->input('search');
+            $data = $this->modal
+                        ->where('jenis_pengeluaran', 'like', '%' . $searchTerm . '%') // Assuming 'name' is the column for jenis pengeluaran
+                        ->orderBy('created_at', 'asc')
+                        ->paginate(10)
+                        ->onEachSide(1);
+        } else {
+            $data = $this->modal->orderBy('created_at', 'asc')->paginate(10)->onEachSide(1);
+        }
 
-        $data = $this->modal->orderBy('created_at', 'asc')->paginate(10)->onEachSide(1);
-        return view('pages.pengeluaran.pengeluran-index',compact('data'));
-
+        return view('pages.pengeluaran.pengeluran-index', compact('data'));
     }
 
     public function createPengeluaran(Request $request){

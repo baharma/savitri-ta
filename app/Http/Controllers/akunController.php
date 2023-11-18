@@ -15,8 +15,17 @@ class akunController extends Controller
         $this->model = $akun;
     }
 
-    public function index(){
-        $data = $this->model->orderBy('created_at', 'asc')->paginate(10)->onEachSide(1);
+    public function index(Request $request){
+        if($request->filled('search')) {
+            $searchTerm = $request->input('search');
+            $data = $this->model
+                        ->where('name_akun', 'like', '%' . $searchTerm . '%') // Assuming 'name' is the column for jenis pengeluaran
+                        ->orderBy('created_at', 'asc')
+                        ->paginate(10)
+                        ->onEachSide(1);
+        } else {
+            $data = $this->model->orderBy('created_at', 'asc')->paginate(10)->onEachSide(1);
+        }
         return view('pages.akun.akun-index',compact('data'));
     }
 

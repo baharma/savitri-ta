@@ -5,8 +5,7 @@
 @section('content')
 
 <div class="d-flex justify-content-between">
-    <form action="{{route('jurnal.search')}}" method="post">
-        @csrf
+    <form action="{{route('jurnal.search')}}" >
         <div class="d-flex flex-row bd-highlight mb-3">
             <div class="p-2 bd-highlight">
                 <label for="exampleInputEmail1" class="form-label">Tanggal Awal</label>
@@ -35,7 +34,7 @@
     <thead>
         <tr>
             <th scope="col">No</th>
-            <th scope="col">Kode Jurnal </th>
+            <th scope="col">Kode Jurnal</th>
             <th scope="col">Tanggal</th>
             <th scope="col">Kode Akun</th>
             <th scope="col">Nama Akun</th>
