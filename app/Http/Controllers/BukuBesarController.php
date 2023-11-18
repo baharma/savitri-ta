@@ -18,10 +18,19 @@ class BukuBesarController extends Controller
         $this->jurnal = $jurnal;
     }
 
-    public function index(){
+    public function index(Request $request){
+        $query = $this->buku->orderBy('created_at', 'asc');
+
+        if ($request->filled('start-date') && $request->filled('end-date')) {
+            $startDate = $request->input('start-date');
+            $endDate = $request->input('end-date');
+            $query->whereBetween('date', [$startDate, $endDate]);
+        }
+
+        $data = $query->paginate(10)->onEachSide(1);
         $akun = Akun::all();
-        $data = $this->buku->orderBy('created_at', 'asc')->paginate(10)->onEachSide(1);
-        return view('pages.buku-besar.buku-besar-index',compact('data','akun'));
+
+        return view('pages.buku-besar.buku-besar-index', compact('data', 'akun'));
     }
 
     public function create(Request $request){

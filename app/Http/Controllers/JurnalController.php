@@ -16,11 +16,21 @@ class JurnalController extends Controller
         $this->jurnal = $jurnal;
     }
 
-    public function index(){
+    public function index(Request $request){
+        $query = $this->jurnal->orderBy('created_at', 'asc');
+
+        if ($request->filled('start-date') && $request->filled('end-date')) {
+            $startDate = $request->input('start-date');
+            $endDate = $request->input('end-date');
+            $query->whereBetween('date', [$startDate, $endDate]);
+        }
+
+        $data = $query->paginate(10)->onEachSide(1);
         $akun = Akun::all();
-        $data = $this->jurnal->orderBy('created_at', 'asc')->paginate(10)->onEachSide(1);
-        return view('pages.jurnal-umum.index-jurnal-umum',compact('data','akun'));
+
+        return view('pages.jurnal-umum.index-jurnal-umum', compact('data', 'akun'));
     }
+
     public function search(Request $request){
 
     }
