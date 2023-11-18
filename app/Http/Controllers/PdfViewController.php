@@ -29,14 +29,14 @@ class PdfViewController extends Controller
         return view('pages.pdf.penjualan-view-pdf',compact('end','star','dataPenjualan'));
     }
     public function pdf(Request $request){
-     $end = $request->penjualan_end;
+    $end = $request->penjualan_end;
     $star = $request->penjualan_start;
     $dataPenjualan = $this->penjualan->whereBetween('tanggal_penjualan', [$star, $end])->get();
-
-
     $orientation = "landscape";
+    $totalPenjualan = $dataPenjualan->sum('total_penjualan');
 
-    $pdf = app('dompdf.wrapper')->setPaper('A4', $orientation)->loadView('pages.pdf.penjualan-pdf-print', compact('dataPenjualan','end','star'));
+    $pdf = app('dompdf.wrapper')->setPaper('A4', $orientation)->loadView('pages.pdf.penjualan-pdf-print',
+    compact('dataPenjualan','end','star','totalPenjualan'));
 
     return $pdf->stream('document.pdf');
     }
@@ -52,7 +52,8 @@ class PdfViewController extends Controller
         $star = $request->penjualan_start;
         $datapengeluaran = $this->pengeluaran->whereBetween('tanggal_pengeluran', [$star, $end])->get();
         $orientation = "landscape";
-        $pdf = app('dompdf.wrapper')->setPaper('A4', $orientation)->loadView('pages.pdf.pengeluaran-pdf-print', compact('datapengeluaran','end','star'));
+        $totalPengeluaran = $datapengeluaran->sum('total_pengeluaran');
+        $pdf = app('dompdf.wrapper')->setPaper('A4', $orientation)->loadView('pages.pdf.pengeluaran-pdf-print', compact('datapengeluaran','end','star','totalPengeluaran'));
         return $pdf->stream('document.pdf');
     }
 

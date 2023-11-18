@@ -41,7 +41,7 @@ class JurnalController extends Controller
 
     public function saveDelete(Request $request){
         $data = $request->all();
-        dd($data);
+
         $saveMap = collect($data)->map(function ($item) {
             $model = $this->jurnal->find($item['id']);
             if ($item['kode_jurnal'] === null && $item['debit'] === null && $item['kredit'] === null) {

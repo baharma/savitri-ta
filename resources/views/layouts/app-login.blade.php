@@ -26,9 +26,10 @@
 </head>
 
 <body class="" style="
-background-image: url('https://cdn.discordapp.com/attachments/1166088467214770347/1174280543806959636/Pngtreegold_vintage_balinese_ornament_frame_8628093.png?ex=656704fa&is=65548ffa&hm=aa3f4f31f93dabc066e1e1bb0b7d7388e33a15f403485e565e1430b05c89a017&');
+background-image: url('https://media.discordapp.net/attachments/1070973998634119248/1175321652100345876/WhatsApp_Image_2023-11-17_at_20.56.36_a768adb8.jpg?ex=656ace96&is=65585996&hm=9c091684f77d3e46ec242964770020efa5006ce9ca6f6df05c4771879e70bf72&=');
 background-size: cover;
 background-position: center;
+backdrop-filter: blur(5px);
 ">
 
     <div class="container">

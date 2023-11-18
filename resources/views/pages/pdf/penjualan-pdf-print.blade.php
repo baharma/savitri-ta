@@ -36,7 +36,7 @@
         <div style="float: right;">
             <h2>Toko Suci Lestari</h2>
             <h3>Jl. Raya Batur, Kintamani Bangli, Bali</h3>
-            <h2 >Laporan Penjualan</h2>
+
         </div>
 
         <div style="clear: both;"></div>
@@ -46,6 +46,7 @@
     <h3>
         Periode : {{$star}} - {{$end}}
     </h3>
+    <h2 style="text-align: center">Laporan Penjualan</h2>
     <table class="table table-striped">
         <thead>
             <tr>
@@ -82,6 +83,9 @@
             @endforelse
         </tbody>
     </table>
+    <div class="d-flex justify-content-end" style="float: right">
+        <div class="p-2 bd-highlight">Total Penjualan : Rp.{{number_format($totalPenjualan)}}</div>
+    </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">

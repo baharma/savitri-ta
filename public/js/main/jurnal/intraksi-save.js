@@ -1,5 +1,3 @@
-
-
 const buttonForm = document.getElementById('save-get');
 const buttonDelete = document.getElementById('delete-jurnal-umum');
 function formEvent(url){
