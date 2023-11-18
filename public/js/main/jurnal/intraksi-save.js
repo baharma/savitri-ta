@@ -1,3 +1,5 @@
+
+
 const buttonForm = document.getElementById('save-get');
 const buttonDelete = document.getElementById('delete-jurnal-umum');
 function formEvent(url){
@@ -29,9 +31,19 @@ function formEvent(url){
 
 
 buttonForm.addEventListener('click', function(){
-    const url = this.dataset.url;
-    console.log(url);
-    formEvent(url);
+    checkbalance()
+    .then(() => {
+        const url = this.dataset.url;
+        console.log(url);
+        formEvent(url);
+    })
+    .catch((error) => {
+        Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: error.message, // Tampilkan pesan error dari reject
+        });
+    });
 });
 
 buttonDelete.addEventListener('click',function(){
@@ -44,10 +56,24 @@ function calculateTotal(inputs, totalElement) {
 
     inputs.forEach((input) => {
         const value = parseFloat(input.value) || 0;
-        total += value;
+        if (!isNaN(value)) {
+            total += value;
+        }
     });
 
     totalElement.value = total;
+}
+function checkbalance() {
+    return new Promise((resolve, reject) => {
+        const hasil_debit = document.getElementById('hasil-debit').value;
+        const hasil_kredit = document.getElementById('hasil-kredit').value;
+
+        if (hasil_debit === hasil_kredit) {
+            resolve(); // Jika sama, resolve promise
+        } else {
+            reject(new Error('Data Kredit dan Debit tidak seimbang!')); // Jika tidak sama, reject dengan error
+        }
+    });
 }
 
 const debitInputs = document.querySelectorAll("input[name=debit]");
@@ -59,6 +85,4 @@ const kreditInputs = document.querySelectorAll("input[name=kredit]");
 const hasilKreditInput = document.getElementById("hasil-kredit");
 kreditInputs.forEach((input) => input.addEventListener("input", () => calculateTotal(kreditInputs, hasilKreditInput)));
 calculateTotal(kreditInputs, hasilKreditInput);
-
-
 
