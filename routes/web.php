@@ -32,7 +32,7 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/', function () {
         if (Auth::check()) {
-            if (Auth::user()->role == 'kasir') {
+            if (Auth::user()->role == 'kasir' || Auth::user()->role == 'admin') {
                 return redirect()->route('dashboard.kasir');
             }
         }
