@@ -10,7 +10,9 @@ use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\PiutangController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UsersController;
 use App\Models\Akun;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,7 +29,20 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/',[dashboardController::class,'index'])->name('dashboard');
+
+    Route::get('/', function () {
+        if (Auth::check()) {
+            if (Auth::user()->role == 'kasir') {
+                return redirect()->route('dashboard.kasir');
+            }
+        }
+
+        return redirect()->route('dashboard.other');
+    })->name('dashboard')->middleware('auth');
+
+    Route::get('/dashboard-kasir', [DashboardController::class, 'index'])->name('dashboard.kasir')->middleware('auth');
+    Route::get('/dashboard-other', [PdfViewController::class, 'index'])->name('dashboard.other')->middleware('auth');
+
     Route::get('/chart-data',[dashboardController::class,'getChartData']);
     //penjualan
     Route::controller(PenjualanController::class)->group(function(){
@@ -108,7 +123,13 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/laba-rugi/view','labaRugi')->name('view-laba.rugi');
         Route::post('/laba-rugi/print','labaRugiPdf')->name('laba-RugiPdf');
     });
-    Route::controller();
+    Route::controller(UsersController::class)->group(function(){
+        Route::get('/user/create','index')->name('user.index');
+        Route::post('/user/create','create')->name('user.create-new');
+        Route::delete('/delete/User/{user}','deleteUser')->name('userDelete');
+        Route::get('/getall/user/{id}','getusers')->name('username-getss');
+        Route::put('/update/pass/{id}','updatePassword')->name('update-pass');
+    });
 
 });
 
