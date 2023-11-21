@@ -75,9 +75,7 @@
 
     <div class="d-flex flex-row-reverse bd-highlight">
         <div class="p-2 bd-highlight">
-                <button type="submit" class="btn btn-info" >Pdf Print
-                    <i class="bi bi-file-earmark-pdf-fill"></i>
-                </button>
+                <a href="{{route('neraca.print-pdf')}}" class="btn btn-primary">Print Data</a>
         </div>
     </div>
 </form>

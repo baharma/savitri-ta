@@ -8,13 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Akun extends Model
 {
-    use HasFactory,HasUuids;
+    use HasFactory, HasUuids;
     protected $table = "akuns";
 
-    protected $fillable = [
-        'id_user',
-        'kode_buku',
-        'name_akun',
-        'klasifikasi_akun',
-    ];
+    protected $guarded = [];
 }

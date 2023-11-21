@@ -3,66 +3,111 @@
 namespace App\Http\Controllers;
 
 use App\Models\Akun;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\DataTables;
 
 class akunController extends Controller
 {
-    public $model;
 
-    public function __construct(Akun $akun)
+    public function index()
     {
-        $this->model = $akun;
-    }
-
-    public function index(Request $request){
-        if($request->filled('search')) {
-            $searchTerm = $request->input('search');
-            $data = $this->model
-                        ->where('name_akun', 'like', '%' . $searchTerm . '%') // Assuming 'name' is the column for jenis pengeluaran
-                        ->orderBy('created_at', 'asc')
-                        ->paginate(10)
-                        ->onEachSide(1);
-        } else {
-            $data = $this->model->orderBy('created_at', 'asc')->paginate(10)->onEachSide(1);
-        }
-        return view('pages.akun.akun-index',compact('data'));
-    }
-
-    public function create(Request $request){
-       $data = $request->all();
-        $item = [
-            'id_user'=>Auth::user()->id,
-            'name_akun'=>$data['name_akun'],
-            'kode_buku'=>$data['kode_buku'],
-            'klasifikasi_akun'=>$data['klasifikasi_akun']
-        ];
-
-        $this->model->create($item);
-        return redirect()->back()->with('message', 'Data Akun Berhasil Di Create!');
-    }
-
-    public function delete(Akun $akun){
-        $akun->delete();
-        return response()->json([
-            'message' => 'Data success deleted !'
+        return view('pages.akun.index', [
+            'page_title' => 'Akun'
         ]);
     }
 
-    public function update(Akun $akun,Request $request){
-        $data = $request->all();
+    public function getdata()
+    {
 
-        $item = [
-            'name_akun'=>$data['name_akun'],
-            'kode_buku'=>$data['kode_buku'],
-            'klasifikasi_akun'=>$data['klasifikasi_akun']
-        ];
-        $akun->update($item);
+        $data = Akun::all();
+        return DataTables::of($data)
+            ->addColumn('action', function ($data) {
+                $action = '';
+                $action .= '<div class="dropdown">';
+                $action .= '<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Action Menu';
+                $action .= '</button>';
+                $action .= '<div class="dropdown-menu">';
+                $action .= '<h6 class="dropdown-header tx-uppercase tx-12 tx-bold tx-inverse">Action Menu</h6>';
+                $action .= '<a class="dropdown-item" href="' . route('akun.edit', $data->id) . '">Edit</a>';
+                $action .= '<a class="dropdown-item text-danger delete-item" href="#" data-url="' . route('akun.delete', $data->id) . '">Hapus</a>';
+                $action .= '</div>';
+                $action .= '</div>';
 
-        return redirect()->back()->with('message', 'Data Akun Berhasil Di Edit!');
+                return $action;
+            })
+            ->editColumn('created_at', function ($data) {
+                if ($data->created_at != null) {
+                    $date = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at);
+                    return $date->setTimezone('+8');
+                }
+            })
+            ->toJson();
     }
 
-    public function getAllAkun(Akun $akun){
-        return response()->json($akun);
+    public function create()
+    {
+        $data = null;
+        return view('pages.akun.form', [
+            'page_title' => 'Tambah Akun',
+            'data' => $data
+        ]);
+    }
+    public function edit($id)
+    {
+        $data = Akun::find($id);
+        return view('pages.akun.form', [
+            'page_title' => 'Edit Akun',
+            'data' => $data
+        ]);
+    }
+
+    public function store(Request $request)
+    {
+        try {
+            $formdata = array(
+                "id_user" => Auth::user()->id,
+                "kode_buku" => $request->kode_buku,
+                "name_akun" => $request->name_akun,
+                "klasifikasi_akun" => $request->klasifikasi_akun,
+            );
+
+            Akun::create($formdata);
+            return redirect()->back()->with('message', 'Data Akun Berhasil Di Simpan !');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('message', 'Terjadi Kesalahan pada line' . ' ' . $th->getLine());
+        } catch (\Exception $th) {
+            return redirect()->back()->with('message', 'Terjadi Kesalahan pada line' . ' ' . $th->getLine());
+        }
+    }
+    public function update(Request $request, $id)
+    {
+        try {
+            $formdata = array(
+                "id_user" => Auth::user()->id,
+                "kode_buku" => $request->kode_buku,
+                "name_akun" => $request->name_akun,
+                "klasifikasi_akun" => $request->klasifikasi_akun,
+            );
+
+            Akun::whereId($id)->update($formdata);
+
+            return redirect()->back()->with('message', 'Data Akun Berhasil Di Simpan !');
+        } catch (\Throwable $th) {
+            return redirect()->back()->with('message', 'Terjadi Kesalahan pada line' . ' ' . $th->getLine());
+        } catch (\Exception $th) {
+            return redirect()->back()->with('message', 'Terjadi Kesalahan pada line' . ' ' . $th->getLine());
+        }
+    }
+
+
+
+    public function delete($id)
+    {
+        Akun::whereId($id)->delete();
+        return response()->json([
+            'message' => 'Data success deleted !'
+        ]);
     }
 }

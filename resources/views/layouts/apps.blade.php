@@ -21,6 +21,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap4.min.css">
     <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
@@ -127,6 +128,8 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
 
     <script src="{{asset('js/main/sweetalert/sweetalert-main.js')}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.8/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.8/js/dataTables.bootstrap4.min.js"></script>
     @stack('script')
     <script>
         setDateNow()
@@ -139,6 +142,49 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
                 input.value = tanggalSekarang; // Mengatur nilai input dengan tanggal saat ini
             });
         }
+    </script>
+        <script>
+        $(document).on('click', '.delete-item', function (e) {
+            e.preventDefault();
+            var id = $(this).data('id');
+            var url = $(this).data('url');
+            console.log()
+
+            Swal.fire({
+                    title: "Are you sure?",
+                    text: "You won't be able to revert this!",
+                    type: "warning",
+                    confirmButtonText: "Yes, delete it!",
+                    icon:"warning",
+                    showCancelButton: true
+                })
+                .then((result) => {
+                    if (result.value) {
+                        $.ajax({
+                            type: "DELETE",
+                            dataType: "JSON",
+                            url: url,
+                            data: {
+                                "id": id,
+                                "_method": 'DELETE',
+                                "_token": "{{ csrf_token() }}",
+                            }
+                        }).then((data) => {
+                            console.log(data);
+                            if (typeof data.message !== 'undefined') {
+                                // alert(data.message);
+                                Swal.fire(
+                                    'success',
+                                    data.message,
+                                    'success'
+                                );
+                                window.location.reload();
+                            }
+                        })
+                    }
+                })
+        });
+
     </script>
 </body>
 

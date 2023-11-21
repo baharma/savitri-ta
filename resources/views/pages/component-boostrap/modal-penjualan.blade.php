@@ -18,7 +18,6 @@
                         <div class="col">
                             <x-layout.input  :label="'Tanggal Penjualan'"  :classinput="'tanggalInput'" :idname="'tanggal-penjualan-id'" :type="'date'" :placeholder="'Input Type Barang'" :name="'tanggal_penjualan'" />
                         </div>
-
                     </div>
                     <div class="row">
                         <div class="col">
@@ -27,11 +26,9 @@
                         <div class="col">
                             <label for="">Jenis Pembayaran</label>
                             <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="jenis-pembayarang-id" name="jenis_pembayarang">
-
                                 <option value="Tunai">Tunai</option>
                                 <option value="Transfer">Transfer</option>
                               </select>
-
                         </div>
                     </div>
                     <div class="row">
