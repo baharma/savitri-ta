@@ -128,14 +128,57 @@ class SalesController extends Controller
     public function update(Request $request, $id)
     {
         try {
+
+            $data = Penjualan::find($id);
+            $receivebles = Piutang::count();
+
+            $transaction_code_receivebles = 'RV' . now()->format('Ymd') . str_pad($receivebles + 1, 4, '0', STR_PAD_LEFT);
+
             $formdata = array(
-                "id_user" => Auth::user()->id,
-                "kode_buku" => $request->kode_buku,
-                "name_akun" => $request->name_akun,
-                "klasifikasi_akun" => $request->klasifikasi_akun,
+                'user_id' => Auth::user()->id,
+                'tanggal_penjualan' => $request->tanggal_penjualan,
+                'faktur_penjualan' => $data->faktur_penjualan,
+                'harga_barang' => $request->harga_barang,
+                'nama_barang' => $request->nama_barang,
+                'jenis_barang' => $request->jenis_barang,
+                'jumlah_barang' => $request->jumlah_barang,
+                'jenis_pembayarang' => $request->jenis_pembayarang,
+                'total_penjualan' => $request->total_penjualan,
+                'description' => $request->description,
+                'is_receivables' => $request->is_receivables
             );
 
-            Akun::whereId($id)->update($formdata);
+            Penjualan::whereid($id)->update($formdata);
+
+            if ($request->is_receivables == 1) {
+
+                $piutang = Piutang::where('penjualan_id', $id)->first();
+
+                
+                $formdata2 = array(
+                    'user_id' => Auth::user()->id,
+                    'no_transaksi' => $transaction_code_receivebles,
+                    'penjualan_id' => $id,
+                    'customer_id' => $request->customer_id,
+                    'tgl_transaksi_piutang' => $request->tgl_transaksi_piutang,
+                    'tgl_jatuh_tempo_piutang' => $request->tgl_jatuh_tempo_piutang,
+                    'total_tagihan' => $request->total_tagihan,
+                    'total_pembayaran' => $request->total_pembayaran,
+                    'status_pembayaran' => $request->status_pembayaran ?? 'PENDING',
+                    'description' => $request->description,
+                    'sisa_tagihan' => $request->total_tagihan - $request->total_pembayaran,
+                );
+
+                if ($piutang == null) {
+                    Piutang::create($formdata2);
+                }else{
+                    Piutang::whereId($piutang->id)->update($formdata2);
+                }
+                
+            }
+
+
+
 
             return redirect()->back()->with('message', 'Data Akun Berhasil Di Simpan !');
         } catch (\Throwable $th) {
