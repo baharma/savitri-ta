@@ -64,12 +64,13 @@
                             <div class="form-group col-md-2">
                                 <label>Ada Piutang ?</label>
                                 <select name="is_receivables" id="is_receivables" class="form-control">
-                                    <option value="1">Iya</option>
-                                    <option value="0" selected>Tidak</option>
+                                    <option value="0" {{$data->is_receivables == 0 ? 'selected':''}}>Tidak</option>
+                                    <option value="1" {{$data->is_receivables == 1 ? 'selected':''}}>Iya</option>
+
                                 </select>
                             </div>
 
-                            <div class="col-md-12" id="form_piutang" style="display: none">
+                            <div class="col-md-12 {{$data->is_receivables == 1 ? '':'d-none'}}" id="form_piutang" >
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <label>Nama Pelanggan</label>
@@ -153,9 +154,9 @@
         $('#is_receivables').change(function (e) { 
             e.preventDefault();
             if($(this).val() == 1){
-                $('#form_piutang').show('slow');
+                $('#form_piutang').removeClass('d-none');
             }else{
-                $('#form_piutang').hide('slow');
+                $('#form_piutang').addClass('d-none');
             }
             
         });
