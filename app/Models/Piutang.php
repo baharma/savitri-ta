@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Piutang extends Model
 {
@@ -28,5 +29,15 @@ class Piutang extends Model
     }
     public function penjualans(){
         return $this->hasOne(Penjualan::class,'id','piutang_id');
+    }
+
+    /**
+     * Get the customer that owns the Piutang
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function customer(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'foreign_key', 'other_key');
     }
 }

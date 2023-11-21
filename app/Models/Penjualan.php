@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Penjualan extends Model
 {
-    use HasFactory,HasUuids;
+    use HasFactory, HasUuids;
 
     protected $fillable = [
         'user_id',
@@ -23,11 +24,19 @@ class Penjualan extends Model
         'harga_barang',
     ];
 
-    public function users(){
-        return $this->hasMany(User::class,'user_id','id');
+    public function users()
+    {
+        return $this->hasMany(User::class, 'user_id', 'id');
     }
 
-    public function piutangs(){
-        return $this->hasMany(Piutang::class,'penjualan_id');
+
+    /**
+     * Get the receivables that owns the Penjualan
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function receivables(): BelongsTo
+    {
+        return $this->belongsTo(Piutang::class, 'penjualan_id');
     }
 }
