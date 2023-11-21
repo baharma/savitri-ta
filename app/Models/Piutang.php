@@ -10,25 +10,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Piutang extends Model
 {
     use HasFactory, HasUuids;
-    protected $fillable= [
-        'user_id',
-        'no_transaksi',
-        'nama_Pelanggan',
-        'alamat',
-        'penjualan_id',
-        'tgl_transaksi_piutang',
-        'tgl_jatuh_tempo_piutang',
-        'total_tagihan',
-        'total_pembayaran',
-        'status_pembayaran',
-        'description',
-        'sisa_tagihan'
-    ];
-    public function users(){
-        return $this->hasMany(User::class,'user_id','id');
+    protected $guarded = [];
+
+    public function users()
+    {
+        return $this->hasMany(User::class, 'user_id', 'id');
     }
-    public function penjualans(){
-        return $this->hasOne(Penjualan::class,'id','piutang_id');
+    public function penjualans()
+    {
+        return $this->hasOne(Penjualan::class, 'id', 'piutang_id');
     }
 
     /**

@@ -4,6 +4,7 @@
 @endsection
 
 @section('content')
+
 <div class="container-fluid">
     <div class="row row-xs">
         <div class="col-lg-12 col-xl-12 mg-t-10">
@@ -59,18 +60,22 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <label>Deskripsi</label>
-                                <textarea name="description" id="" cols="30" rows="10" class="form-control"></textarea>
+                                <textarea name="description" id="" cols="30" rows="10" class="form-control">{{$data->description ?? ''}}</textarea>
                             </div>
                             <div class="form-group col-md-2">
                                 <label>Ada Piutang ?</label>
                                 <select name="is_receivables" id="is_receivables" class="form-control">
+                                     @if ($data == null)
+                                    <option value="0">Tidak</option>
+                                    <option value="1">Iya</option>
+                                    @else
                                     <option value="0" {{$data->is_receivables == 0 ? 'selected':''}}>Tidak</option>
                                     <option value="1" {{$data->is_receivables == 1 ? 'selected':''}}>Iya</option>
-
+                                    @endif
                                 </select>
                             </div>
 
-                            <div class="col-md-12 {{$data->is_receivables == 1 ? '':'d-none'}}" id="form_piutang" >
+                            <div class="col-md-12 {{isset($data) && $data->is_receivables == 1 ? '':'d-none'}}" id="form_piutang" >
                                 <div class="row">
                                     <div class="form-group col-md-12">
                                         <label>Nama Pelanggan</label>
@@ -90,22 +95,22 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                 <label>Tanggal Piutang</label>
-                                <input type="date" name="tgl_transaksi_piutang" value="{{$data->tanggal_penjualan ?? ''}}"
+                                <input type="date" name="tgl_transaksi_piutang" value="{{$data->receivables->tanggal_penjualan ?? ''}}"
                                     class="form-control myDate">
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Tanggal Jatuh Tempo</label>
-                                <input type="date" name="tgl_jatuh_tempo_piutang" value="{{$data->tanggal_penjualan ?? ''}}"
+                                <input type="date" name="tgl_jatuh_tempo_piutang" value="{{$data->receivables->tanggal_penjualan ?? ''}}"
                                     class="form-control myDate">
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Total Tagihan</label>
-                                <input type="number" readonly name="total_tagihan" value="{{$data->total_tagihan ?? ''}}"
+                                <input type="number" readonly name="total_tagihan" value="{{$data->receivables->total_tagihan ?? ''}}"
                                     class="form-control total_price" placeholder="">
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Total Pembayaran</label>
-                                <input type="number" name="total_pembayaran" value="{{$data->total_pembayaran ?? ''}}"
+                                <input type="number" name="total_pembayaran" value="{{$data->receivables->total_pembayaran ?? ''}}"
                                     class="form-control total_price" placeholder="">
                             </div>
                                 </div>

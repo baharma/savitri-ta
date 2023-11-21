@@ -90,7 +90,7 @@ class SalesController extends Controller
                 'jenis_pembayarang' => $request->jenis_pembayarang,
                 'total_penjualan' => $request->total_penjualan,
                 'description' => $request->description,
-                'is_receivables' => $request->is_receivables
+                'is_receivables' => $request->is_receivables ?? 0
             );
 
             Penjualan::create($formdata);
@@ -154,7 +154,7 @@ class SalesController extends Controller
 
                 $piutang = Piutang::where('penjualan_id', $id)->first();
 
-                
+
                 $formdata2 = array(
                     'user_id' => Auth::user()->id,
                     'no_transaksi' => $transaction_code_receivebles,
@@ -171,10 +171,9 @@ class SalesController extends Controller
 
                 if ($piutang == null) {
                     Piutang::create($formdata2);
-                }else{
+                } else {
                     Piutang::whereId($piutang->id)->update($formdata2);
                 }
-                
             }
 
 
@@ -192,7 +191,8 @@ class SalesController extends Controller
 
     public function delete($id)
     {
-        Akun::whereId($id)->delete();
+        Piutang::where('penjualan_id', $id)->delete();
+        Penjualan::whereId($id)->delete();
         return response()->json([
             'message' => 'Data success deleted !'
         ]);

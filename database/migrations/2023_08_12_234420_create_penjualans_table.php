@@ -25,8 +25,8 @@ return new class extends Migration
             $table->string('jenis_pembayarang')->nullable();
             $table->double('total_penjualan')->nullable();
             $table->longText('description')->nullable();
-            $table->boolean('is_receivables')->nullable()->default(false);
-            $table->timestamps(); 
+            $table->boolean('is_receivables')->nullable();
+            $table->timestamps();
         });
     }
 
