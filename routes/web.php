@@ -5,6 +5,7 @@ use App\Http\Controllers\BukuBesarController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\HutangController;
+use App\Http\Controllers\JournalController;
 use App\Http\Controllers\JurnalController;
 use App\Http\Controllers\PdfViewController;
 use App\Http\Controllers\PengeluaranController;
@@ -86,6 +87,17 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/{id}/update', 'update')->name('update');
         Route::delete('/{id}/delete', 'delete')->name('delete');
     });
+
+    Route::controller(JournalController::class)->name('journal.')->prefix('journal')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/get-data', 'getdata')->name('getdata');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::put('/{id}/update', 'update')->name('update');
+        Route::delete('/{id}/delete', 'delete')->name('delete');
+    });
+
     Route::controller(CustomerController::class)->name('customer.')->prefix('customer')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/get-data', 'getdata')->name('getdata');

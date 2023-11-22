@@ -43,7 +43,7 @@
 
 
         <li class="nav-item">
-            <a class="nav-link" href="{{route('jurnal.index')}}">
+            <a class="nav-link" href="{{route('journal.index')}}">
                 <i class="fas fa-fw fa-table"></i>
                 <span>Jurnal Umum</span></a>
         </li>
