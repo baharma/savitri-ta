@@ -13,6 +13,8 @@ use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\PenjualanController;
 use App\Http\Controllers\PiutangController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProfitLossReportController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\UsersController;
 use App\Models\Akun;
@@ -48,15 +50,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard-other', [PdfViewController::class, 'index'])->name('dashboard.other')->middleware('auth');
 
     Route::get('/chart-data', [dashboardController::class, 'getChartData']);
-    //penjualan
-    Route::controller(PenjualanController::class)->group(function () {
-        Route::get('/penjualan', 'index')->name('penjualan.index');
-        Route::post('/penjualan/create', 'createPenjualan')->name('penjualan.create');
-        Route::delete('/penjualan/{penjualan}/delete', 'deletePenjualan')->name('penjualan.delete');
-        Route::get('/penjualan/{penjualan}/edit', 'editPenjualan')->name('penjualan.edit');
-        Route::put('/penjualan/{penjualan}/update', 'updatePenjualan')->name('penjualan.update');
-        Route::get('/get/allpenjualan', 'getAllPenjualan')->name('api-penjualan');
-    });
+
     Route::controller(PiutangController::class)->group(function () {
         Route::get('/piutang', 'index')->name('piutang.index');
         Route::put('/update/{piutang}', 'updatePiutang')->name('piutang.update');
@@ -93,6 +87,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/get-data', 'getdata')->name('getdata');
     });
 
+    Route::controller(ProfitLossReportController::class)->name('profitloss.')->prefix('profitloss')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/get-data', 'getdata')->name('getdata');
+    });
+
     Route::controller(JournalController::class)->name('journal.')->prefix('journal')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/get-data', 'getdata')->name('getdata');
@@ -123,6 +122,16 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{id}/delete', 'delete')->name('delete');
     });
 
+    Route::controller(PurchaseController::class)->name('purchase.')->prefix('purchase')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/get-data', 'getdata')->name('getdata');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::put('/{id}/update', 'update')->name('update');
+        Route::delete('/{id}/delete', 'delete')->name('delete');
+    });
+
     Route::controller(JurnalController::class)->group(function () {
         Route::get('/jurnal-umum', 'index')->name('jurnal.index');
         Route::post('/search-jurnal', 'search')->name('jurnal.search');
@@ -134,17 +143,6 @@ Route::middleware(['auth'])->group(function () {
         Route::put("jurnal/update/{jurnal}", 'updateJurnal')->name('jurnal.update');
     });
 
-    Route::controller(BukuBesarController::class)->group(function () {
-        Route::get('/bukuBesar', 'index')->name('buku-besar.index');
-        Route::post('/bukuBesar/allData', 'create')->name('buku-besar.create');
-        Route::put('/bukutBesar/create', 'store')->name('buku-besar.store');
-        Route::put('/bukuBesar/{buku}/update', 'createJurnalBuku')->name('buku-besar.update');
-        Route::put('/bukuBesar/{buku}/store', 'storeBukuBesar')->name('buku-besar.store-all');
-        Route::put('/delete/buku-besar/{buku}', 'cancelSave')->name('buku-besar.delete-all');
-        Route::get('/get/bukuBesar/{buku}', 'getEdit')->name('get-buku');
-        Route::put('/update/bukuBesar/{buku}', 'UpdateBuku')->name('buku-update');
-        Route::delete('/buku/delete/{buku}', 'deleteBuku')->name('delete-buku.buku-besar');
-    });
 
     Route::controller(PdfViewController::class)->group(function () {
         Route::get('/laporan', 'index')->name('laporan');

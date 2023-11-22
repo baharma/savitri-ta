@@ -6,34 +6,34 @@
         Laporan  Keuangan Toko Suci Lestari
     </h1>
     <div class="row">
-        <div class="card col m-2" style="width: 18rem;">
-            <i class="bi bi-file-earmark-fill" style="font-size: 150px;"></i>
-            <div class="card-body">
-              <h5 class="card-title">Laporan Penjualan</h5>
-              <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPenjualan">Buat Laporan</a>
+        <div class="card col m-1">
+            <i class="bi bi-file-earmark-fill text-center" style="font-size: 100px;"></i>
+            <div class="card-body text-center">
+              <h6>Laporan Penjualan</h6>
+              <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPenjualan">Cetak Laporan</a>
             </div>
           </div>
 
-          <div class="card col m-2" style="width: 18rem;">
-            <i class="bi bi-file-earmark-fill" style="font-size: 150px;"></i>
-            <div class="card-body">
-              <h5 class="card-title">Laporan Pengeluaran</h5>
-              <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalpengeluaran">Buat Laporan</a>
+          <div class="card col m-1">
+            <i class="bi bi-file-earmark-fill text-center" style="font-size: 100px;"></i>
+            <div class="card-body text-center">
+              <h6>Laporan Pengeluaran</h6>
+              <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalpengeluaran">Cetak Laporan</a>
             </div>
           </div>
 
-          <div class="card col m-2" style="width: 18rem;">
-            <i class="bi bi-file-earmark-fill" style="font-size: 150px;"></i>
-            <div class="card-body">
-              <h5 class="card-title">Laporan Neraca</h5>
-              <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalnaraca">Buat Laporan</a>
+          <div class="card col m-1">
+            <i class="bi bi-file-earmark-fill text-center" style="font-size: 100px;"></i>
+            <div class="card-body text-center">
+              <h6>Laporan Neraca</h6>
+              <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalnaraca">Cetak Laporan</a>
             </div>
           </div>
-          <div class="card col m-2" style="width: 18rem;">
-            <i class="bi bi-file-earmark-fill" style="font-size: 150px;"></i>
-            <div class="card-body">
-              <h5 class="card-title">Laporan Laba Rugi</h5>
-              <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modallabarugi">Buat Laporan</a>
+          <div class="card col m-1">
+            <i class="bi bi-file-earmark-fill text-center" style="font-size: 100px;"></i>
+            <div class="card-body text-center">
+              <h6>Laporan Laba Rugi</h6>
+              <a href="{{route('profitloss.index')}}" class="btn btn-primary">Cetak Laporan</a>
             </div>
           </div>
     </div>
