@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\akunController;
+use App\Http\Controllers\BigBookController;
 use App\Http\Controllers\BukuBesarController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\dashboardController;
@@ -86,6 +87,10 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/{id}/edit', 'edit')->name('edit');
         Route::put('/{id}/update', 'update')->name('update');
         Route::delete('/{id}/delete', 'delete')->name('delete');
+    });
+    Route::controller(BigBookController::class)->name('bigbook.')->prefix('bigbook')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/get-data', 'getdata')->name('getdata');
     });
 
     Route::controller(JournalController::class)->name('journal.')->prefix('journal')->group(function () {

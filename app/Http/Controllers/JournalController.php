@@ -102,7 +102,7 @@ class JournalController extends Controller
                     'debit' => floatval($request->debit[$key]),
                     'kredit' => floatval($request->kredit[$key]),
                     'akun_id' => $request->akun_id[$key],
-                    'created_at' => Carbon::now(),
+                    'created_at' => $request->date,
                     'updated_at' => Carbon::now(),
 
                 ]);
