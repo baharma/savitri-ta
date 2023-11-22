@@ -111,7 +111,12 @@
                             <div class="form-group col-md-4">
                                 <label>Total Pembayaran</label>
                                 <input type="number" name="total_pembayaran" value="{{$data->receivables->total_pembayaran ?? ''}}"
-                                    class="form-control total_price" placeholder="">
+                                    class="form-control total_pembayaran" id="total_bayar" placeholder="">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Sisa Pembayaran</label>
+                                <input type="number" name="sisa_tagihan" value="{{$data->receivables->sisa_tagihan ?? ''}}"
+                                    class="form-control sisa_tagihan" id="sisa_bayar" placeholder="">
                             </div>
                                 </div>
                             </div>
@@ -142,16 +147,20 @@
             // Ambil nilai qty dan price
             var qty = $('#qty').val();
             var price = $('#price').val();
+            var total_bayar = $('#total_bayar').val();
 
             // Hitung total
             var total = qty * price;
+            var totalsemua = total -  total_bayar
 
             // Tampilkan total di input dengan id "total"
             $('.total_price').val(total);
+            $('#sisa_bayar').val(totalsemua);
+
         }
 
         // Panggil fungsi hitungTotal saat nilai qty atau price berubah
-        $('#qty, #price, #is_receivables').on('input', function() {
+        $('#qty, #price, #is_receivables, #total_bayar').on('input', function() {
             hitungTotal();
         });
 

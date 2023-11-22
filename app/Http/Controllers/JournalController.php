@@ -7,6 +7,7 @@ use App\Models\Akun;
 use App\Models\Journal;
 use App\Models\JournalItem;
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -99,7 +100,10 @@ class JournalController extends Controller
                     'user_id' => Auth::user()->id,
                     'debit' => floatval($request->debit[$key]),
                     'kredit' => floatval($request->kredit[$key]),
-                    'akun_id' => $request->akun_id[$key]
+                    'akun_id' => $request->akun_id[$key],
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
+
                 ]);
             }
 
@@ -137,7 +141,8 @@ class JournalController extends Controller
                     'user_id' => Auth::user()->id,
                     'debit' => floatval($request->debit[$key]),
                     'kredit' => floatval($request->kredit[$key]),
-                    'akun_id' => $request->akun_id[$key]
+                    'akun_id' => $request->akun_id[$key],
+                    'updated_at' => Carbon::now(),
                 ]);
             }
 

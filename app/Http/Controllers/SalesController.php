@@ -63,7 +63,7 @@ class SalesController extends Controller
         $data = Penjualan::with(['receivables'])->find($id);
         $customer = Customer::where('is_allow_debt', 1)->get();
         return view('pages.penjualan.form', [
-            'page_title' => 'Tambah Penjualan',
+            'page_title' => 'Edit Penjualan',
             'data' => $data,
             'customer' => $customer,
         ]);
