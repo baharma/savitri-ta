@@ -65,7 +65,7 @@ class JournalController extends Controller
     }
     public function edit($id)
     {
-        $data = Journal::with('journalDetails')->first();
+        $data = Journal::whereId($id)->with('journalDetails')->first();
         $code = GenerateGL::journal();
         $coa = Akun::all();
         return view('pages.journal.edit', [
@@ -81,6 +81,7 @@ class JournalController extends Controller
     {
         DB::beginTransaction();
         try {
+
 
             $journal = array(
                 'date' => $request->date,

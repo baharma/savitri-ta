@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Penjualan extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory;
 
     protected $guarded = [];
 

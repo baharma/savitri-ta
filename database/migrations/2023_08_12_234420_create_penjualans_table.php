@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('penjualans', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->nullable();
             $table->date('tanggal_penjualan')->nullable();
             $table->string('faktur_penjualan')->nullable();

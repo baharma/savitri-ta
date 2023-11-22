@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Helper\GenerateGL;
 use App\Models\Customer;
+use App\Models\Journal;
+use App\Models\JournalItem;
 use App\Models\Penjualan;
 use App\Models\Piutang;
 use Carbon\Carbon;
@@ -71,59 +74,63 @@ class SalesController extends Controller
 
     public function store(Request $request)
     {
-        try {
+        // try {
 
-            $data = Penjualan::count();
-            $receivebles = Piutang::count();
+        $data = Penjualan::count();
+        $receivebles = Piutang::count();
 
-            $transaction_code = 'TRX' . now()->format('Ymd') . str_pad($data + 1, 4, '0', STR_PAD_LEFT);
-            $transaction_code_receivebles = 'RV' . now()->format('Ymd') . str_pad($receivebles + 1, 4, '0', STR_PAD_LEFT);
+        $transaction_code = 'TRX' . now()->format('Ymd') . str_pad($data + 1, 4, '0', STR_PAD_LEFT);
+        $transaction_code_receivebles = 'RV' . now()->format('Ymd') . str_pad($receivebles + 1, 4, '0', STR_PAD_LEFT);
 
-            $formdata = array(
+        $formdata = array(
+            'user_id' => Auth::user()->id,
+            'tanggal_penjualan' => $request->tanggal_penjualan,
+            'faktur_penjualan' => $transaction_code,
+            'harga_barang' => $request->harga_barang,
+            'nama_barang' => $request->nama_barang,
+            'jenis_barang' => $request->jenis_barang,
+            'jumlah_barang' => $request->jumlah_barang,
+            'jenis_pembayarang' => $request->jenis_pembayarang,
+            'total_penjualan' => $request->total_penjualan,
+            'description' => $request->description,
+            'is_receivables' => $request->is_receivables ?? 0
+        );
+
+        Penjualan::create($formdata);
+        $latest_data = Penjualan::orderby('created_at', 'DESC')->first();
+        $this->createGLTransaction($latest_data);
+
+        if ($request->is_receivables == 1) {
+
+            $formdata2 = array(
                 'user_id' => Auth::user()->id,
-                'tanggal_penjualan' => $request->tanggal_penjualan,
-                'faktur_penjualan' => $transaction_code,
-                'harga_barang' => $request->harga_barang,
-                'nama_barang' => $request->nama_barang,
-                'jenis_barang' => $request->jenis_barang,
-                'jumlah_barang' => $request->jumlah_barang,
-                'jenis_pembayarang' => $request->jenis_pembayarang,
-                'total_penjualan' => $request->total_penjualan,
+                'no_transaksi' => $transaction_code_receivebles,
+                'penjualan_id' => $latest_data->id,
+                'customer_id' => $request->customer_id,
+                'tgl_transaksi_piutang' => $request->tgl_transaksi_piutang,
+                'tgl_jatuh_tempo_piutang' => $request->tgl_jatuh_tempo_piutang,
+                'total_tagihan' => $request->total_tagihan,
+                'total_pembayaran' => $request->total_pembayaran,
+                'status_pembayaran' => $request->status_pembayaran ?? 'PENDING',
                 'description' => $request->description,
-                'is_receivables' => $request->is_receivables ?? 0
+                'sisa_tagihan' => $request->total_tagihan - $request->total_pembayaran,
             );
 
-            Penjualan::create($formdata);
+            Piutang::create($formdata2);
 
-            if ($request->is_receivables == 1) {
-                $latest_data = Penjualan::orderby('created_at', 'DESC')->first();
-
-                $formdata2 = array(
-                    'user_id' => Auth::user()->id,
-                    'no_transaksi' => $transaction_code_receivebles,
-                    'penjualan_id' => $latest_data->id,
-                    'customer_id' => $request->customer_id,
-                    'tgl_transaksi_piutang' => $request->tgl_transaksi_piutang,
-                    'tgl_jatuh_tempo_piutang' => $request->tgl_jatuh_tempo_piutang,
-                    'total_tagihan' => $request->total_tagihan,
-                    'total_pembayaran' => $request->total_pembayaran,
-                    'status_pembayaran' => $request->status_pembayaran ?? 'PENDING',
-                    'description' => $request->description,
-                    'sisa_tagihan' => $request->total_tagihan - $request->total_pembayaran,
-                );
-
-                Piutang::create($formdata2);
-            }
-
-
-
-
-            return redirect()->back()->with('message', 'Data Akun Berhasil Di Simpan !');
-        } catch (\Throwable $th) {
-            return redirect()->back()->with('message', 'Terjadi Kesalahan pada line' . ' ' . $th->getLine());
-        } catch (\Exception $th) {
-            return redirect()->back()->with('message', 'Terjadi Kesalahan pada line' . ' ' . $th->getLine());
+            $latest_data_piutang = Piutang::orderby('created_at', 'DESC')->first();
+            $this->createGLPiutang($latest_data_piutang);
         }
+
+
+
+
+        return redirect()->back()->with('message', 'Data Akun Berhasil Di Simpan !');
+        // } catch (\Throwable $th) {
+        //     return redirect()->back()->with('message', 'Terjadi Kesalahan pada line' . ' ' . $th->getLine());
+        // } catch (\Exception $th) {
+        //     return redirect()->back()->with('message', 'Terjadi Kesalahan pada line' . ' ' . $th->getLine());
+        // }
     }
     public function update(Request $request, $id)
     {
@@ -149,10 +156,19 @@ class SalesController extends Controller
             );
 
             Penjualan::whereid($id)->update($formdata);
+            $piutang = Piutang::where('penjualan_id', $id)->first();
+
+            Journal::where('uniq_id', $id)->delete();
+            JournalItem::where('uniq_id', $id)->delete();
+            Journal::where('uniq_id', $piutang->id)->delete();
+            JournalItem::where('uniq_id', $piutang->id)->delete();
+
+            $this->createGLTransaction($data);
+
 
             if ($request->is_receivables == 1) {
 
-                $piutang = Piutang::where('penjualan_id', $id)->first();
+
 
 
                 $formdata2 = array(
@@ -174,6 +190,10 @@ class SalesController extends Controller
                 } else {
                     Piutang::whereId($piutang->id)->update($formdata2);
                 }
+
+
+
+                $this->createGLPiutang($piutang);
             }
 
 
@@ -184,6 +204,86 @@ class SalesController extends Controller
             return redirect()->back()->with('message', 'Terjadi Kesalahan pada line' . ' ' . $th->getLine());
         } catch (\Exception $th) {
             return redirect()->back()->with('message', 'Terjadi Kesalahan pada line' . ' ' . $th->getLine());
+        }
+    }
+
+    // Create Jurnal
+    function createGLPiutang($data)
+    {
+        $dataJournal2 = [
+            "description" => "Transaksi Dari Invoice" . " " . $data->no_transaksi,
+            "akun_id" => [
+                "2",
+                "5",
+            ],
+            "debit" => [$data->sisa_tagihan, "0"],
+            "kredit" => ["0", $data->sisa_tagihan],
+            "nominal" => $data->sisa_tagihan,
+        ];
+
+        $glpiutang = new Journal;
+
+
+        $glpiutang->date = Carbon::now();
+        $glpiutang->description = $dataJournal2['description'];
+        $glpiutang->kode_jurnal = GenerateGL::journal();
+        $glpiutang->nominal = $dataJournal2['nominal'];
+        $glpiutang->uniq_id = $data->id;
+
+        $glpiutang->save();
+
+        $items = $dataJournal2['akun_id'];
+
+        foreach ($items as $key => $value) {
+            JournalItem::insert([
+                'journal_id' => $glpiutang->id,
+                'user_id' => Auth::user()->id,
+                'debit' => floatval($dataJournal2['debit'][$key]),
+                'kredit' => floatval($dataJournal2['kredit'][$key]),
+                'akun_id' => $dataJournal2['akun_id'][$key],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'uniq_id' => $data->id
+            ]);
+        }
+    }
+
+    function createGLTransaction($data)
+    {
+        $dataJournal1 = [
+            "description" => "Transaksi Dari Invoice" . " " . $data->faktur_penjualan,
+            "akun_id" => [
+                "1",
+                "5",
+            ],
+            "debit" => [$data->total_penjualan, "0"],
+            "kredit" => ["0", $data->total_penjualan],
+            "nominal" => $data->total_penjualan,
+        ];
+
+        $gltransaksi = new Journal;
+        $gltransaksi->date = Carbon::now();
+        $gltransaksi->description = $dataJournal1['description'];
+        $gltransaksi->kode_jurnal = GenerateGL::journal();
+        $gltransaksi->nominal = $dataJournal1['nominal'];
+        $gltransaksi->uniq_id = $data->id;
+
+        $gltransaksi->save();
+
+        $items = $dataJournal1['akun_id'];
+
+        foreach ($items as $key => $value) {
+            JournalItem::insert([
+                'journal_id' => $gltransaksi->id,
+                'user_id' => Auth::user()->id,
+                'debit' => floatval($dataJournal1['debit'][$key]),
+                'kredit' => floatval($dataJournal1['kredit'][$key]),
+                'akun_id' => $dataJournal1['akun_id'][$key],
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+                'uniq_id' => $data->id
+
+            ]);
         }
     }
 

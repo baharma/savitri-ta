@@ -20,7 +20,7 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->foreignId('user_id')->references('id')->on('users')->nullable();
             $table->double('kredit')->nullable();
-            $table->foreignUuid('akun_id')->references('id')->on('akuns')->nullable();
+            $table->foreignId('akun_id')->references('id')->on('akuns')->nullable();
             $table->string('kode_jurnal')->nullable();
             $table->timestamps();
         });

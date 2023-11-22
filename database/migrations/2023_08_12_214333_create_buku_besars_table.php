@@ -17,7 +17,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignId('id_user')->references('id')->on('users')->nullable();
             $table->date('date')->nullable();
-            $table->foreignUuid('akun_id')->references('id')->on('akuns')->nullable();
+            $table->foreignId('akun_id')->references('id')->on('akuns')->nullable();
             $table->longText('description')->nullable();
             $table->double('saldo')->nullable();
             $table->timestamps();

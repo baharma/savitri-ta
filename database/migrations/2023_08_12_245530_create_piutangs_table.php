@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::create('piutangs', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
             $table->string('no_transaksi')->unique()->nullable();
-            $table->foreignUuid('penjualan_id')->references('id')->on('penjualans')->nullable();
+            $table->foreignId('penjualan_id')->references('id')->on('penjualans')->nullable();
             $table->integer('customer_id')->nullable();
             $table->date('tgl_transaksi_piutang')->nullable();
             $table->date('tgl_jatuh_tempo_piutang')->nullable();

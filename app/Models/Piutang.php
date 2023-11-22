@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Piutang extends Model
 {
-    use HasFactory, HasUuids;
+    use HasFactory;
     protected $guarded = [];
 
     public function users()

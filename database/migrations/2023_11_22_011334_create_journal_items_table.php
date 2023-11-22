@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('journal_items', function (Blueprint $table) {
             $table->id();
             $table->integer('journal_id');
+            $table->integer('uniq_id')->nullable();
             $table->integer('user_id');
             $table->double('debit')->nullable();
             $table->double('kredit')->nullable();
-            $table->foreignUuid('akun_id')->references('id')->on('akuns')->nullable();
+            $table->integer('akun_id');
             $table->timestamps();
         });
     }

@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('journals', function (Blueprint $table) {
             $table->id();
+            $table->integer('uniq_id')->nullable();
             $table->date('date')->nullable();
             $table->longText('description')->nullable();
             $table->string('kode_jurnal')->nullable();

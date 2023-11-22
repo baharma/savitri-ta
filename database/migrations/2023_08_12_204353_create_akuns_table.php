@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('akuns', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->foreignId('id_user')->references('id')->on('users');
             $table->string('kode_buku')->nullable();
             $table->string('name_akun')->nullable();
