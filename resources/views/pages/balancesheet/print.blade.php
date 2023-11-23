@@ -36,22 +36,26 @@
     </div>
     <table class="table table-borderless">
         <tbody>
+            @php
+                $totalAktiva = 0;
+                $totalPassiva = 0;
+            @endphp
             <tr>
                 <td>
-                    @php
-                        $aktiva_lancar = $coa->where('jenis_akun', 'AKTIVA_LANCAR')->value();
-                        $totalAktivaLancar = 0 ;
-                    @endphp
+                   
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
                                 <td>Aktiva Lancar</td>
                                 <td></td>
                             </tr>
-                            @foreach ($aktiva_lancar as $al)
+                            @foreach ($aktiva_lancar as $key => $val)
                             <tr>
-                                <td>{{$al->name_akun}}</td>
-                                <td></td>
+                                <td>{{$val['nama_akun']}}</td>
+                                @php
+                                    $totalAktiva += $val['total'];
+                                @endphp
+                                <td>{{$val['total']}}</td>
                             </tr>
                             @endforeach
                             
@@ -68,10 +72,15 @@
                                 <td>Passiva</td>
                                 <td></td>
                             </tr>
+                            @foreach ($passiva as $key => $val)
                             <tr>
-                                <td>Hutang Usaha</td>
-                                <td>200 jt</td>
+                                <td>{{$val['nama_akun']}}</td>
+                                @php
+                                    $totalPassiva += $val['total'];
+                                @endphp
+                                <td>{{$val['total']}}</td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </td>
@@ -85,10 +94,15 @@
                                 <td>Aktiva Tetap</td>
                                 <td></td>
                             </tr>
+                            @foreach ($aktiva_tetap_val as $key => $val)
                             <tr>
-                                <td>Kas</td>
-                                <td>200 jt</td>
+                                <td>{{$val['nama_akun']}}</td>
+                                @php
+                                    $totalAktiva += $val['total'];
+                                @endphp
+                                <td>{{$val['total']}}</td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </td>
@@ -102,10 +116,15 @@
                                 <td>Modal Ekuitas</td>
                                 <td></td>
                             </tr>
+                            @foreach ($modal_ekuitas_val as $key => $val)
                             <tr>
-                                <td>Hutang Usaha</td>
-                                <td>200 jt</td>
+                                <td>{{$val['nama_akun']}}</td>
+                                @php
+                                    $totalPassiva += $val['total']*-1;
+                                @endphp
+                                <td>{{$val['total'] * -1}}</td>
                             </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </td>
@@ -116,7 +135,7 @@
                         <tbody>
                             <tr>
                                 <td>Total Aktiva</td>
-                                <td>200 jt</td>
+                                <td>{{$totalAktiva}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -128,7 +147,7 @@
                             
                             <tr>
                                 <td>Total Passiva</td>
-                                <td>200 jt</td>
+                                <td>{{$totalPassiva}}</td>
                             </tr>
                         </tbody>
                     </table>

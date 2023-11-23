@@ -34,6 +34,20 @@ class COASeeder extends Seeder
             ],
             [
                 "id_user" => 1,
+                "kode_buku" => "1-1300",
+                "name_akun" => "Peralatan",
+                "klasifikasi_akun" => "Aktiva",
+                "jenis_akun" => "AKTIVA_TETAP"
+            ],
+            [
+                "id_user" => 1,
+                "kode_buku" => "1-1300",
+                "name_akun" => "Perlengkapan",
+                "klasifikasi_akun" => "Aktiva",
+                "jenis_akun" => "AKTIVA_LANCAR"
+            ],
+            [
+                "id_user" => 1,
                 "kode_buku" => "2-1100",
                 "name_akun" => "Utang Usaha",
                 "klasifikasi_akun" => "Liabilitas",

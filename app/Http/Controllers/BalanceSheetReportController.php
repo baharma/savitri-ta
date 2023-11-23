@@ -23,11 +23,72 @@ class BalanceSheetReportController extends Controller
         $coa = Akun::all();
         $data = JournalItem::with(['journal', 'coa'])->whereBetween('created_at', [$start, $end])->get();
 
+        $aktiva_lancar = [];
+        $passiva = [];
+        $aktiva_tetap_val = [];
+        $modal_ekuitas_val = [];
+
+
+        // Create AKTIVA LANCAR
+        foreach ($coa->where('jenis_akun', 'AKTIVA_LANCAR') as $key => $value) {
+            $debit = $data->where('akun_id', $value->id)->sum('debit');
+            $kredit = $data->where('akun_id', $value->id)->sum('kredit');
+
+            $aktiva_lancar[] = [
+                'nama_akun' => $value->name_akun,
+                'total' => $debit - $kredit
+            ];
+        }
+
+        // CREATE PASSIVA
+        foreach ($coa->where('jenis_akun', 'PASSIVA') as $key => $value) {
+            $debit = $data->where('akun_id', $value->id)->sum('debit');
+            $kredit = $data->where('akun_id', $value->id)->sum('kredit');
+
+            $passiva[] = [
+                'nama_akun' => $value->name_akun,
+                'total' => $debit - $kredit
+            ];
+        }
+
+        // CREATE AKTIVA TETAP
+        $aktiva_tetap = $coa->where('jenis_akun', 'AKTIVA_TETAP')->values();
+
+        if ($aktiva_tetap != null) {
+            foreach ($aktiva_tetap as $key => $value) {
+                $debit = $data->where('akun_id', $value->id)->sum('debit');
+                $kredit = $data->where('akun_id', $value->id)->sum('kredit');
+
+                $aktiva_tetap_val[] = [
+                    'nama_akun' => $value->name_akun,
+                    'total' => $debit - $kredit
+                ];
+            }
+        }
+
+        // CREATE MODAL EKUITAS
+        $modal_ekuitas = $coa->where('jenis_akun', 'MODAL_EKUITAS')->values();
+
+        if ($modal_ekuitas != null) {
+            foreach ($modal_ekuitas as $key => $value) {
+                $debit = $data->where('akun_id', $value->id)->sum('debit');
+                $kredit = $data->where('akun_id', $value->id)->sum('kredit');
+
+                $modal_ekuitas_val[] = [
+                    'nama_akun' => $value->name_akun,
+                    'total' => $debit - $kredit
+                ];
+            }
+        }
+
+
 
         return view('pages.balancesheet.print', [
             'page_title' => 'Hasil Neraca Saldo',
-            'data' => $data,
-            'coa' => $coa
+            'aktiva_lancar' => $aktiva_lancar,
+            'passiva' => $passiva,
+            'aktiva_tetap_val' => $aktiva_tetap_val,
+            'modal_ekuitas_val' => $modal_ekuitas_val,
         ]);
     }
 }
