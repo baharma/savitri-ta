@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('kode_buku')->nullable();
             $table->string('name_akun')->nullable();
             $table->string('klasifikasi_akun')->nullable();
+            $table->string('jenis_akun')->nullable();
             $table->timestamps();
         });
     }

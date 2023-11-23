@@ -6,12 +6,12 @@ use App\Models\Akun;
 use App\Models\JournalItem;
 use Illuminate\Http\Request;
 
-class ProfitLossReportController extends Controller
+class BalanceSheetReportController extends Controller
 {
     public function index()
     {
-        return view('pages.labarugi.index', [
-            'page_title' => 'Laba Rugi'
+        return view('pages.balancesheet.index', [
+            'page_title' => 'Neraca Saldo'
         ]);
     }
 
@@ -23,12 +23,9 @@ class ProfitLossReportController extends Controller
         $coa = Akun::all();
         $data = JournalItem::with(['journal', 'coa'])->whereBetween('created_at', [$start, $end])->get();
 
-        foreach ($coa->where('') as $key => $value) {
-            # code...
-        }
 
-        return view('pages.labarugi.print', [
-            'page_title' => 'Hasil Laba Rugi',
+        return view('pages.balancesheet.print', [
+            'page_title' => 'Hasil Neraca Saldo',
             'data' => $data,
             'coa' => $coa
         ]);

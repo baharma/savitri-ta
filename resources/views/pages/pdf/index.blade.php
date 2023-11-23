@@ -26,7 +26,7 @@
             <i class="bi bi-file-earmark-fill text-center" style="font-size: 100px;"></i>
             <div class="card-body text-center">
               <h6>Laporan Neraca</h6>
-              <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalnaraca">Cetak Laporan</a>
+              <a href="{{route('balancesheet.index')}}" class="btn btn-primary">Cetak Laporan</a>
             </div>
           </div>
           <div class="card col m-1">

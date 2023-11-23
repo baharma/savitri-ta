@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\akunController;
+use App\Http\Controllers\BalanceSheetReportController;
 use App\Http\Controllers\BigBookController;
 use App\Http\Controllers\BukuBesarController;
 use App\Http\Controllers\CustomerController;
@@ -88,6 +89,10 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::controller(ProfitLossReportController::class)->name('profitloss.')->prefix('profitloss')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/get-data', 'getdata')->name('getdata');
+    });
+    Route::controller(BalanceSheetReportController::class)->name('balancesheet.')->prefix('balance-sheet')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/get-data', 'getdata')->name('getdata');
     });
