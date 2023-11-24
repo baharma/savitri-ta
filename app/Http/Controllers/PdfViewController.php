@@ -7,7 +7,6 @@ use App\Models\BukuBesar;
 use App\Models\LabaRugi;
 use App\Models\Pengeluaran;
 use App\Models\Penjualan;
-use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
 
 class PdfViewController extends Controller
@@ -72,7 +71,9 @@ class PdfViewController extends Controller
         $star = $request->penjualan_start;
         $databukuBesar = $this->bukuBesar->whereBetween('date', [$star, $end])->get();
         return view('pages.pdf.naraca.naraca-view', compact('end', 'star', 'databukuBesar'));
+
     }
+    
     public function naracaPdf(Request $request)
     {
         // $activa = $request->activa;

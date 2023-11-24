@@ -3,6 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
+use Mpdf\Tag\Columns;
 
 return new class extends Migration
 {
@@ -23,6 +24,7 @@ return new class extends Migration
             $table->string('jenis_bayar')->nullable();
             $table->longText('descriptions')->nullable();
             $table->boolean('is_debt')->nullable();
+            $table->integer('akun_id')->nullable();
             $table->timestamps();
         });
     }

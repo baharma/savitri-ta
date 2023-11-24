@@ -161,34 +161,38 @@
     <table class="table w-100">
         <tbody>
             <tr>
-                <td>
+                <td width="40%">
                     <table class="table table-bordered text-center">
                         <tbody>
                             <tr>
                                 <td class="bg-dark text-light">Mengetahui</td>
                             </tr>
-                            <tr height="100px">
-                                <td></td>
+                            <tr>
+                                <td>
+                                    <img src="{{asset('pemilik.jpeg')}}" alt="" width="70%" height="150px">
+                                </td>
                             </tr>
                             <tr>
-                                <td>Pemilik</td>
+                                <td class="bg-dark text-light">Pemilik</td>
                             </tr>
                         </tbody>
                     </table>
                 </td>
-                <td></td>
-                <td></td>
-                <td>
+                <td width="10%"></td>
+                <td width="10%"></td>
+                <td width="40%">
                     <table class="table table-bordered text-center">
                         <tbody>
                             <tr>
                                 <td class="bg-dark text-light">Mengetahui</td>
                             </tr>
-                            <tr height="100px">
-                                <td></td>
+                            <tr>
+                                <td>
+                                    <img src="{{asset('savitri.jpeg')}}" alt="" width="70%" height="150px">
+                                </td>
                             </tr>
                             <tr>
-                                <td>Kasir</td>
+                                <td class="bg-dark text-light">Kasir</td>
                             </tr>
                         </tbody>
                     </table>

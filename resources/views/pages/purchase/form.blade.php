@@ -14,7 +14,7 @@
                 </div><!-- card-header -->
                 <div class="card-body">
                     <form data-parsley-validate
-                        action="{{$data == null ? route('sales.store'):route('sales.update', $data->id)}}"
+                        action="{{$data == null ? route('purchase.store'):route('purchase.update', $data->id)}}"
                         enctype="multipart/form-data" method="post">
                         @csrf
                         @if ($data != null)
@@ -41,12 +41,12 @@
                             
                             <div class="form-group col-md-6">
                                 <label>Total Pengeluaran</label>
-                                <input type="number" name="total_penjualan" value="{{$data->total_penjualan ?? ''}}"
+                                <input type="number" name="total_pengeluaran" id="total_price" value="{{$data->total_pengeluaran ?? ''}}"
                                     class="form-control total_price" placeholder="" required>
                             </div>
                             <div class="form-group col-md-6">
                                         <label>COA</label>
-                                        <select name="customer_id" id="" required class="form-control">
+                                        <select name="akun_id" id="" required class="form-control">
                                             @foreach ($coa as $item)
                                                 @if ($data == null)
                                                    <option value="{{$item->id}}">{{$item->kode_buku}} - {{$item->name_akun}}</option> 
@@ -78,36 +78,21 @@
                                     
                                     <div class="form-group col-md-6">
                                 <label>Tanggal Piutang</label>
-                                <input type="date" name="tgl_transaksi_piutang" value="{{$data->receivables->tanggal_penjualan ?? ''}}"
+                                <input type="date" name="tgl_transaksi_hutang" value="{{$data->debt->tgl_transaksi_hutang ?? ''}}"
                                     class="form-control myDate">
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Tanggal Jatuh Tempo</label>
-                                <input type="date" name="tgl_jatuh_tempo_piutang" value="{{$data->receivables->tanggal_penjualan ?? ''}}"
+                                <input type="date" name="tgl_jatuh_tempo" value="{{$data->debt->tgl_jatuh_tempo ?? ''}}"
                                     class="form-control myDate">
                             </div>
                             <div class="form-group col-md-4">
-                                <label>Total Tagihan</label>
-                                <input type="number" readonly name="total_tagihan" value="{{$data->receivables->total_tagihan ?? ''}}"
-                                    class="form-control total_price" placeholder="">
+                                <label>Total Hutang</label>
+                                <input type="number" name="total_transaksi_hutang" value="{{$data->debt->total_transaksi_hutang ?? ''}}"
+                                    class="form-control sisa_bayar" placeholder="">
                             </div>
-                            <div class="form-group col-md-4">
-                                <label>Total Pembayaran</label>
-                                <input type="number" name="total_pembayaran" value="{{$data->receivables->total_pembayaran ?? ''}}"
-                                    class="form-control total_pembayaran" id="total_bayar" placeholder="">
-                            </div>
-                            <div class="form-group col-md-4">
-                                <label>Sisa Pembayaran</label>
-                                <input type="number" name="sisa_tagihan" value="{{$data->receivables->sisa_tagihan ?? ''}}"
-                                    class="form-control sisa_tagihan" id="sisa_bayar" placeholder="">
-                            </div>
-                                </div>
-                            </div>
+                           
                         </div>
-                        
-
-
-
                 </div><!-- card-body -->
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary">Simpan Data</button>
@@ -127,28 +112,20 @@
         $('.myDate').val(currentDate);
 
         function hitungTotal() {
-            // Ambil nilai qty dan price
-            var qty = $('#qty').val();
-            var price = $('#price').val();
-            var total_bayar = $('#total_bayar').val();
+            
 
-            // Hitung total
-            var total = qty * price;
-            var totalsemua = total -  total_bayar
-
-            // Tampilkan total di input dengan id "total"
-            $('.total_price').val(total);
-            $('#sisa_bayar').val(totalsemua);
+           var total =  $('.total_price').val();
+            $('.sisa_bayar').val(total);
 
         }
 
         // Panggil fungsi hitungTotal saat nilai qty atau price berubah
-        $('#qty, #price, #is_receivables, #total_bayar').on('input', function() {
+        $('#is_debt, #total_price').on('input', function() {
             hitungTotal();
         });
 
 
-        $('#is_receivables').change(function (e) { 
+        $('#is_debt').change(function (e) { 
             e.preventDefault();
             if($(this).val() == 1){
                 $('#form_piutang').removeClass('d-none');

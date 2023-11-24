@@ -7,7 +7,7 @@
 <div class="container-fluid">
     <div class="row row-xs">
         <div class="col-lg-12 col-xl-12 mg-t-5 mb-2">
-            <a href="{{route('sales.create')}}" class="btn btn-primary float-right">Add Data {{$page_title}}</a>
+            <a href="{{route('purchase.create')}}" class="btn btn-primary float-right">Add Data {{$page_title}}</a>
         </div>
         <div class="col-lg-12 col-xl-12 mg-t-10">
             <div class="card">
@@ -36,26 +36,26 @@
 
 @push('script')
 <script>
-    $(document).ready(function () {
+    $(document).ready(function () { 
         var table = $('.datatable_category').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('sales.getdata') }}",
+            ajax: "{{ route('purchase.getdata') }}",
             columns: [{
-                    data: 'faktur_penjualan',
-                    name: 'faktur_penjualan' 
+                    data: 'nomor_pengeluaran',
+                    name: 'nomor_pengeluaran' 
                 },
                 {
-                    data: 'tanggal_penjualan',
-                    name: 'tanggal_penjualan'
+                    data: 'tanggal_pengeluran',
+                    name: 'tanggal_pengeluran'
                 },
                 {
-                    data: 'total_penjualan',
-                    name: 'total_penjualan'
+                    data: 'total_pengeluaran',
+                    name: 'total_pengeluaran'
                 },
                 {
-                    data: 'jenis_pembayarang',
-                    name: 'jenis_pembayarang'
+                    data: 'jenis_bayar',
+                    name: 'jenis_bayar'
                 },
                 {
                     data: 'action',

@@ -21,6 +21,7 @@ return new class extends Migration
             $table->date('tgl_jatuh_tempo')->nullable();
             $table->double('total_transaksi_hutang')->nullable();
             $table->longText('description')->nullable();
+            $table->string('status_pembayaran')->nullable();
             $table->foreignUuid('pengeluaran_id')->references('id')->on('pengeluarans')->nullable();
             $table->timestamps();
         });
