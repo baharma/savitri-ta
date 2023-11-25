@@ -182,7 +182,7 @@
     });
 
     // Contoh data, Anda perlu menggantinya dengan data yang sesuai
-    var hutangData = [@foreach ($days as  $key => $item)'{{$item['hutang']}}', @endforeach];
+    var hutangData = [@foreach ($days as  $key => $item)'{{$item['pengeluaran']}}', @endforeach];
     var penjualanData = [@foreach ($days as  $key => $item)'{{$item['penjualan']}}', @endforeach];
     var piutangData = [@foreach ($days as  $key => $item)'{{$item['piutang']}}', @endforeach];
 
