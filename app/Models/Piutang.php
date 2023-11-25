@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Piutang extends Model
 {
@@ -18,7 +19,7 @@ class Piutang extends Model
     }
     public function penjualans()
     {
-        return $this->hasOne(Penjualan::class, 'id', 'piutang_id');
+        return $this->belongsTo(Penjualan::class, 'penjualan_id');
     }
 
     /**

@@ -24,7 +24,7 @@ return new class extends Migration
             $table->double('total_tagihan')->nullable();
             $table->double('total_pembayaran')->nullable();
             $table->string('status_pembayaran')->nullable();
-            $table->longText('description')->nullable();
+            $table->longText('description')->nullable(); 
             $table->string('sisa_tagihan')->nullable();
             $table->timestamps();
         });

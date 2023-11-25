@@ -98,7 +98,14 @@ class SalesController extends Controller
 
         Penjualan::create($formdata);
         $latest_data = Penjualan::orderby('created_at', 'DESC')->first();
-        $this->createGLTransaction($latest_data);
+        $akun1 = array(
+            'uniq_id' => $latest_data->id,
+            'description' => 'Transaksi Penjualan Dengan Nomor Faktur' . ' ' . $latest_data->faktur_penjualan,
+            'nominal' => $request->total_penjualan,
+            'akun' => ['1', '5']
+        );
+
+        GenerateGL::createGL($akun1);
 
         if ($request->is_receivables == 1) {
 
@@ -119,7 +126,34 @@ class SalesController extends Controller
             Piutang::create($formdata2);
 
             $latest_data_piutang = Piutang::orderby('created_at', 'DESC')->first();
-            $this->createGLPiutang($latest_data_piutang);
+            $akun2 = array(
+                'uniq_id' => $latest_data_piutang->id,
+                'description' => 'Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
+                'nominal' => $request->total_tagihan,
+                'akun' => ['5', '4']
+            );
+
+            GenerateGL::createGL($akun2);
+
+            if ($request->total_pembayaran != 0) {
+                $akun3 = array(
+                    'uniq_id' => $latest_data_piutang->id,
+                    'description' => 'Pembayaran Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
+                    'nominal' => $request->total_pembayaran,
+                    'akun' => ['5', '4']
+                );
+
+                GenerateGL::createGL($akun3);
+
+                $akun4 = array(
+                    'uniq_id' => $latest_data_piutang->id,
+                    'description' => 'Sisa Tagihan Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
+                    'nominal' => $request->sisa_tagihan,
+                    'akun' => ['5', '4']
+                );
+
+                GenerateGL::createGL($akun4);
+            }
         }
 
 
@@ -136,7 +170,7 @@ class SalesController extends Controller
     {
         try {
 
-            $data = Penjualan::find($id);
+            $latest_data = Penjualan::find($id);
             $receivebles = Piutang::count();
 
             $transaction_code_receivebles = 'RV' . now()->format('Ymd') . str_pad($receivebles + 1, 4, '0', STR_PAD_LEFT);
@@ -144,7 +178,6 @@ class SalesController extends Controller
             $formdata = array(
                 'user_id' => Auth::user()->id,
                 'tanggal_penjualan' => $request->tanggal_penjualan,
-                'faktur_penjualan' => $data->faktur_penjualan,
                 'harga_barang' => $request->harga_barang,
                 'nama_barang' => $request->nama_barang,
                 'jenis_barang' => $request->jenis_barang,
@@ -152,29 +185,29 @@ class SalesController extends Controller
                 'jenis_pembayarang' => $request->jenis_pembayarang,
                 'total_penjualan' => $request->total_penjualan,
                 'description' => $request->description,
-                'is_receivables' => $request->is_receivables
+                'is_receivables' => $request->is_receivables ?? 0
             );
 
-            Penjualan::whereid($id)->update($formdata);
-            $piutang = Piutang::where('penjualan_id', $id)->first();
+            Penjualan::whereId($id)->update($formdata);
 
             Journal::where('uniq_id', $id)->delete();
             JournalItem::where('uniq_id', $id)->delete();
-            Journal::where('uniq_id', $piutang->id)->delete();
-            JournalItem::where('uniq_id', $piutang->id)->delete();
 
-            $this->createGLTransaction($data);
+            $akun1 = array(
+                'uniq_id' => $latest_data->id,
+                'description' => 'Transaksi Penjualan Dengan Nomor Faktur' . ' ' . $latest_data->faktur_penjualan,
+                'nominal' => $request->total_penjualan,
+                'akun' => ['1', '5']
+            );
 
+            GenerateGL::createGL($akun1);
 
             if ($request->is_receivables == 1) {
-
-
-
 
                 $formdata2 = array(
                     'user_id' => Auth::user()->id,
                     'no_transaksi' => $transaction_code_receivebles,
-                    'penjualan_id' => $id,
+                    'penjualan_id' => $latest_data->id,
                     'customer_id' => $request->customer_id,
                     'tgl_transaksi_piutang' => $request->tgl_transaksi_piutang,
                     'tgl_jatuh_tempo_piutang' => $request->tgl_jatuh_tempo_piutang,
@@ -185,15 +218,37 @@ class SalesController extends Controller
                     'sisa_tagihan' => $request->total_tagihan - $request->total_pembayaran,
                 );
 
-                if ($piutang == null) {
-                    Piutang::create($formdata2);
-                } else {
-                    Piutang::whereId($piutang->id)->update($formdata2);
+                Piutang::create($formdata2);
+
+                $latest_data_piutang = Piutang::orderby('created_at', 'DESC')->first();
+                $akun2 = array(
+                    'uniq_id' => $latest_data_piutang->id,
+                    'description' => 'Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
+                    'nominal' => $request->total_tagihan,
+                    'akun' => ['5', '4']
+                );
+
+                GenerateGL::createGL($akun2);
+
+                if ($request->total_pembayaran != 0) {
+                    $akun3 = array(
+                        'uniq_id' => $latest_data_piutang->id,
+                        'description' => 'Pembayaran Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
+                        'nominal' => $request->total_pembayaran,
+                        'akun' => ['5', '4']
+                    );
+
+                    GenerateGL::createGL($akun3);
+
+                    $akun4 = array(
+                        'uniq_id' => $latest_data_piutang->id,
+                        'description' => 'Sisa Tagihan Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
+                        'nominal' => $request->sisa_tagihan,
+                        'akun' => ['5', '4']
+                    );
+
+                    GenerateGL::createGL($akun4);
                 }
-
-
-
-                $this->createGLPiutang($piutang);
             }
 
 

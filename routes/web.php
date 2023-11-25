@@ -16,6 +16,7 @@ use App\Http\Controllers\PiutangController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProfitLossReportController;
 use App\Http\Controllers\PurchaseController;
+use App\Http\Controllers\ReceivableController;
 use App\Http\Controllers\SalesController;
 use App\Http\Controllers\UsersController;
 use App\Models\Akun;
@@ -118,6 +119,16 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::controller(SalesController::class)->name('sales.')->prefix('sales')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/get-data', 'getdata')->name('getdata');
+        Route::get('/create', 'create')->name('create');
+        Route::post('/store', 'store')->name('store');
+        Route::get('/{id}/edit', 'edit')->name('edit');
+        Route::put('/{id}/update', 'update')->name('update');
+        Route::delete('/{id}/delete', 'delete')->name('delete');
+    });
+
+    Route::controller(ReceivableController::class)->name('receivable.')->prefix('receivable')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/get-data', 'getdata')->name('getdata');
         Route::get('/create', 'create')->name('create');
