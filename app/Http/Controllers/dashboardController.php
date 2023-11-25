@@ -34,9 +34,9 @@ class dashboardController extends Controller
 
         for ($i = 1; $i <= $daysMonth; $i++) {
 
-            $penjualan = Penjualan::whereDay('created_at', $i)->sum('total_penjualan');
-            $piutang = Piutang::whereDay('created_at', $i)->sum('sisa_tagihan');
-            $hutang = Pengeluaran::whereDay('created_at', $i)->sum('total_pengeluaran');
+            $penjualan = Penjualan::whereDay('tanggal_penjualan', $i)->sum('total_penjualan');
+            $piutang = Piutang::whereDay('tgl_transaksi_piutang', $i)->sum('sisa_tagihan');
+            $hutang = Pengeluaran::whereDay('tgl_transaksi_hutang', $i)->sum('total_pengeluaran');
 
 
             $days[] = [
