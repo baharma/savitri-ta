@@ -5,19 +5,28 @@ namespace App\Http\Controllers;
 use App\Models\LabaRugi;
 use App\Models\Pengeluaran;
 use App\Models\Penjualan;
+use App\Models\Piutang;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class dashboardController extends Controller
 {
-    public function index(){
-        $penjualan =  Penjualan::latest('created_at')->first();
+    public function index()
+    {
 
-        $pengeluaran = Pengeluaran::latest('created_at')->first();
+        $sales = Penjualan::sum('total_penjualan');
+        $expense = Pengeluaran::sum('total_pengeluaran');
+        $receivable = Piutang::sum('sisa_tagihan');
+        $profitloss = 0;
+        $datasales = Penjualan::orderBy('created_at', 'DESC')->limit(5)->get();
 
-        $laba = LabaRugi::latest('created_at')->first();
-
-        return view('dashboard',compact('penjualan','pengeluaran','laba'));
+        return view('dashboard', [
+            'sales' => $sales,
+            'expense' => $expense,
+            'receivable' => $receivable,
+            'profitloss' => $profitloss,
+            'datasales' => $datasales,
+        ]);
     }
 
 
@@ -29,13 +38,13 @@ class dashboardController extends Controller
             ->groupBy('tanggal_penjualan')
             ->selectRaw('tanggal_penjualan, COUNT(*) as total_penjualan')
             ->get();
-            $sortedData = $sevenDaysData->sortBy('tanggal_penjualan');
-            foreach ($sortedData as $data) {
-                $tanggal = Carbon::parse($data->tanggal_penjualan)->format('l'); // 'l' menampilkan nama hari
-                $totalPenjualan = $data->total_penjualan;
+        $sortedData = $sevenDaysData->sortBy('tanggal_penjualan');
+        foreach ($sortedData as $data) {
+            $tanggal = Carbon::parse($data->tanggal_penjualan)->format('l'); // 'l' menampilkan nama hari
+            $totalPenjualan = $data->total_penjualan;
 
-                $resultArray[] = ['tanggal' => $tanggal, 'total_penjualan' => $totalPenjualan];
-            }
+            $resultArray[] = ['tanggal' => $tanggal, 'total_penjualan' => $totalPenjualan];
+        }
         return response()->json($resultArray);
     }
 }
