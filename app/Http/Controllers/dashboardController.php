@@ -36,7 +36,7 @@ class dashboardController extends Controller
 
             $penjualan = Penjualan::whereDay('tanggal_penjualan', $i)->sum('total_penjualan');
             $piutang = Piutang::whereDay('tgl_transaksi_piutang', $i)->sum('sisa_tagihan');
-            $hutang = Pengeluaran::whereDay('tgl_transaksi_hutang', $i)->sum('total_pengeluaran');
+            $hutang = Pengeluaran::whereDay('tanggal_pengeluran', $i)->sum('total_pengeluaran');
 
 
             $days[] = [
