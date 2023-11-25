@@ -8,24 +8,56 @@ use App\Models\Penjualan;
 use App\Models\Piutang;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class dashboardController extends Controller
 {
     public function index()
     {
+        $currentDate = Carbon::now();
 
-        $sales = Penjualan::sum('total_penjualan');
-        $expense = Pengeluaran::sum('total_pengeluaran');
-        $receivable = Piutang::sum('sisa_tagihan');
+        // Dapatkan jumlah hari pada bulan sekarang
+        $daysMonth = $currentDate->daysInMonth;
+
+        $sales = Penjualan::query();
+        $expense = Pengeluaran::query();
+        $receivable = Piutang::query();
+
+        $month = Carbon::now()->format('m');
+        $year = Carbon::now()->format('Y');
+
+        $days = [];
+        $salesChart = [];
+        $receivableChart = [];
+        $debtChart = [];
+
+
+        for ($i = 1; $i <= $daysMonth; $i++) {
+
+            $penjualan = Penjualan::whereDay('created_at', $i)->sum('total_penjualan');
+            $piutang = Piutang::whereDay('created_at', $i)->sum('sisa_tagihan');
+            $hutang = Pengeluaran::whereDay('created_at', $i)->sum('total_pengeluaran');
+
+
+            $days[] = [
+                'day' => $i,
+                'penjualan' => $penjualan,
+                'piutang' => $piutang,
+                'hutang' => $hutang
+            ];
+        }
+
+
         $profitloss = 0;
         $datasales = Penjualan::orderBy('created_at', 'DESC')->limit(5)->get();
 
         return view('dashboard', [
-            'sales' => $sales,
-            'expense' => $expense,
-            'receivable' => $receivable,
+            'sales' => $sales->sum('total_penjualan'),
+            'expense' => $expense->sum('total_pengeluaran'),
+            'receivable' => $receivable->sum('sisa_tagihan'),
             'profitloss' => $profitloss,
             'datasales' => $datasales,
+            'days' => $days
         ]);
     }
 

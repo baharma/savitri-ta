@@ -128,6 +128,9 @@
 
 </div>
 <br>
+
+
+
 @endsection
 
 @push('script')
@@ -135,40 +138,27 @@
 <script>
     // Data untuk chart
     var data = {
-        labels: ['1', '2', '3', '4', '5', '6', '7', '8', '9',
-            '10', '11', '12', '13', '14', '15', '16', '17', '18',
-            '19', '20', '21', '22', '23', '24', '25', '26', '27',
-            '28', '29', '30'
-        ],
+        labels: [@foreach ($days as  $key => $item)'{{$item['day']}}', @endforeach],
         datasets: [{
                 label: 'Hutang',
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255,99,132,1)',
                 borderWidth: 1,
-                data: [1000, 1200, 800, 1500, 900, 1100, 1300, 1000, 1200, 800, 1500, 900, 1100, 1300, 1000,
-                    1200, 800, 1500, 900, 1100, 1300, 1000, 1200, 800, 1500, 900, 1100, 1300, 1000, 1200,
-                    800
-                ]
+                data: [ ]
             },
             {
                 label: 'Penjualan',
                 backgroundColor: 'rgba(54, 162, 235, 0.2)',
                 borderColor: 'rgba(54, 162, 235, 1)',
                 borderWidth: 1,
-                data: [3000, 32000, 28000, 35000, 29000, 31000, 33000, 3000, 32000, 28000, 35000, 29000,
-                    31000, 33000, 3000, 32000, 28000, 35000, 29000, 31000, 33000, 3000, 32000, 28000,
-                    35000, 29000, 31000, 33000, 3000, 32000, 28000
-                ]
+                data: []
             },
             {
                 label: 'Piutang',
                 backgroundColor: 'rgba(255, 206, 86, 0.2)',
                 borderColor: 'rgba(255, 206, 86, 1)',
                 borderWidth: 1,
-                data: [40000, 42000, 38000, 45000, 39000, 41000, 43000, 40000, 42000, 38000, 45000,
-                    39000, 41000, 43000, 40000, 42000, 38000, 45000, 39000, 41000, 43000, 40000,
-                    42000, 38000, 45000, 39000, 41000, 43000, 40000, 42000, 38000
-                ]
+                data: [ ]
             }
         ]
     };
@@ -192,15 +182,15 @@
     });
 
     // Contoh data, Anda perlu menggantinya dengan data yang sesuai
-    var hutangData = [10000, 12000, 8000, 15000, 9000, 11000, 13000, 10000, 12000, 8000, 15000, 9000];
-    var penjualanData = [20000, 22000, 18000, 25000, 19000, 21000, 23000, 20000, 22000, 18000, 25000, 19000];
-    var piutangData = [15000, 17000, 12000, 18000, 14000, 16000, 18000, 15000, 17000, 12000, 18000, 14000];
+    var hutangData = [@foreach ($days as  $key => $item)'{{$item['hutang']}}', @endforeach];
+    var penjualanData = [@foreach ($days as  $key => $item)'{{$item['penjualan']}}', @endforeach];
+    var piutangData = [@foreach ($days as  $key => $item)'{{$item['piutang']}}', @endforeach];
 
 
     // Menetapkan data ke dalam chart
-    // myChart.data.datasets[0].data = hutangData;
-    // myChart.data.datasets[1].data = penjualanData;
-    // myChart.data.datasets[2].data = piutangData;
+    myChart.data.datasets[0].data = hutangData;
+    myChart.data.datasets[1].data = penjualanData;
+    myChart.data.datasets[2].data = piutangData;
 
     // Mengupdate chart
     myChart.update();
