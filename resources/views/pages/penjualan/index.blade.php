@@ -18,9 +18,10 @@
                     <table class="table datatable_category">
                         <thead>
                             <th>No Faktur</th>
+                            <th>Nama Barang</th>
                             <th>Date</th>
-                            <th>Grand Total</th>
-                            <th>Payment Method</th>
+                            <th>Total</th>
+                            <th>Pembayaran</th>
                             <th width="10%">Action</th>
                         </thead>
                         <tbody>
@@ -44,6 +45,10 @@
             columns: [{
                     data: 'faktur_penjualan',
                     name: 'faktur_penjualan' 
+                },
+                {
+                    data: 'nama_barang',
+                    name: 'nama_barang'
                 },
                 {
                     data: 'tanggal_penjualan',

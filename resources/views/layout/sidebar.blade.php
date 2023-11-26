@@ -69,7 +69,6 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{route('akun.index')}}">COA</a>
                     <a class="collapse-item" href="{{route('customer.index')}}">Pelanggan</a>
-                    <a class="collapse-item" href="{{route('user.index')}}">User</a>
                 </div>
             </div>
         </li>

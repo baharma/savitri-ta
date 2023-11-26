@@ -48,18 +48,32 @@ class akunController extends Controller
 
     public function create()
     {
+        $jenis = [
+            ['kode' => 'AKTIVA_LANCAR', 'nama' => 'Aktiva Lancar'],
+            ['kode' => 'AKTIVA_TETAP', 'nama' => 'Aktiva Tetap'],
+            ['kode' => 'PASSIVA', 'nama' => 'Passiva'],
+            ['kode' => 'MODAL_EKUITAS', 'nama' => 'Modal Ekuitas'],
+        ];
         $data = null;
         return view('pages.akun.form', [
             'page_title' => 'Tambah Akun',
-            'data' => $data
+            'data' => $data,
+            'jenis' => $jenis,
         ]);
     }
     public function edit($id)
     {
+        $jenis = [
+            ['kode' => 'AKTIVA_LANCAR', 'nama' => 'Aktiva Lancar'],
+            ['kode' => 'AKTIVA_TETAP', 'nama' => 'Aktiva Tetap'],
+            ['kode' => 'PASSIVA', 'nama' => 'Passiva'],
+            ['kode' => 'MODAL_EKUITAS', 'nama' => 'Modal Ekuitas'],
+        ];
         $data = Akun::find($id);
         return view('pages.akun.form', [
             'page_title' => 'Edit Akun',
-            'data' => $data
+            'jenis' => $jenis,
+            'data' => $data,
         ]);
     }
 
@@ -71,6 +85,7 @@ class akunController extends Controller
                 "kode_buku" => $request->kode_buku,
                 "name_akun" => $request->name_akun,
                 "klasifikasi_akun" => $request->klasifikasi_akun,
+                "jenis_akun" => $request->jenis_akun ?? null,
             );
 
             Akun::create($formdata);
@@ -89,6 +104,7 @@ class akunController extends Controller
                 "kode_buku" => $request->kode_buku,
                 "name_akun" => $request->name_akun,
                 "klasifikasi_akun" => $request->klasifikasi_akun,
+                "jenis_akun" => $request->jenis_akun ?? null,
             );
 
             Akun::whereId($id)->update($formdata);

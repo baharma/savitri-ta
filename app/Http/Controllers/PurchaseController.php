@@ -98,7 +98,7 @@ class PurchaseController extends Controller
             $formdata = array(
                 'user_id' => Auth::user()->id,
                 'tanggal_pengeluran' => $request->tanggal_pengeluran,
-                'nomor_pengeluaran' => $transaction_code,
+                'kode_pengeluaran' => $transaction_code,
                 'akun_id' => $request->akun_id,
                 'jenis_bayar' => $request->jenis_bayar,
                 'jenis_pengeluaran' => $request->jenis_pengeluaran,

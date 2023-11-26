@@ -17,7 +17,7 @@ return new class extends Migration
         Schema::create('pengeluarans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users')->nullable();
-            $table->string('nomor_pengeluaran')->nullable();
+            $table->string('kode_pengeluaran')->nullable();
             $table->date('tanggal_pengeluran')->nullable();
             $table->string('jenis_pengeluaran')->nullable();
             $table->double('total_pengeluaran')->nullable();

@@ -19,8 +19,8 @@
                         <thead>
                             <th>No Pengeluaran</th>
                             <th>Date</th>
-                            <th>Grand Total</th>
-                            <th>Payment Method</th>
+                            <th>Total</th>
+                            <th>Pembayaran</th>
                             <th width="10%">Action</th>
                         </thead>
                         <tbody>
@@ -42,8 +42,8 @@
             serverSide: true,
             ajax: "{{ route('purchase.getdata') }}",
             columns: [{
-                    data: 'nomor_pengeluaran',
-                    name: 'nomor_pengeluaran' 
+                    data: 'kode_pengeluaran',
+                    name: 'kode_pengeluaran' 
                 },
                 {
                     data: 'tanggal_pengeluran',

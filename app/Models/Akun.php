@@ -8,8 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Akun extends Model
 {
-    use HasFactory, HasUuids;
-    protected $table = "akuns";
+    use HasFactory;
 
     protected $guarded = [];
 }
