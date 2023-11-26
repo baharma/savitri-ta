@@ -102,7 +102,7 @@ class SalesController extends Controller
             'uniq_id' => $latest_data->id,
             'description' => 'Transaksi Penjualan Dengan Nomor Faktur' . ' ' . $latest_data->faktur_penjualan,
             'nominal' => $request->total_penjualan,
-            'akun' => ['1', '5']
+            'akun' => ['1', '7']
         );
 
         GenerateGL::createGL($akun1);
@@ -130,7 +130,7 @@ class SalesController extends Controller
                 'uniq_id' => $latest_data_piutang->id,
                 'description' => 'Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                 'nominal' => $request->total_tagihan,
-                'akun' => ['5', '4']
+                'akun' => ['2', '7']
             );
 
             GenerateGL::createGL($akun2);
@@ -140,7 +140,7 @@ class SalesController extends Controller
                     'uniq_id' => $latest_data_piutang->id,
                     'description' => 'Pembayaran Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                     'nominal' => $request->total_pembayaran,
-                    'akun' => ['5', '4']
+                    'akun' => ['1', '2']
                 );
 
                 GenerateGL::createGL($akun3);
@@ -149,7 +149,7 @@ class SalesController extends Controller
                     'uniq_id' => $latest_data_piutang->id,
                     'description' => 'Sisa Tagihan Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                     'nominal' => $request->sisa_tagihan,
-                    'akun' => ['5', '4']
+                    'akun' => ['2', '7']
                 );
 
                 GenerateGL::createGL($akun4);
@@ -197,10 +197,13 @@ class SalesController extends Controller
                 'uniq_id' => $latest_data->id,
                 'description' => 'Transaksi Penjualan Dengan Nomor Faktur' . ' ' . $latest_data->faktur_penjualan,
                 'nominal' => $request->total_penjualan,
-                'akun' => ['1', '5']
+                'akun' => ['1', '7']
+
             );
 
             GenerateGL::createGL($akun1);
+            Piutang::where('penjualan_id', $id)->delete();
+
 
             if ($request->is_receivables == 1) {
 
@@ -225,7 +228,7 @@ class SalesController extends Controller
                     'uniq_id' => $latest_data_piutang->id,
                     'description' => 'Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                     'nominal' => $request->total_tagihan,
-                    'akun' => ['5', '4']
+                    'akun' => ['2', '7']
                 );
 
                 GenerateGL::createGL($akun2);
@@ -235,7 +238,7 @@ class SalesController extends Controller
                         'uniq_id' => $latest_data_piutang->id,
                         'description' => 'Pembayaran Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                         'nominal' => $request->total_pembayaran,
-                        'akun' => ['5', '4']
+                        'akun' => ['1', '2']
                     );
 
                     GenerateGL::createGL($akun3);
@@ -244,7 +247,7 @@ class SalesController extends Controller
                         'uniq_id' => $latest_data_piutang->id,
                         'description' => 'Sisa Tagihan Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                         'nominal' => $request->sisa_tagihan,
-                        'akun' => ['5', '4']
+                        'akun' => ['2', '7']
                     );
 
                     GenerateGL::createGL($akun4);
@@ -261,87 +264,6 @@ class SalesController extends Controller
             return redirect()->back()->with('message', 'Terjadi Kesalahan pada line' . ' ' . $th->getLine());
         }
     }
-
-    // Create Jurnal
-    function createGLPiutang($data)
-    {
-        $dataJournal2 = [
-            "description" => "Transaksi Dari Invoice" . " " . $data->no_transaksi,
-            "akun_id" => [
-                "2",
-                "5",
-            ],
-            "debit" => [$data->sisa_tagihan, "0"],
-            "kredit" => ["0", $data->sisa_tagihan],
-            "nominal" => $data->sisa_tagihan,
-        ];
-
-        $glpiutang = new Journal;
-
-
-        $glpiutang->date = Carbon::now();
-        $glpiutang->description = $dataJournal2['description'];
-        $glpiutang->kode_jurnal = GenerateGL::journal();
-        $glpiutang->nominal = $dataJournal2['nominal'];
-        $glpiutang->uniq_id = $data->id;
-
-        $glpiutang->save();
-
-        $items = $dataJournal2['akun_id'];
-
-        foreach ($items as $key => $value) {
-            JournalItem::insert([
-                'journal_id' => $glpiutang->id,
-                'user_id' => Auth::user()->id,
-                'debit' => floatval($dataJournal2['debit'][$key]),
-                'kredit' => floatval($dataJournal2['kredit'][$key]),
-                'akun_id' => $dataJournal2['akun_id'][$key],
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-                'uniq_id' => $data->id
-            ]);
-        }
-    }
-
-    function createGLTransaction($data)
-    {
-        $dataJournal1 = [
-            "description" => "Transaksi Dari Invoice" . " " . $data->faktur_penjualan,
-            "akun_id" => [
-                "1",
-                "5",
-            ],
-            "debit" => [$data->total_penjualan, "0"],
-            "kredit" => ["0", $data->total_penjualan],
-            "nominal" => $data->total_penjualan,
-        ];
-
-        $gltransaksi = new Journal;
-        $gltransaksi->date = Carbon::now();
-        $gltransaksi->description = $dataJournal1['description'];
-        $gltransaksi->kode_jurnal = GenerateGL::journal();
-        $gltransaksi->nominal = $dataJournal1['nominal'];
-        $gltransaksi->uniq_id = $data->id;
-
-        $gltransaksi->save();
-
-        $items = $dataJournal1['akun_id'];
-
-        foreach ($items as $key => $value) {
-            JournalItem::insert([
-                'journal_id' => $gltransaksi->id,
-                'user_id' => Auth::user()->id,
-                'debit' => floatval($dataJournal1['debit'][$key]),
-                'kredit' => floatval($dataJournal1['kredit'][$key]),
-                'akun_id' => $dataJournal1['akun_id'][$key],
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-                'uniq_id' => $data->id
-
-            ]);
-        }
-    }
-
 
 
     public function delete($id)

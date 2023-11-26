@@ -39,5 +39,4 @@
     </div>
 </div>
 
-@include('pages.component-boostrap.modal-laporan')
 @endsection

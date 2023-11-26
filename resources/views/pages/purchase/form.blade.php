@@ -41,7 +41,7 @@
                             
                             <div class="form-group col-md-6">
                                 <label>Total Pengeluaran</label>
-                                <input type="number" name="total_pengeluaran" id="total_price" value="{{$data->total_pengeluaran ?? ''}}"
+                                <input type="number" name="total_pengeluaran" value="{{$data->total_pengeluaran ?? ''}}"
                                     class="form-control total_price" placeholder="" required>
                             </div>
                             <div class="form-group col-md-6">
@@ -87,9 +87,19 @@
                                     class="form-control myDate">
                             </div>
                             <div class="form-group col-md-4">
-                                <label>Total Hutang</label>
-                                <input type="number" name="total_transaksi_hutang" value="{{$data->debt->total_transaksi_hutang ?? ''}}"
-                                    class="form-control sisa_bayar" placeholder="">
+                                <label>Total Tagihan</label>
+                                <input type="number" readonly id="total_tagihan" name="total_transaksi_hutang" value="{{$data->debt->total_transaksi_hutang ?? ''}}"
+                                    class="form-control" placeholder="">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Total Pembayaran</label>
+                                <input type="number" name="total_pembayaran" value="{{$data->debt->total_pembayaran ?? ''}}"
+                                    class="form-control total_pembayaran" id="total_bayar" placeholder="">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label>Sisa Pembayaran</label>
+                                <input type="number" readonly name="sisa_pembayaran" value="{{$data->debt->sisa_pembayaran ?? ''}}"
+                                    class="form-control sisa_tagihan" id="sisa_bayar" placeholder="">
                             </div>
                            
                         </div>
@@ -112,15 +122,15 @@
         $('.myDate').val(currentDate);
 
         function hitungTotal() {
-            
-
-           var total =  $('.total_price').val();
-            $('.sisa_bayar').val(total);
-
+            var total_bayar = $('#total_bayar').val();
+            var total_tagihan = $('.total_price').val();
+            var totalsemua = total_tagihan -  total_bayar
+            $('#sisa_bayar').val(totalsemua);
+            $('#total_tagihan').val(total_tagihan);
         }
 
         // Panggil fungsi hitungTotal saat nilai qty atau price berubah
-        $('#is_debt, #total_price').on('input', function() {
+        $('#is_debt, #total_bayar, .total_price').on('input', function() {
             hitungTotal();
         });
 

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Akun;
+use App\Models\JournalItem;
 use App\Models\LabaRugi;
 use App\Models\Pengeluaran;
 use App\Models\Penjualan;
@@ -23,13 +25,22 @@ class dashboardController extends Controller
         $expense = Pengeluaran::query();
         $receivable = Piutang::query();
 
-        $month = Carbon::now()->format('m');
-        $year = Carbon::now()->format('Y');
+        $coa = Akun::all();
+        $journal = JournalItem::all();
+
+        $pendapatan = $coa->where('klasifikasi_akun', 'Pendapatan')->first();
+        $beban = $coa->where('klasifikasi_akun', 'Beban')->values();
+
+        $totalPendapatan = JournalItem::where('akun_id', $pendapatan->id)->sum('kredit');
+        $totalBeban = 0;
+
+        foreach ($beban as $key => $value) {
+            $valus = JournalItem::where('akun_id', $value->id)->sum('kredit');
+
+            $totalBeban += $valus;
+        }
 
         $days = [];
-        $salesChart = [];
-        $receivableChart = [];
-        $debtChart = [];
 
 
         for ($i = 1; $i <= $daysMonth; $i++) {
@@ -47,8 +58,7 @@ class dashboardController extends Controller
             ];
         }
 
-
-        $profitloss = 0;
+        $profitloss = $totalPendapatan - $totalBeban;
         $datasales = Penjualan::orderBy('created_at', 'DESC')->limit(5)->get();
 
         return view('dashboard', [

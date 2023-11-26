@@ -10,8 +10,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Pengeluaran extends Model
 {
-    use HasFactory, HasUuids;
-    protected $table = "pengeluarans";
+    use HasFactory;
 
     protected $guarded = [];
 
@@ -23,15 +22,5 @@ class Pengeluaran extends Model
     public function debt(): HasOne
     {
         return $this->hasOne(Hutang::class, 'pengeluaran_id');
-    }
-
-    public function User()
-    {
-        return $this->hasMany(User::class, 'user_id', 'id');
-    }
-
-    public function Hutangs()
-    {
-        return $this->hasMany(Hutang::class, 'id', 'pengeluaran_id');
     }
 }

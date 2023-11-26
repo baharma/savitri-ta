@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('hutangs', function (Blueprint $table) {
-            $table->uuid('id')->primary();
+            $table->id();
             $table->foreignId('user_id')->nullable();
             $table->string('no_transaksi_hutang')->nullable();
             $table->date('tgl_transaksi_hutang')->nullable();
@@ -22,7 +22,9 @@ return new class extends Migration
             $table->double('total_transaksi_hutang')->nullable();
             $table->longText('description')->nullable();
             $table->string('status_pembayaran')->nullable();
-            $table->foreignUuid('pengeluaran_id')->references('id')->on('pengeluarans')->nullable();
+            $table->string('sisa_pembayaran')->nullable();
+            $table->string('total_pembayaran')->nullable();
+            $table->foreignId('pengeluaran_id')->references('id')->on('pengeluarans')->nullable();
             $table->timestamps();
         });
     }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Helper\GenerateGL;
 use App\Models\Customer;
+use App\Models\Hutang;
 use App\Models\Journal;
 use App\Models\JournalItem;
 use App\Models\Piutang;
@@ -13,19 +14,19 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Yajra\DataTables\Facades\DataTables;
 
-class ReceivableController extends Controller
+class DebtController extends Controller
 {
     public function index()
     {
-        return view('pages.penjualan.piutang.index', [
-            'page_title' => 'Piutang'
+        return view('pages.purchase.hutang.index', [
+            'page_title' => 'Hutang'
         ]);
     }
 
     public function getdata()
     {
 
-        $data = Piutang::with(['penjualans'])->get();
+        $data = Hutang::with(['pengeluaran'])->get();
         return DataTables::of($data)
             ->addColumn('action', function ($data) {
                 $action = '';
@@ -34,19 +35,19 @@ class ReceivableController extends Controller
                 $action .= '</button>';
                 $action .= '<div class="dropdown-menu">';
                 $action .= '<h6 class="dropdown-header tx-uppercase tx-12 tx-bold tx-inverse">Action Menu</h6>';
-                $action .= '<a class="dropdown-item" href="' . route('receivable.edit', $data->id) . '">Bayar Piutang</a>';
+                $action .= '<a class="dropdown-item" href="' . route('debt.edit', $data->id) . '">Bayar Hutang</a>';
                 $action .= '</div>';
                 $action .= '</div>';
 
 
-                if (intval($data->sisa_tagihan) != 0) {
+                if (intval($data->sisa_pembayaran) != 0) {
                     return $action;
                 } else {
                     return '-';
                 }
             })
-            ->addColumn('no_faktur_penjualan', function ($data) {
-                return $data->penjualans->faktur_penjualan ?? '';
+            ->addColumn('nomor_pengeluaran', function ($data) {
+                return $data->pengeluaran->nomor_pengeluaran ?? '';
             })
             ->editColumn('created_at', function ($data) {
                 if ($data->created_at != null) {
@@ -60,28 +61,25 @@ class ReceivableController extends Controller
     public function create($id)
     {
         $data = null;
-        $customer = Customer::where('is_allow_debt', 1)->get();
-        return view('pages.penjualan.piutang.form', [
-            'page_title' => 'Pembayaran Piutang',
+        return view('pages.purchase.hutang.form', [
+            'page_title' => 'Pembayaran Hutang',
             'data' => $data,
-            'customer' => $customer,
         ]);
     }
 
     public function edit($id)
     {
-        $data = Piutang::find($id);
-        $customer = Customer::where('is_allow_debt', 1)->get();
-        return view('pages.penjualan.piutang.form', [
-            'page_title' => 'Pembayaran Piutang',
+        $data = Hutang::find($id);
+        return view('pages.purchase.hutang.form', [
+            'page_title' => 'Pembayaran Hutang',
             'data' => $data,
-            'customer' => $customer,
         ]);
     }
 
 
     public function store(Request $request)
     {
+        //  Aaa
     }
 
     public function update(Request $request, $id)
@@ -89,21 +87,21 @@ class ReceivableController extends Controller
         DB::beginTransaction();
         try {
 
-            $data = Piutang::with(['penjualans'])->whereId($id)->first();
+            $data = Hutang::with(['pengeluaran'])->whereId($id)->first();
 
             $formdata = array(
                 'total_pembayaran' => $request->total_pembayaran + $data->total_pembayaran,
-                'sisa_tagihan' => $request->sisa_tagihan,
-                'status_pembayaran' => $request->sisa_tagihan == 0 ? 'PAID' : 'PENDING'
+                'sisa_pembayaran' => $request->sisa_pembayaran,
+                'status_pembayaran' => $request->sisa_pembayaran == 0 ? 'PAID' : 'PENDING'
             );
 
-            Piutang::whereId($id)->update($formdata);
+            Hutang::whereId($id)->update($formdata);
 
             $akun2 = array(
                 'uniq_id' => $data->id,
-                'description' => 'Pembayaran Piutang Penjualan Dengan Nomor Faktur' . ' ' . $data->no_transaksi,
+                'description' => 'Pembayaran Hutang Dengan Nomor Faktur' . ' ' . $data->no_transaksi,
                 'nominal' => $request->total_pembayaran,
-                'akun' => ['1', '2']
+                'akun' => ['5', '4']
             );
 
             GenerateGL::createGL($akun2);
@@ -111,9 +109,9 @@ class ReceivableController extends Controller
             if ($request->sisa_tagihan != 0) {
                 $akun1 = array(
                     'uniq_id' => $data->id,
-                    'description' => 'Sisa Tagihan Piutang Penjualan Dengan Nomor Faktur' . ' ' . $data->no_transaksi,
+                    'description' => 'Sisa Tagihan Hutang Dengan Nomor Faktur' . ' ' . $data->no_transaksi,
                     'nominal' => $request->sisa_tagihan,
-                    'akun' => ['2', '7']
+                    'akun' => ['5', '4']
                 );
 
                 GenerateGL::createGL($akun1);
@@ -123,7 +121,7 @@ class ReceivableController extends Controller
 
             DB::commit();
 
-            return redirect()->route('receivable.index')->with('message', 'Data Akun Berhasil Di Simpan !');
+            return redirect()->route('debt.index')->with('message', 'Data Akun Berhasil Di Simpan !');
         } catch (\Throwable $th) {
             DB::rollBack();
             return redirect()->back()->with('message', 'Terjadi Kesalahan pada line' . ' ' . $th->getLine());

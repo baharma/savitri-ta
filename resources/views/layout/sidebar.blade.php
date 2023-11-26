@@ -33,7 +33,7 @@
                     <h6 class="collapse-header">Data :</h6>
                     <a class="collapse-item" href="{{route('sales.index')}}">Penjualan</a>
                     <a class="collapse-item" href="{{route('purchase.index')}}">Pengeluaran</a>
-                    <a class="collapse-item" href="{{route('hutang.index')}}">Hutang</a>
+                    <a class="collapse-item" href="{{route('debt.index')}}">Hutang</a>
                     <a class="collapse-item" href="{{route('receivable.index')}}">Piutang</a>
                 </div>
             </div>
