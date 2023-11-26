@@ -47,11 +47,11 @@
             <tr>
                 <td width="20%"></td>
                 <td>{{$pendapatan->name_akun}}</td>
-                <td>{{$totalPen}}</td>
+                <td>{{'Rp.' . ' ' . number_format($totalPen, 0, ',', '.')}}</td>
             </tr>
             <tr>
                 <td colspan="3">Total Pendapatan</td>
-                <td>{{$totalPen}}</td>
+                <td>{{'Rp.' . ' ' . number_format($totalPen, 0, ',', '.')}}</td>
             </tr>
             <tr>
                 <td colspan="4">{{$beban->isNotEmpty() ? $beban[0]->klasifikasi_akun : ''}}</td>
@@ -66,18 +66,18 @@
                     $total = $data->where('akun_id', $item->id)->sum('debit');
                     $totalBeban += $total;
                     @endphp
-                    {{$total ?? 0}}
+                    {{'Rp.' . ' ' . number_format($total, 0, ',', '.')}}
                 </td>
                 <td></td>
             </tr>
             @endforeach
             <tr>
                 <td colspan="3">Total Beban</td>
-                <td>{{$totalBeban}}</td>
+                <td>{{'Rp.' . ' ' . number_format($totalBeban, 0, ',', '.')}}</td>
             </tr>
             <tr>
                 <td colspan="3">Total Laba Bersih</td>
-                <td>{{$totalPen - $totalBeban}}</td>
+                <td>{{'Rp.' . ' ' . number_format($totalPen - $totalBeban, 0, ',', '.')}}</td>
             </tr>
         </tbody>
     </table>

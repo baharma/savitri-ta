@@ -44,6 +44,9 @@ class PurchaseController extends Controller
 
                 return $action;
             })
+            ->editColumn('total_pengeluaran', function ($data) {
+                return $this->currencyIDR($data->total_pengeluaran);
+            })
             ->addColumn('nomor_pengeluaran', function ($data) {
                 return $data->pengeluaran->nomor_pengeluaran ?? '';
             })

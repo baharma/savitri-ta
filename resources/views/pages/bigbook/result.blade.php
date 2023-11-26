@@ -16,11 +16,11 @@
                         <p>Akun : {{$parent->name_akun}}</p>
                         <table class="table table-bordered">
                         <thead>
-                            <th width="20%">Tanggal</th>
-                            <th width="40%">Keterangan</th>
+                            <th width="15%">Tanggal</th>
+                            <th width="30%">Keterangan</th>
                             <th width="15%">Debet</th>
                             <th width="15%">Kredit</th>
-                            <th width="10%">Saldo</th>
+                            <th width="20%">Saldo</th>
                         </thead>
                         <tbody>
                             @php
@@ -31,10 +31,10 @@
                             @if ($parent->id == $item->akun_id)
                                 
                                 <tr>
-                                    <td>{{$item->created_at}}</td>
+                                    <td>{{Carbon\Carbon::parse($item->created_at)->format('Y-m-d')}}</td>
                                     <td>{{$item->journal->description}}</td>
-                                    <td>{{$item->debit}}</td>
-                                    <td>{{$item->kredit}}</td>
+                                    <td>{{'Rp.' . ' ' . number_format($item->debit, 0, ',', '.')}}</td>
+                                    <td>{{'Rp.' . ' ' . number_format($item->kredit, 0, ',', '.')}}</td>
                                     @php
                                     if($item->akun_id == 4 || $item->akun_id == 5 ){
                                         $totalsaldo += $item->kredit;
@@ -43,7 +43,7 @@
                                     }
                                     
                                     @endphp
-                                    <td>{{$totalsaldo}}</td>
+                                    <td>{{'Rp.' . ' ' . number_format($totalsaldo, 0, ',', '.')}}</td>
                                 </tr>
                                 
                             @endif
@@ -56,7 +56,7 @@
                                 <td colspan="2">Saldo Akhir</td>
                                     <td></td>
                                     <td></td>
-                                    <td>{{$totalsaldo}}</td>
+                                    <td>{{'Rp.' . ' ' . number_format($totalsaldo, 0, ',', '.')}}</td>
                             </tr>
                         </tfoot>
                     </table>

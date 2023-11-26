@@ -42,6 +42,9 @@ class JournalController extends Controller
 
                 return $action;
             })
+            ->editColumn('nominal', function ($data) {
+                return $this->currencyIDR($data->nominal);
+            })
             ->editColumn('date', function ($data) {
                 if ($data->date != null) {
                     $date = Carbon::parse($data->date)->format('Y-m-d');

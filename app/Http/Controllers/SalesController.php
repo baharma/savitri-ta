@@ -41,6 +41,9 @@ class SalesController extends Controller
 
                 return $action;
             })
+            ->editColumn('total_penjualan', function ($data) {
+                return $this->currencyIDR($data->total_penjualan);
+            })
 
             ->editColumn('tanggal_penjualan', function ($data) {
                 if ($data->created_at != null) {

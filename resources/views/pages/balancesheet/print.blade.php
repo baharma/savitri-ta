@@ -55,7 +55,7 @@
                                 @php
                                     $totalAktiva += $val['total'];
                                 @endphp
-                                <td>{{$val['total']}}</td>
+                                <td>{{'Rp.' . ' ' . number_format($val['total'], 0, ',', '.')}}</td>
                             </tr>
                             @endforeach
                             
@@ -78,7 +78,7 @@
                                 @php
                                     $totalPassiva += $val['total'];
                                 @endphp
-                                <td>{{$val['total']}}</td>
+                                <td>{{'Rp.' . ' ' . number_format($val['total'], 0, ',', '.')}}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -135,7 +135,7 @@
                         <tbody>
                             <tr>
                                 <td>Total Aktiva</td>
-                                <td>{{$totalAktiva}}</td>
+                                <td>{{'Rp.' . ' ' . number_format($totalAktiva, 0, ',', '.')}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -147,7 +147,7 @@
                             
                             <tr>
                                 <td>Total Passiva</td>
-                                <td>{{$totalPassiva}}</td>
+                                <td>{{'Rp.' . ' ' . number_format($totalPassiva, 0, ',', '.')}}</td>
                             </tr>
                         </tbody>
                     </table>

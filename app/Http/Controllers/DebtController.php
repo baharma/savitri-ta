@@ -49,6 +49,15 @@ class DebtController extends Controller
             ->addColumn('nomor_pengeluaran', function ($data) {
                 return $data->pengeluaran->nomor_pengeluaran ?? '';
             })
+            ->editColumn('total_transaksi_hutang', function ($data) {
+                return $this->currencyIDR($data->total_transaksi_hutang);
+            })
+            ->editColumn('total_pembayaran', function ($data) {
+                return $this->currencyIDR($data->total_pembayaran);
+            })
+            ->editColumn('sisa_pembayaran', function ($data) {
+                return $this->currencyIDR($data->sisa_pembayaran);
+            })
             ->editColumn('created_at', function ($data) {
                 if ($data->created_at != null) {
                     $date = Carbon::createFromFormat('Y-m-d H:i:s', $data->created_at);

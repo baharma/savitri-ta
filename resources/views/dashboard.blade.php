@@ -114,7 +114,7 @@
                                 <td>{{$key + 1}}</td>
                                 <td>{{$item->faktur_penjualan}}</td>
                                 <td>{{$item->nama_barang}}</td>
-                                <td>{{$item->total_penjualan}}</td>
+                                <td>{{'Rp.'.' '.number_format($item->total_penjualan, 0, ',', '.')}}</td>
                                 <td>{{$item->jenis_pembayarang}}</td>
                             </tr>
                             @endforeach

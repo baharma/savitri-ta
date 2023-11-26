@@ -62,11 +62,11 @@ class dashboardController extends Controller
         $datasales = Penjualan::orderBy('created_at', 'DESC')->limit(5)->get();
 
         return view('dashboard', [
-            'sales' => $sales->sum('total_penjualan'),
-            'expense' => $expense->sum('total_pengeluaran'),
-            'receivable' => $receivable->sum('sisa_tagihan'),
-            'profitloss' => $profitloss,
-            'datasales' => $datasales,
+            'sales' => $this->currencyIDR($sales->sum('total_penjualan')),
+            'expense' => $this->currencyIDR($expense->sum('total_pengeluaran')),
+            'receivable' => $this->currencyIDR($receivable->sum('sisa_tagihan')),
+            'profitloss' => $this->currencyIDR($profitloss),
+            'datasales' =>  $datasales,
             'days' => $days
         ]);
     }
