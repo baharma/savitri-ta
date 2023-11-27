@@ -77,7 +77,7 @@
                                 <div class="row">
                                     
                                     <div class="form-group col-md-6">
-                                <label>Tanggal Piutang</label>
+                                <label>Tanggal Hutang</label>
                                 <input type="date" name="tgl_transaksi_hutang" value="{{$data->debt->tgl_transaksi_hutang ?? ''}}"
                                     class="form-control myDate">
                             </div>

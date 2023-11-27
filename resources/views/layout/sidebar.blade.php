@@ -58,7 +58,7 @@
                 <i class="bi bi-filetype-pdf"></i>
                 <span>Laporan</span></a>
         </li>
-                <li class="nav-item">
+        <li class="nav-item">
             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities2"
                 aria-expanded="true" aria-controls="collapseUtilities2">
                 <i class="bi bi-wallet-fill"></i>
@@ -86,7 +86,7 @@
                 <span>Master Data</span>
             </a>
             <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities"
-                data-parent="#accordionSidebar2">
+                data-parent="#accordionSidebar">
                 <div class="bg-white py-2 collapse-inner rounded">
                     <a class="collapse-item" href="{{route('user.index')}}">User</a>
                 </div>
