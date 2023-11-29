@@ -9,7 +9,15 @@
     <meta name="description" content="">
     <meta name="author" content="">
     <style>
-
+        .form-control-user {
+        font-size: 0.95rem !important;
+        border-radius: 10rem;
+        padding: 1.5rem 1rem;
+        }
+        body{
+            background-image: url("{{asset('loginbg.jpg')}}");
+            background-position: center;
+        }
     </style>
 
     <title>Login</title>
@@ -25,12 +33,7 @@
     @include('sweetalert::alert')
 </head>
 
-<body class="" style="
-background-image: url('https://media.discordapp.net/attachments/1070973998634119248/1175321652100345876/WhatsApp_Image_2023-11-17_at_20.56.36_a768adb8.jpg?ex=656ace96&is=65585996&hm=9c091684f77d3e46ec242964770020efa5006ce9ca6f6df05c4771879e70bf72&=');
-background-size: cover;
-background-position: center;
-backdrop-filter: blur(5px);
-">
+<body class="">
     <div class="container">
         @include('vendor.sweetalert.sweetalert2')
         <!-- Outer Row -->
