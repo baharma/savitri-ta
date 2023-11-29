@@ -34,13 +34,6 @@ class COASeeder extends Seeder
             ],
             [
                 "id_user" => 1,
-                "kode_buku" => "1-1900",
-                "name_akun" => "Persediaan Barang",
-                "klasifikasi_akun" => "Aktiva",
-                "jenis_akun" => "AKTIVA_LANCAR"
-            ],
-            [
-                "id_user" => 1,
                 "kode_buku" => "1-1300",
                 "name_akun" => "Peralatan",
                 "klasifikasi_akun" => "Aktiva",
@@ -101,6 +94,13 @@ class COASeeder extends Seeder
                 "name_akun" => "Beban Gaji",
                 "klasifikasi_akun" => "Beban",
                 "jenis_akun" => null
+            ],
+            [
+                "id_user" => 1,
+                "kode_buku" => "1-1900",
+                "name_akun" => "Persediaan Barang",
+                "klasifikasi_akun" => "Aktiva",
+                "jenis_akun" => "AKTIVA_LANCAR"
             ],
         ]);
     }
