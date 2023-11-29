@@ -38,6 +38,7 @@
                             <div class="form-group col-md-12">
                                 <label>Jenis Akun</label>
                                 <select name="jenis_akun" id="" class="form-control">
+                                    <option value="">--- Pilih Satu ---</option>
                                     @foreach ($jenis as $key => $value)
                                         <option value="{{$value['kode']}}" {{$data != null && $data->jenis_akun == $value['kode'] ? 'selected':''}}>{{$value['nama']}}</option>
                                     @endforeach

@@ -36,8 +36,13 @@
                                     <td>{{'Rp.' . ' ' . number_format($item->debit, 0, ',', '.')}}</td>
                                     <td>{{'Rp.' . ' ' . number_format($item->kredit, 0, ',', '.')}}</td>
                                     @php
-                                    if($item->akun_id == 4 || $item->akun_id == 5 ){
-                                        $totalsaldo += $item->kredit;
+                                    if($item->akun_id == 4 || $item->akun_id == 6 || $item->akun_id == 5 || $item->akun_id == 7 ){
+                                        if($item->debit != 0){
+                                            $totalsaldo += (-1 * $item->debit) + $item->kredit;
+                                        }else{
+                                            $totalsaldo += $item->kredit;
+                                        }
+                                        
                                     }else{
                                         $totalsaldo += $item->debit - $item->kredit;
                                     }

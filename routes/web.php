@@ -7,6 +7,7 @@ use App\Http\Controllers\BukuBesarController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\dashboardController;
 use App\Http\Controllers\DebtController;
+use App\Http\Controllers\ExpenseReportController;
 use App\Http\Controllers\HutangController;
 use App\Http\Controllers\JournalController;
 use App\Http\Controllers\JurnalController;
@@ -19,6 +20,7 @@ use App\Http\Controllers\ProfitLossReportController;
 use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\ReceivableController;
 use App\Http\Controllers\SalesController;
+use App\Http\Controllers\SalesReportController;
 use App\Http\Controllers\UsersController;
 use App\Models\Akun;
 use Illuminate\Support\Facades\Auth;
@@ -91,6 +93,14 @@ Route::middleware(['auth'])->group(function () {
     });
 
     Route::controller(ProfitLossReportController::class)->name('profitloss.')->prefix('profitloss')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/get-data', 'getdata')->name('getdata');
+    });
+    Route::controller(SalesReportController::class)->name('sales.report.')->prefix('sales-report')->group(function () {
+        Route::get('/', 'index')->name('index');
+        Route::get('/get-data', 'getdata')->name('getdata');
+    });
+    Route::controller(ExpenseReportController::class)->name('expense.report.')->prefix('expense-report')->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/get-data', 'getdata')->name('getdata');
     });

@@ -10,7 +10,7 @@
             <i class="bi bi-file-earmark-fill text-center" style="font-size: 100px;"></i>
             <div class="card-body text-center">
               <h6>Laporan Penjualan</h6>
-              <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalPenjualan">Cetak Laporan</a>
+              <a href="{{route('sales.report.index')}}" class="btn btn-primary" >Cetak Laporan</a>
             </div>
           </div>
 
@@ -18,7 +18,7 @@
             <i class="bi bi-file-earmark-fill text-center" style="font-size: 100px;"></i>
             <div class="card-body text-center">
               <h6>Laporan Pengeluaran</h6>
-              <a href="#" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalpengeluaran">Cetak Laporan</a>
+              <a href="{{route('expense.report.index')}}" class="btn btn-primary">Cetak Laporan</a>
             </div>
           </div>
 
