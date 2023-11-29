@@ -78,7 +78,7 @@
                                 @php
                                     $totalPassiva += $val['total'];
                                 @endphp
-                                <td>{{'Rp.' . ' ' . number_format($val['total'], 0, ',', '.')}}</td>
+                                <td>{{'Rp.' . ' ' . number_format($val['total'] * -1, 0, ',', '.')}}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -100,7 +100,7 @@
                                 @php
                                     $totalAktiva += $val['total'];
                                 @endphp
-                                <td>{{$val['total']}}</td>
+                                <td>{{'Rp.' . ' ' . number_format($val['total'], 0, ',', '.')}}</td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -113,7 +113,7 @@
                     <table class="table table-bordered">
                         <tbody>
                             <tr>
-                                <td>Modal Ekuitas</td>
+                                <td>Ekuitas</td>
                                 <td></td>
                             </tr>
                             @foreach ($modal_ekuitas_val as $key => $val)
@@ -122,9 +122,14 @@
                                 @php
                                     $totalPassiva += $val['total']*-1;
                                 @endphp
-                                <td>{{$val['total'] * -1}}</td>
+                                <td>{{'Rp.' . ' ' . number_format($val['total'] * -1, 0, ',', '.')}}</td>
                             </tr>
                             @endforeach
+                            <tr>
+                                <td>Laba Ditahan</td>
+                                
+                                <td>{{'Rp.' . ' ' . number_format($totalAktiva - $totalPassiva, 0, ',', '.')}}</td>
+                            </tr>
                         </tbody>
                     </table>
                 </td>
@@ -147,7 +152,7 @@
                             
                             <tr>
                                 <td>Total Passiva</td>
-                                <td>{{'Rp.' . ' ' . number_format($totalPassiva, 0, ',', '.')}}</td>
+                                <td>{{'Rp.' . ' ' . number_format($totalPassiva + ($totalAktiva - $totalPassiva), 0, ',', '.')}}</td>
                             </tr>
                         </tbody>
                     </table>

@@ -110,7 +110,7 @@ class DebtController extends Controller
                 'uniq_id' => $data->id,
                 'description' => 'Pembayaran Hutang Dengan Nomor Faktur' . ' ' . $data->no_transaksi,
                 'nominal' => $request->total_pembayaran,
-                'akun' => ['5', '4']
+                'akun' => ['5', '1']
             );
 
             GenerateGL::createGL($akun2);
@@ -120,7 +120,7 @@ class DebtController extends Controller
                     'uniq_id' => $data->id,
                     'description' => 'Sisa Tagihan Hutang Dengan Nomor Faktur' . ' ' . $data->no_transaksi,
                     'nominal' => $request->sisa_tagihan,
-                    'akun' => ['5', '4']
+                    'akun' => ['5', '1']
                 );
 
                 GenerateGL::createGL($akun1);

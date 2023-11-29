@@ -28,6 +28,21 @@ class BalanceSheetReportController extends Controller
         $aktiva_tetap_val = [];
         $modal_ekuitas_val = [];
 
+        $pendapatan = $coa->where('klasifikasi_akun', 'Pendapatan')->first();
+        $beban = $coa->where('klasifikasi_akun', 'Beban')->values();
+
+
+        $totalPendapatan = JournalItem::where('akun_id', $pendapatan->id)->sum('kredit');
+        $totalBeban = 0;
+
+        foreach ($beban as $key => $value) {
+            $valus = JournalItem::where('akun_id', $value->id)->sum('kredit');
+
+            $totalBeban += $valus;
+        }
+
+        $profitloss = $totalPendapatan - $totalBeban;
+
 
         // Create AKTIVA LANCAR
         foreach ($coa->where('jenis_akun', 'AKTIVA_LANCAR') as $key => $value) {
@@ -87,6 +102,7 @@ class BalanceSheetReportController extends Controller
             'page_title' => 'Hasil Neraca Saldo',
             'aktiva_lancar' => $aktiva_lancar,
             'passiva' => $passiva,
+            'profitloss' => $profitloss,
             'aktiva_tetap_val' => $aktiva_tetap_val,
             'modal_ekuitas_val' => $modal_ekuitas_val,
         ]);
