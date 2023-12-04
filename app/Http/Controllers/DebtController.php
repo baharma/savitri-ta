@@ -110,6 +110,7 @@ class DebtController extends Controller
                 'uniq_id' => $data->id,
                 'description' => 'Pembayaran Hutang Dengan Nomor Faktur' . ' ' . $data->no_transaksi,
                 'nominal' => $request->total_pembayaran,
+                'date' => Carbon::now()->format('Y-m-d'),
                 'akun' => ['5', '1']
             );
 
@@ -120,6 +121,7 @@ class DebtController extends Controller
                     'uniq_id' => $data->id,
                     'description' => 'Sisa Tagihan Hutang Dengan Nomor Faktur' . ' ' . $data->no_transaksi,
                     'nominal' => $request->sisa_tagihan,
+                    'date' => Carbon::now()->format('Y-m-d'),
                     'akun' => ['5', '1']
                 );
 

@@ -20,6 +20,7 @@ class GenerateGL
         $dataJournal2 = [
             "description" => $data['description'],
             "akun_id" => $data['akun'],
+            "date" => $data['date'],
             "debit" => [$data['nominal'], "0"],
             "kredit" => ["0", $data['nominal']],
             "nominal" => $data['nominal'],
@@ -45,6 +46,7 @@ class GenerateGL
                 'debit' => floatval($dataJournal2['debit'][$key]),
                 'kredit' => floatval($dataJournal2['kredit'][$key]),
                 'akun_id' => $dataJournal2['akun_id'][$key],
+                "date" => $data['date'],
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
                 'uniq_id' => $data['uniq_id'],

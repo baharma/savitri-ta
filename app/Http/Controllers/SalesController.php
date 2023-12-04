@@ -105,6 +105,7 @@ class SalesController extends Controller
             'uniq_id' => $latest_data->id,
             'description' => 'Transaksi Penjualan Dengan Nomor Faktur' . ' ' . $latest_data->faktur_penjualan,
             'nominal' => $request->total_penjualan,
+            'date' => $request->tanggal_penjualan,
             'akun' => ['1', '7']
         );
 
@@ -133,6 +134,7 @@ class SalesController extends Controller
                 'uniq_id' => $latest_data_piutang->id,
                 'description' => 'Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                 'nominal' => $request->total_tagihan,
+                'date' => $request->tgl_transaksi_piutang,
                 'akun' => ['2', '7']
             );
 
@@ -143,6 +145,7 @@ class SalesController extends Controller
                     'uniq_id' => $latest_data_piutang->id,
                     'description' => 'Pembayaran Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                     'nominal' => $request->total_pembayaran,
+                    'date' => $request->tgl_transaksi_piutang,
                     'akun' => ['1', '2']
                 );
 
@@ -151,6 +154,7 @@ class SalesController extends Controller
                 $akun4 = array(
                     'uniq_id' => $latest_data_piutang->id,
                     'description' => 'Sisa Tagihan Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
+                    'date' => $request->tgl_transaksi_piutang,
                     'nominal' => $request->sisa_tagihan,
                     'akun' => ['2', '7']
                 );
@@ -200,6 +204,7 @@ class SalesController extends Controller
                 'uniq_id' => $latest_data->id,
                 'description' => 'Transaksi Penjualan Dengan Nomor Faktur' . ' ' . $latest_data->faktur_penjualan,
                 'nominal' => $request->total_penjualan,
+                'date' => $request->tanggal_penjualan,
                 'akun' => ['1', '7']
 
             );
@@ -231,6 +236,7 @@ class SalesController extends Controller
                     'uniq_id' => $latest_data_piutang->id,
                     'description' => 'Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                     'nominal' => $request->total_tagihan,
+                    'date' => $request->tgl_transaksi_piutang,
                     'akun' => ['2', '7']
                 );
 
@@ -241,6 +247,7 @@ class SalesController extends Controller
                         'uniq_id' => $latest_data_piutang->id,
                         'description' => 'Pembayaran Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                         'nominal' => $request->total_pembayaran,
+                        'date' => $request->tgl_transaksi_piutang,
                         'akun' => ['1', '2']
                     );
 
@@ -250,6 +257,7 @@ class SalesController extends Controller
                         'uniq_id' => $latest_data_piutang->id,
                         'description' => 'Sisa Tagihan Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                         'nominal' => $request->sisa_tagihan,
+                        'date' => $request->tgl_transaksi_piutang,
                         'akun' => ['2', '7']
                     );
 

@@ -112,6 +112,7 @@ class ReceivableController extends Controller
                 'uniq_id' => $data->id,
                 'description' => 'Pembayaran Piutang Penjualan Dengan Nomor Faktur' . ' ' . $data->no_transaksi,
                 'nominal' => $request->total_pembayaran,
+                'date' => Carbon::now()->format('Y-m-d'),
                 'akun' => ['1', '2']
             );
 
@@ -122,6 +123,7 @@ class ReceivableController extends Controller
                     'uniq_id' => $data->id,
                     'description' => 'Sisa Tagihan Piutang Penjualan Dengan Nomor Faktur' . ' ' . $data->no_transaksi,
                     'nominal' => $request->sisa_tagihan,
+                    'date' => Carbon::now()->format('Y-m-d'),
                     'akun' => ['2', '7']
                 );
 
