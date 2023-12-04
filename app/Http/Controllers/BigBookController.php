@@ -21,8 +21,7 @@ class BigBookController extends Controller
         $end = $request->end_date;
 
         $coa = Akun::all();
-        return JournalItem::all();
-        // $data = JournalItem::orderBy('date', 'ASC')->with(['journal', 'coa'])->whereBetween('date', [$start, $end])->get();
+        $data = JournalItem::orderBy('date', 'ASC')->with(['journal', 'coa'])->whereBetween('date', [$start, $end])->get();
 
         return view('pages.bigbook.result', [
             'page_title' => 'Hasil Buku Besar',
