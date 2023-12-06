@@ -21,11 +21,8 @@ class ProfitLossReportController extends Controller
         $end = $request->end_date;
 
         $coa = Akun::all();
-        $data = JournalItem::with(['journal', 'coa'])->whereBetween('created_at', [$start, $end])->get();
+        $data = JournalItem::with(['journal', 'coa'])->whereBetween('date', [$start, $end])->get();
 
-        foreach ($coa->where('') as $key => $value) {
-            # code...
-        }
 
         return view('pages.labarugi.print', [
             'page_title' => 'Hasil Laba Rugi',
