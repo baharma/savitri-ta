@@ -11,7 +11,7 @@ class ExpenseReportController extends Controller
     public function index()
     {
         return view('pages.purchase.report.index', [
-            'page_title' => 'Laporan Penjualan'
+            'page_title' => 'Laporan Pengeluaran'
         ]);
     }
 
@@ -20,7 +20,7 @@ class ExpenseReportController extends Controller
         $start = $request->start_date;
         $end = $request->end_date;
 
-        $data = Pengeluaran::orderBy('created_at', 'ASC')->whereBetween('created_at', [$start, $end])->get();
+        $data = Pengeluaran::orderBy('tanggal_pengeluran', 'ASC')->whereBetween('tanggal_pengeluran', [$start, $end])->get();
         return view('pages.purchase.report.print', [
             'page_title' => 'Report Penjualan Periode' . $start . 's/d' . $end,
             'data' => $data,

@@ -19,7 +19,7 @@ class SalesReportController extends Controller
         $start = $request->start_date;
         $end = $request->end_date;
 
-        $data = Penjualan::orderBy('created_at', 'ASC')->whereBetween('created_at', [$start, $end])->get();
+        $data = Penjualan::orderBy('tanggal_penjualan', 'ASC')->whereBetween('tanggal_penjualan', [$start, $end])->get();
         return view('pages.penjualan.report.print', [
             'page_title' => 'Report Penjualan Periode' . $start . 's/d' . $end,
             'data' => $data,
