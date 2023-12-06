@@ -21,9 +21,12 @@
                         @method('PUT')
                         @endif
                         <div class="row">
+                             @php
+                                $date = Carbon\Carbon::now()->format('Y-m-d');
+                            @endphp
                             <div class="form-group col-md-12">
                                 <label>Tanggal Pengeluaran</label>
-                                <input type="date" name="tanggal_pengeluran" value="{{$data->tanggal_pengeluran ?? ''}}"
+                                <input type="date" name="tanggal_pengeluran" value="{{$data->tanggal_pengeluran ?? $date}}"
                                     class="form-control" required>
                             </div>
                             <div class="form-group col-md-6">

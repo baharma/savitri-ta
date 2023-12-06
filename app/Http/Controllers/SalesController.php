@@ -59,7 +59,7 @@ class SalesController extends Controller
         $data = null;
         $customer = Customer::where('is_allow_debt', 1)->get();
         return view('pages.penjualan.form', [
-            'page_title' => 'Tambah Penjualan Re',
+            'page_title' => 'Tambah Penjualan',
             'data' => $data,
             'customer' => $customer,
         ]);
