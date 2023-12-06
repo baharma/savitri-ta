@@ -21,7 +21,7 @@ class BalanceSheetReportController extends Controller
         $end = $request->end_date;
 
         $coa = Akun::all();
-        $data = JournalItem::with(['journal', 'coa'])->whereBetween('created_at', [$start, $end])->get();
+        $data = JournalItem::with(['journal', 'coa'])->whereBetween('date', [$start, $end])->get();
 
         $aktiva_lancar = [];
         $passiva = [];
