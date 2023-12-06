@@ -35,7 +35,7 @@ class dashboardController extends Controller
         $totalBeban = 0;
 
         foreach ($beban as $key => $value) {
-            $valus = JournalItem::where('akun_id', $value->id)->sum('kredit');
+            $valus = JournalItem::where('akun_id', $value->id)->sum('debit');
 
             $totalBeban += $valus;
         }
@@ -59,7 +59,7 @@ class dashboardController extends Controller
         }
 
         $profitloss = $totalPendapatan - $totalBeban;
-        $datasales = Penjualan::orderBy('created_at', 'DESC')->limit(5)->get();
+        $datasales = Penjualan::orderBy('tanggal_penjualan', 'DESC')->limit(5)->get();
 
         return view('dashboard', [
             'sales' => $this->currencyIDR($sales->sum('total_penjualan')),
