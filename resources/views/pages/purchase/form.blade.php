@@ -24,7 +24,7 @@
                             <div class="form-group col-md-12">
                                 <label>Tanggal Pengeluaran</label>
                                 <input type="date" name="tanggal_pengeluran" value="{{$data->tanggal_pengeluran ?? ''}}"
-                                    class="form-control myDate" required>
+                                    class="form-control" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Jenis Pengeluaran</label>

@@ -29,7 +29,7 @@ class GenerateGL
         $glpiutang = new Journal;
 
 
-        $glpiutang->date = Carbon::now();
+        $glpiutang->date = $data['date'];
         $glpiutang->description = $dataJournal2['description'];
         $glpiutang->kode_jurnal = GenerateGL::journal();
         $glpiutang->nominal = $data['nominal'];

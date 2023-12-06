@@ -24,7 +24,7 @@
                             <div class="form-group col-md-12">
                                 <label>Tanggal Penjualan Barang</label>
                                 <input type="date" name="tanggal_penjualan" value="{{$data->tanggal_penjualan ?? ''}}"
-                                    class="form-control myDate" required>
+                                    class="form-control" required>
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Nama Barang</label>
@@ -140,8 +140,6 @@
 <script src="{{asset('assets/lib/parsleyjs/parsley.min.js')}}"></script>
 <script>
     $(document).ready(function () {
-        const currentDate = new Date().toISOString().split('T')[0];
-        $('.myDate').val(currentDate);
 
         function hitungTotal() {
             // Ambil nilai qty dan price
