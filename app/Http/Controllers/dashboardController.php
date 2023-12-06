@@ -18,6 +18,8 @@ class dashboardController extends Controller
     {
         $currentDate = Carbon::now();
 
+        $month = $currentDate->format('m');
+
         // Dapatkan jumlah hari pada bulan sekarang
         $daysMonth = $currentDate->daysInMonth;
 
@@ -45,9 +47,9 @@ class dashboardController extends Controller
 
         for ($i = 1; $i <= $daysMonth; $i++) {
 
-            $penjualan = Penjualan::whereDay('tanggal_penjualan', $i)->sum('total_penjualan');
-            $piutang = Piutang::whereDay('tgl_transaksi_piutang', $i)->sum('sisa_tagihan');
-            $pengeluaran = Pengeluaran::whereDay('tanggal_pengeluran', $i)->sum('total_pengeluaran');
+            $penjualan = Penjualan::whereMonth('tanggal_penjualan', $month)->whereDay('tanggal_penjualan', $i)->sum('total_penjualan');
+            $piutang = Piutang::whereMonth('tgl_transaksi_piutang', $month)->whereDay('tgl_transaksi_piutang', $i)->sum('sisa_tagihan');
+            $pengeluaran = Pengeluaran::whereMonth('tanggal_pengeluran', $month)->whereDay('tanggal_pengeluran', $i)->sum('total_pengeluaran');
 
 
             $days[] = [

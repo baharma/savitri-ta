@@ -87,7 +87,7 @@
         <div class="col-md-12 mt-2">
             <div class="card shadow h-100">
                 <div class="card-header">
-                    Perhitungan Chart Per Bulan November
+                    Perhitungan Chart Per Bulan Desember
                 </div>
                 <div class="card-body">
                     <canvas id="myChart"></canvas>
