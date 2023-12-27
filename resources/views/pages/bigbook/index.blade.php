@@ -2,9 +2,15 @@
 @section('header-dasboard')
 {{$page_title}}
 @endsection
+@section('breadcrumbs')
+    @include('components.breadcrumbs', [
+        'breadcrumbs' => [
+            ['name' => $page_title, 'status'=> 1]
+        ]
+    ])
+@endsection
 
 @section('content')
-<div class="container-fluid">
     <div class="row row-xs">
         <div class="col-lg-12 col-xl-6 mg-t-10">
             <div class="card">
@@ -37,5 +43,4 @@
             </div><!-- card -->
         </div>
     </div><!-- row -->
-</div>
 @endsection
