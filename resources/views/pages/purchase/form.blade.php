@@ -140,7 +140,7 @@
             $('#sisa_bayar').val(totalsemua);
             $('#total_tagihan').val(total_tagihan);
 
-            if(total_tagihan < total_bayar){
+            if(totalsemua < 0){
                 alert('Pembayaran tidak boleh minus !')
                 $('.simpanData').hide();
             }else{

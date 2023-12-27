@@ -86,7 +86,14 @@
                     orderable: false,
                     searchable: false
                 },
-            ]
+            ],
+            createdRow: function (row, data, dataIndex) {
+                // Tambahkan class 'overdue' jika melewati jatuh tempo atau hari ini jatuh tempo
+                if (moment(data.tgl_jatuh_tempo_piutang).isSameOrBefore(moment(), 'day') && data.status_pembayaran == 'PENDING') {
+                    $(row.childNodes[0]).addClass('bg-danger text-light');
+                    console.log(row.childNodes);
+                }
+            }
         });
 
     });

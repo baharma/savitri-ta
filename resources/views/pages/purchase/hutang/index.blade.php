@@ -46,6 +46,7 @@
 @endsection
 
 @push('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script>
     $(document).ready(function () {
         var table = $('.datatable_category').DataTable({
@@ -86,7 +87,15 @@
                     orderable: false,
                     searchable: false
                 },
-            ]
+            ],
+            createdRow: function (row, data, dataIndex) {
+                // Tambahkan class 'overdue' jika melewati jatuh tempo atau hari ini jatuh tempo
+                if (moment(data.tgl_jatuh_tempo).isSameOrBefore(moment(), 'day') && data.status_pembayaran == 'PENDING') {
+                    $(row.childNodes[0]).addClass('bg-danger text-light');
+                    console.log(row.childNodes);
+                }
+            }
+            
         });
 
     });
