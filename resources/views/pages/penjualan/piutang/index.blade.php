@@ -46,6 +46,8 @@
 @endsection
 
 @push('script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
 <script>
     $(document).ready(function () {
         var table = $('.datatable_category').DataTable({
