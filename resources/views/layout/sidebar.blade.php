@@ -32,9 +32,9 @@
                 <div class="bg-white py-2 collapse-inner rounded">
                     <h6 class="collapse-header">Data :</h6>
                     <a class="collapse-item" href="{{route('sales.index')}}">Penjualan</a>
-                    <a class="collapse-item" href="{{route('purchase.index')}}">Pengeluaran</a>
-                    <a class="collapse-item" href="{{route('debt.index')}}">Hutang</a>
-                    <a class="collapse-item" href="{{route('receivable.index')}}">Piutang</a>
+                    <a class="collapse-item" href="{{route('purchase.index')}}">Pengeluaran </a>
+                    <a class="collapse-item" href="{{route('debt.index')}}">Hutang <span class="badge badge-pill badge-danger">{{$hutang ?? 0}}</span></a>
+                    <a class="collapse-item" href="{{route('receivable.index')}}">Piutang <span class="badge badge-pill badge-danger">{{$piutang ?? 0}}</span></a>
                 </div>
             </div>
         </li>
