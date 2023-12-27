@@ -27,6 +27,11 @@
                                     class="form-control" placeholder="Enter Nama" required>
                             </div>
                             <div class="form-group col-md-12">
+                                <label>Nomor Tlpn. : <span class="tx-danger">*</span></label>
+                                <input type="text" name="phone_number" value="{{$data->phone_number ?? ''}}"
+                                    class="form-control" placeholder="Enter Nama" required>
+                            </div>
+                            <div class="form-group col-md-12">
                                 <label>Alamat : <span class="tx-danger">*</span></label>
                                 <input type="text" name="address" value="{{$data->address ?? ''}}"
                                     class="form-control" placeholder="Enter Alamat" required>

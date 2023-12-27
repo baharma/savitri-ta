@@ -106,7 +106,7 @@ class SalesController extends Controller
             'description' => 'Transaksi Penjualan Dengan Nomor Faktur' . ' ' . $latest_data->faktur_penjualan,
             'nominal' => $request->total_penjualan,
             'date' => $request->tanggal_penjualan,
-            'akun' => ['1', '7']
+            'akun' => ['7', '1']
         );
 
         GenerateGL::createGL($akun1);
@@ -135,7 +135,7 @@ class SalesController extends Controller
                 'description' => 'Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                 'nominal' => $request->total_tagihan,
                 'date' => $request->tgl_transaksi_piutang,
-                'akun' => ['2', '7']
+                'akun' => ['7', '2']
             );
 
             GenerateGL::createGL($akun2);
@@ -146,7 +146,7 @@ class SalesController extends Controller
                     'description' => 'Pembayaran Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                     'nominal' => $request->total_pembayaran,
                     'date' => $request->tgl_transaksi_piutang,
-                    'akun' => ['1', '2']
+                    'akun' => ['2', '1']
                 );
 
                 GenerateGL::createGL($akun3);
@@ -156,7 +156,7 @@ class SalesController extends Controller
                     'description' => 'Sisa Tagihan Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                     'date' => $request->tgl_transaksi_piutang,
                     'nominal' => $request->sisa_tagihan,
-                    'akun' => ['2', '7']
+                    'akun' => ['7', '2']
                 );
 
                 GenerateGL::createGL($akun4);
@@ -205,7 +205,7 @@ class SalesController extends Controller
                 'description' => 'Transaksi Penjualan Dengan Nomor Faktur' . ' ' . $latest_data->faktur_penjualan,
                 'nominal' => $request->total_penjualan,
                 'date' => $request->tanggal_penjualan,
-                'akun' => ['1', '7']
+                'akun' => ['7', '1']
 
             );
 
@@ -237,7 +237,7 @@ class SalesController extends Controller
                     'description' => 'Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                     'nominal' => $request->total_tagihan,
                     'date' => $request->tgl_transaksi_piutang,
-                    'akun' => ['2', '7']
+                    'akun' => ['7', '2']
                 );
 
                 GenerateGL::createGL($akun2);
@@ -248,7 +248,7 @@ class SalesController extends Controller
                         'description' => 'Pembayaran Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                         'nominal' => $request->total_pembayaran,
                         'date' => $request->tgl_transaksi_piutang,
-                        'akun' => ['1', '2']
+                        'akun' => ['2', '1']
                     );
 
                     GenerateGL::createGL($akun3);
@@ -258,7 +258,7 @@ class SalesController extends Controller
                         'description' => 'Sisa Tagihan Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                         'nominal' => $request->sisa_tagihan,
                         'date' => $request->tgl_transaksi_piutang,
-                        'akun' => ['2', '7']
+                        'akun' => ['7', '1']
                     );
 
                     GenerateGL::createGL($akun4);

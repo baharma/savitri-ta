@@ -12,6 +12,7 @@
         body {
             font-family: 'Times New Roman', Times, sans-serif !important;
         }
+
     </style>
     <title></title>
     @include('sweetalert::alert')
@@ -24,14 +25,17 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.8/css/dataTables.bootstrap4.min.css">
     <link href="{{asset('vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet" type="text/css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,300;0,400;0,500;1,100&family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;1,6..12,200;1,6..12,400&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,300;0,400;0,500;1,100&family=Nunito+Sans:ital,opsz,wght@0,6..12,200;0,6..12,300;0,6..12,400;1,6..12,200;1,6..12,400&display=swap"
+        rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
 
     <style>
-        body{
-                font-family: 'Arial', sans-serif !important;
+        body {
+            font-family: 'Arial', sans-serif !important;
         }
+
     </style>
 
 </head>
@@ -57,7 +61,9 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 class="h3 mb-0 text-gray-800">@yield('header-dasboard')</h1>
+                        
                     </div>
+                    @yield('breadcrumbs')
 
                     @yield('content')
 
@@ -138,17 +144,19 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
     @stack('script')
     <script>
         setDateNow()
+
         function setDateNow() {
             const tanggalSekarang = new Date().toISOString().slice(0,
-            10); // Mendapatkan tanggal saat ini (format: YYYY-MM-DD)
+                10); // Mendapatkan tanggal saat ini (format: YYYY-MM-DD)
             const tanggalInputs = document.querySelectorAll(
-            '.tanggalInput'); // Mengambil semua elemen dengan class 'tanggalInput'
+                '.tanggalInput'); // Mengambil semua elemen dengan class 'tanggalInput'
             tanggalInputs.forEach(function (input) {
                 input.value = tanggalSekarang; // Mengatur nilai input dengan tanggal saat ini
             });
         }
+
     </script>
-        <script>
+    <script>
         $(document).on('click', '.delete-item', function (e) {
             e.preventDefault();
             var id = $(this).data('id');
@@ -160,7 +168,7 @@ https://cdn.jsdelivr.net/npm/sweetalert2@11.7.27/dist/sweetalert2.all.min.js
                     text: "You won't be able to revert this!",
                     type: "warning",
                     confirmButtonText: "Yes, delete it!",
-                    icon:"warning",
+                    icon: "warning",
                     showCancelButton: true
                 })
                 .then((result) => {

@@ -2,10 +2,17 @@
 @section('header-dasboard')
 {{$page_title}}
 @endsection
+@section('breadcrumbs')
+    @include('components.breadcrumbs', [
+        'breadcrumbs' => [
+            ['name' => 'Penjualan', 'status'=> 0],
+            ['name' => $page_title, 'status'=> 1]
+        ]
+    ])
+@endsection
 
 @section('content')
 
-<div class="container-fluid">
     <div class="row row-xs">
         <div class="col-lg-12 col-xl-12 mg-t-10">
             <div class="card">
@@ -98,12 +105,12 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                 <label>Tanggal Piutang</label>
-                                <input type="date" name="tgl_transaksi_piutang" value="{{$data->receivables->tanggal_penjualan ?? ''}}"
+                                <input type="date" name="tgl_transaksi_piutang" value="{{$data->receivables->tanggal_penjualan ?? \Carbon\Carbon::now()->format('Y-m-d')}}"
                                     class="form-control myDate">
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Tanggal Jatuh Tempo</label>
-                                <input type="date" name="tgl_jatuh_tempo_piutang" value="{{$data->receivables->tanggal_penjualan ?? ''}}"
+                                <input type="date" name="tgl_jatuh_tempo_piutang" value="{{$data->receivables->tanggal_penjualan ?? \Carbon\Carbon::now()->format('Y-m-d')}}"
                                     class="form-control myDate">
                             </div>
                             <div class="form-group col-md-4">
@@ -112,7 +119,7 @@
                                     class="form-control total_price" placeholder="">
                             </div>
                             <div class="form-group col-md-4">
-                                <label>Total Pembayaran</label>
+                                <label>Uang Muka Tagihan</label>
                                 <input type="number" name="total_pembayaran" value="{{$data->receivables->total_pembayaran ?? ''}}"
                                     class="form-control total_pembayaran" id="total_bayar" placeholder="">
                             </div>
@@ -130,13 +137,12 @@
 
                 </div><!-- card-body -->
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Simpan Data</button>
+                    <button type="submit" class="btn btn-primary simpanData">Simpan Data</button>
                 </div>
                 </form>
             </div><!-- card -->
         </div>
     </div><!-- row -->
-</div>
 @endsection
 
 @push('script')
@@ -153,6 +159,13 @@
             // Hitung total
             var total = qty * price;
             var totalsemua = total -  total_bayar
+
+            if(total < total_bayar){
+                alert('Pembayaran tidak boleh minus !')
+                $('.simpanData').hide();
+            }else{
+                $('.simpanData').show();
+            }
 
             // Tampilkan total di input dengan id "total"
             $('.total_price').val(total);

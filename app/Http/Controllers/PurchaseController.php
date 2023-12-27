@@ -114,7 +114,7 @@ class PurchaseController extends Controller
                 'description' => 'Transaksi Pengeluaran Dengan Nomor Faktur' . ' ' . $latest_data->faktur_penjualan,
                 'nominal' => $request->total_pengeluaran,
                 'date' => $request->tanggal_pengeluran,
-                'akun' => [$request->akun_id, '1']
+                'akun' => ['1', $request->akun_id]
             );
             GenerateGL::createGL($akun1);
 
@@ -141,7 +141,7 @@ class PurchaseController extends Controller
                     'description' => 'Hutang Pengeluaran Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                     'nominal' => $request->total_transaksi_hutang,
                     'date' => $request->tanggal_pengeluran,
-                    'akun' => [$request->akun_id, '5']
+                    'akun' => ['5', $request->akun_id]
                 );
 
                 GenerateGL::createGL($akun2);
@@ -152,7 +152,7 @@ class PurchaseController extends Controller
                         'description' => 'Pembayaran Hutang Pengeluaran Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                         'nominal' => $request->total_pembayaran,
                         'date' => $request->tgl_transaksi_hutang,
-                        'akun' => ['5', '1']
+                        'akun' => ['1', '5']
                     );
 
                     GenerateGL::createGL($akun3);
@@ -162,7 +162,7 @@ class PurchaseController extends Controller
                         'description' => 'Sisa Tagihan Hutang Pengeluaran Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                         'nominal' => $request->sisa_pembayaran,
                         'date' => $request->tgl_transaksi_hutang,
-                        'akun' => [$request->akun_id, '5']
+                        'akun' => [ '5', $request->akun_id]
                     );
 
                     GenerateGL::createGL($akun4);
@@ -212,7 +212,7 @@ class PurchaseController extends Controller
                 'description' => 'Transaksi Pengeluaran Dengan Nomor Faktur' . ' ' . $latest_data->faktur_penjualan,
                 'nominal' => $request->total_pengeluaran,
                 'date' => $request->tanggal_pengeluran,
-                'akun' => [$request->akun_id, '1']
+                'akun' => ['1', $request->akun_id]
             );
             GenerateGL::createGL($akun1);
             Hutang::where('pengeluaran_id', $id)->delete();
@@ -239,7 +239,7 @@ class PurchaseController extends Controller
                     'description' => 'Hutang Pengeluaran Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                     'nominal' => $request->total_transaksi_hutang,
                     'date' => $request->tgl_transaksi_hutang,
-                    'akun' => [$request->akun_id, '5']
+                    'akun' => ['5', $request->akun_id]
                 );
 
                 GenerateGL::createGL($akun2);
@@ -250,7 +250,7 @@ class PurchaseController extends Controller
                         'description' => 'Pembayaran Hutang Pengeluaran Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                         'nominal' => $request->total_pembayaran,
                         'date' => $request->tgl_transaksi_hutang,
-                        'akun' => ['5', '1']
+                        'akun' => ['1', '5']
                     );
 
                     GenerateGL::createGL($akun3);
@@ -260,7 +260,7 @@ class PurchaseController extends Controller
                         'description' => 'Sisa Tagihan Hutang Pengeluaran Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                         'nominal' => $request->sisa_pembayaran,
                         'date' => $request->tgl_transaksi_hutang,
-                        'akun' => [$request->akun_id, '5']
+                        'akun' => ['5', $request->akun_id]
                     );
 
                     GenerateGL::createGL($akun4);

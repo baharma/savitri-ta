@@ -42,6 +42,9 @@ class CustomerController extends Controller
                     return $date->setTimezone('+8');
                 }
             })
+            ->addColumn('izin_berhutang', function ($data) {
+                return $data->is_allow_debt == 1 ? 'YA' : 'TIDAK';
+            })
             ->toJson();
     }
 
@@ -67,6 +70,7 @@ class CustomerController extends Controller
         try {
             $formdata = array(
                 "name" => $request->name,
+                "phone_number" => $request->phone_number,
                 "address" => $request->address,
                 "is_allow_debt" => $request->is_allow_debt,
             );
@@ -84,6 +88,7 @@ class CustomerController extends Controller
         try {
             $formdata = array(
                 "name" => $request->name,
+                "phone_number" => $request->phone_number,
                 "address" => $request->address,
                 "is_allow_debt" => $request->is_allow_debt,
             );

@@ -36,9 +36,10 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Metode Pembayaran</label>
-                                <select name="jenis_bayar" id="" class="form-control">
+                                <select name="jenis_bayar" id="" class="form-control jenis_bayar">
                                     <option value="CASH">Tunai</option>
                                     <option value="TRANSFER">Transfer</option>
+                                    <option value="CREDIT">Credit</option>
                                 </select>
                             </div>
                             
@@ -63,9 +64,10 @@
                                 <label>Deskripsi</label>
                                 <textarea name="description" id="" cols="10" rows="2" class="form-control">{{$data->description ?? ''}}</textarea>
                             </div>
-                            <div class="form-group col-md-2">
+                            <hr>
+                            <div class="form-group col-md-2 d-none">
                                 <label>Ada Hutang ?</label>
-                                <select name="is_debt" id="is_debt" class="form-control">
+                                <select name="is_debt" id="is_debt" class="form-control ">
                                      @if ($data == null)
                                     <option value="0">Tidak</option>
                                     <option value="1">Iya</option>
@@ -95,7 +97,7 @@
                                     class="form-control" placeholder="">
                             </div>
                             <div class="form-group col-md-4">
-                                <label>Total Pembayaran</label>
+                                <label>Uang Muka Pembayaran</label>
                                 <input type="number" name="total_pembayaran" value="{{$data->debt->total_pembayaran ?? ''}}"
                                     class="form-control total_pembayaran" id="total_bayar" placeholder="">
                             </div>
@@ -108,7 +110,7 @@
                         </div>
                 </div><!-- card-body -->
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Simpan Data</button>
+                    <button type="submit" class="btn btn-primary simpanData">Simpan Data</button>
                 </div>
                 </form>
             </div><!-- card -->
@@ -130,23 +132,35 @@
             var totalsemua = total_tagihan -  total_bayar
             $('#sisa_bayar').val(totalsemua);
             $('#total_tagihan').val(total_tagihan);
+
+            if(total_tagihan < total_bayar){
+                alert('Pembayaran tidak boleh minus !')
+                $('.simpanData').hide();
+            }else{
+                $('.simpanData').show();
+            }
         }
 
         // Panggil fungsi hitungTotal saat nilai qty atau price berubah
         $('#is_debt, #total_bayar, .total_price').on('input', function() {
             hitungTotal();
+
+            
         });
 
 
-        $('#is_debt').change(function (e) { 
+         $('.jenis_bayar').change(function (e) { 
             e.preventDefault();
-            if($(this).val() == 1){
+            if($(this).val() == 'CREDIT'){
+                $('#is_debt').val(1)
                 $('#form_piutang').removeClass('d-none');
             }else{
+                $('#is_debt').val(0)
                 $('#form_piutang').addClass('d-none');
             }
             
         });
+
 
     });
 

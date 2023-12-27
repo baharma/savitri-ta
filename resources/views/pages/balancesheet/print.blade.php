@@ -174,7 +174,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <img src="{{asset('pemilik.jpeg')}}" alt="" width="70%" height="150px">
+                                    <img src="{{asset('savitri.jpeg')}}" alt="" width="70%" height="150px">
                                 </td>
                             </tr>
                             <tr>
@@ -193,7 +193,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <img src="{{asset('savitri.jpeg')}}" alt="" width="70%" height="150px">
+                                    <img src="{{asset('pemilik.jpeg')}}" alt="" width="70%" height="150px">
                                 </td>
                             </tr>
                             <tr>

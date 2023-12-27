@@ -2,10 +2,16 @@
 @section('header-dasboard')
 {{$page_title}}
 @endsection
-
+@section('breadcrumbs')
+    @include('components.breadcrumbs', [
+        'breadcrumbs' => [
+            ['name' => 'Piutang', 'status'=> 0],
+            ['name' => $page_title, 'status'=> 1],
+        ]
+    ])
+@endsection
 @section('content')
 
-<div class="container-fluid">
     <div class="row row-xs">
         <div class="col-lg-12 col-xl-12 mg-t-10">
             <div class="card">
@@ -41,12 +47,12 @@
                                     </div>
                                     <div class="form-group col-md-6">
                                 <label>Tanggal Piutang</label>
-                                <input type="date" disabled name="tgl_transaksi_piutang" value="{{$data->tanggal_penjualan ?? ''}}"
+                                <input type="date" disabled name="tgl_transaksi_piutang" value="{{$data->tanggal_penjualan ?? \Carbon\Carbon::now()->format('Y-m-d')}}"
                                     class="form-control myDate">
                             </div>
                             <div class="form-group col-md-6">
                                 <label>Tanggal Jatuh Tempo</label>
-                                <input type="date" disabled name="tgl_jatuh_tempo_piutang" value="{{$data->tanggal_penjualan ?? ''}}"
+                                <input type="date" disabled name="tgl_jatuh_tempo_piutang" value="{{$data->tanggal_penjualan ?? \Carbon\Carbon::now()->format('Y-m-d')}}"
                                     class="form-control myDate">
                             </div>
                             <div class="form-group col-md-4">
@@ -79,7 +85,6 @@
             </div><!-- card -->
         </div>
     </div><!-- row -->
-</div>
 @endsection
 
 @push('script')

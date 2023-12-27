@@ -21,8 +21,8 @@ class GenerateGL
             "description" => $data['description'],
             "akun_id" => $data['akun'],
             "date" => $data['date'],
-            "debit" => [$data['nominal'], "0"],
-            "kredit" => ["0", $data['nominal']],
+            "debit" => ["0", $data['nominal']],
+            "kredit" => [$data['nominal'], "0"],
             "nominal" => $data['nominal'],
         ];
 

@@ -2,9 +2,15 @@
 @section('header-dasboard')
 {{$page_title}}
 @endsection
+@section('breadcrumbs')
+    @include('components.breadcrumbs', [
+        'breadcrumbs' => [
+            ['name' => $page_title, 'status'=> 1]
+        ]
+    ])
+@endsection
 @section('content')
 
-<div class="container-fluid">
     <div class="row row-xs">
         <div class="col-lg-12 col-xl-12 mg-t-5 mb-2">
             <a href="{{route('sales.create')}}" class="btn btn-primary float-right">Add Data {{$page_title}}</a>
@@ -32,7 +38,6 @@
             </div><!-- card -->
         </div>
     </div><!-- row -->
-</div>
 @endsection
 
 @push('script')

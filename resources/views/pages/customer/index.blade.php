@@ -18,6 +18,9 @@
                     <table class="table datatable_category">
                         <thead>
                             <th>Nama</th>
+                            <th>Phone</th>
+                            <th>Alamat</th>
+                            <th>Izin Berhutang ?</th>
                             <th width="10%">Action</th>
                         </thead>
                         <tbody>
@@ -41,6 +44,18 @@
             columns: [{
                     data: 'name',
                     name: 'name' 
+                },
+                {
+                    data: 'phone_number',
+                    name: 'phone_number' 
+                },
+                {
+                    data: 'address',
+                    name: 'address' 
+                },
+                {
+                    data: 'izin_berhutang',
+                    name: 'izin_berhutang' 
                 },
                 {
                     data: 'action',
