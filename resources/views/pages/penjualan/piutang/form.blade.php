@@ -79,7 +79,7 @@
 
                 </div><!-- card-body -->
                 <div class="card-footer">
-                    <button type="submit" class="btn btn-primary">Simpan Data</button>
+                    <button type="submit" class="btn btn-primary simpanData">Simpan Data</button>
                 </div>
                 </form>
             </div><!-- card -->
@@ -105,6 +105,13 @@
 
             // Tampilkan total di input dengan id "total"
             $('#sisa_bayar').val(totalsemua);
+
+             if(totalsemua < 0){
+                alert('Pembayaran tidak boleh minus !')
+                $('.simpanData').hide();
+            }else{
+                $('.simpanData').show();
+            }
 
         }
 
