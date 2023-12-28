@@ -96,13 +96,16 @@
             var totalsemua = total_price - total_bayar
 
             // Tampilkan total di input dengan id "total"
-            $('#sisa_bayar').val(totalsemua);
 
             if(totalsemua < 0){
                 alert('Pembayaran tidak boleh minus !')
                 $('.simpanData').hide();
+                $('#sisa_bayar').val(0);
+
             }else{
                 $('.simpanData').show();
+                $('#sisa_bayar').val(totalsemua);
+
             }
 
         }

@@ -29,16 +29,18 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
 
-        $piutang = Piutang::whereDate('tgl_jatuh_tempo_piutang', '<=', Carbon::now())
-            ->where('status_pembayaran', 'PENDING')
-            ->count();
-        $hutang = Hutang::whereDate('tgl_jatuh_tempo', '<=', Carbon::now())
-            ->where('status_pembayaran', 'PENDING')
-            ->count();
+        if (Schema::hasTable('piutangs')) {
+            $piutang = Piutang::whereDate('tgl_jatuh_tempo_piutang', '<=', Carbon::now())
+                ->where('status_pembayaran', 'PENDING')
+                ->count();
+            $hutang = Hutang::whereDate('tgl_jatuh_tempo', '<=', Carbon::now())
+                ->where('status_pembayaran', 'PENDING')
+                ->count();
 
-        view()->share([
-            'piutang' => $piutang,
-            'hutang' => $hutang
-        ]);
+            view()->share([
+                'piutang' => $piutang,
+                'hutang' => $hutang
+            ]);
+        }
     }
 }
