@@ -98,7 +98,7 @@
             // Tampilkan total di input dengan id "total"
 
             if(totalsemua < 0){
-                alert('Pembayaran tidak boleh minus !')
+                alert('Pembayaran Tidak Boleh Lebih !')
                 $('.simpanData').hide();
                 $('#sisa_bayar').val(0);
 

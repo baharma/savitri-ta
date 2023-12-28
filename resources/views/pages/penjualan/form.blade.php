@@ -161,7 +161,7 @@
             var totalsemua = total -  total_bayar
 
             if(total < total_bayar){
-                alert('Pembayaran tidak boleh minus !')
+                alert('Pembayaran Tidak Boleh Lebih !')
                 $('.simpanData').hide();
             }else{
                 $('.simpanData').show();

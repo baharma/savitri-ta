@@ -108,7 +108,7 @@
 
              if(totalsemua < 0){
                 $('#sisa_bayar').val(0);
-                alert('Pembayaran tidak boleh minus !')
+                alert('Pembayaran Tidak Boleh Lebih !')
                 $('.simpanData').hide();
             }else{
                 $('.simpanData').show();

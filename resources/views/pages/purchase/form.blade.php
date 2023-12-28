@@ -141,7 +141,7 @@
             $('#total_tagihan').val(total_tagihan);
 
             if(totalsemua < 0){
-                alert('Pembayaran tidak boleh minus !')
+                alert('Pembayaran Tidak Boleh Lebih !')
                 $('.simpanData').hide();
             }else{
                 $('.simpanData').show();
