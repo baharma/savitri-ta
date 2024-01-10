@@ -113,7 +113,7 @@ class ReceivableController extends Controller
                 'description' => 'Pembayaran Piutang Penjualan Dengan Nomor Faktur' . ' ' . $data->no_transaksi,
                 'nominal' => $request->total_pembayaran,
                 'date' => Carbon::now()->format('Y-m-d'),
-                'akun' => ['2', '1']
+                'akun' => ['1', '2']
             );
 
             GenerateGL::createGL($akun2);
