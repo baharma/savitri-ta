@@ -156,7 +156,7 @@ class SalesController extends Controller
                     'description' => 'Sisa Tagihan Piutang Penjualan Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                     'date' => $request->tgl_transaksi_piutang,
                     'nominal' => $request->sisa_tagihan,
-                    'akun' => ['7', '2']
+                    'akun' => ['2', '7']
                 );
 
                 GenerateGL::createGL($akun4);

@@ -111,7 +111,7 @@ class DebtController extends Controller
                 'description' => 'Pembayaran Hutang Dengan Nomor Faktur' . ' ' . $data->no_transaksi,
                 'nominal' => $request->total_pembayaran,
                 'date' => Carbon::now()->format('Y-m-d'),
-                'akun' => ['5','1']
+                'akun' => ['5', '1']
             );
 
             GenerateGL::createGL($akun2);
@@ -122,7 +122,8 @@ class DebtController extends Controller
                     'description' => 'Sisa Tagihan Hutang Dengan Nomor Faktur' . ' ' . $data->no_transaksi,
                     'nominal' => $request->sisa_pembayaran,
                     'date' => Carbon::now()->format('Y-m-d'),
-                    'akun' => ['1', '5']
+                    'akun' => ['5', '1']
+
                 );
 
                 GenerateGL::createGL($akun1);

@@ -124,7 +124,7 @@ class ReceivableController extends Controller
                     'description' => 'Sisa Tagihan Piutang Penjualan Dengan Nomor Faktur' . ' ' . $data->no_transaksi,
                     'nominal' => $request->sisa_tagihan,
                     'date' => Carbon::now()->format('Y-m-d'),
-                    'akun' => ['7', '2']
+                    'akun' => ['2', '7']
                 );
 
                 GenerateGL::createGL($akun1);

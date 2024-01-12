@@ -162,7 +162,7 @@ class PurchaseController extends Controller
                         'description' => 'Sisa Tagihan Hutang Pengeluaran Dengan Nomor Faktur' . ' ' . $transaction_code_receivebles,
                         'nominal' => $request->sisa_pembayaran,
                         'date' => $request->tgl_transaksi_hutang,
-                        'akun' => ['5', $request->akun_id]
+                        'akun' => ['5', '1']
                     );
 
                     GenerateGL::createGL($akun4);
